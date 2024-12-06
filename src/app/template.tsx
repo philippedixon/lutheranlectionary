@@ -1,20 +1,38 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { SelectionsContext, SelectionsDispatchContext } from "@/app/contexts";
-import { Languages } from "@/app/enums";
+import {
+	SelectionsContext,
+	SelectionsDispatchContext,
+	TranslationsContext,
+	TranslationsDispatchContext,
+} from "@/app/contexts";
 import { languages } from "@/app/constants";
-
-// const getAvailableTranslations = async () => {
-// 	const request = await fetch(
-// 		`https://bible.helloao.org/api/available_translations.json`
-// 	);
-// 	return request;
-// };
+import { Translation } from "@/app/interfaces";
+import { Languages } from "@/app/enums";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
 	const selections = useContext(SelectionsContext);
 	const dispatchSelections = useContext(SelectionsDispatchContext);
+	const translations = useContext(TranslationsContext);
+	const dispatchTranslations = useContext(TranslationsDispatchContext);
+
+	useEffect(() => {
+		const getAvailableTranslations = async () => {
+			const request = await fetch(
+				`https://bible.helloao.org/api/available_translations.json`
+			);
+
+			const availableTranslations = await request.json();
+
+			dispatchTranslations({
+				type: "SET_TRANSLATIONS",
+				payload: availableTranslations.translations as Translation[],
+			});
+		};
+
+		getAvailableTranslations();
+	}, [dispatchTranslations]);
 
 	useEffect(() => {
 		let selectedLanguage = localStorage.getItem("language");
@@ -56,6 +74,20 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 							{language}
 						</option>
 					))}
+				</select>
+			</div>
+			<div>
+				<select>
+					{translations
+						.filter(
+							(translation) =>
+								translation.languageName === selections.languageName
+						)
+						.map((translation) => (
+							<option key={translation.id} value={translation.id}>
+								{translation.name}
+							</option>
+						))}
 				</select>
 			</div>
 			{children}

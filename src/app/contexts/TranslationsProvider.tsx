@@ -2,10 +2,10 @@ import { createContext, useReducer } from "react";
 import { Translation } from "@/app/interfaces";
 import { TranslationsAction, translationsReducer } from "@/app/reducers";
 
-export const TranslationsContext = createContext<Translation[] | null>(null);
+export const TranslationsContext = createContext<Translation[]>([]);
 export const TranslationsDispatchContext = createContext<
-	((action: TranslationsAction) => void) | null
->(null);
+	(action: TranslationsAction) => void
+>(({}: TranslationsAction) => {});
 
 export const TranslationsProvider = ({
 	children,
