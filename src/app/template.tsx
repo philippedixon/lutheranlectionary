@@ -1,15 +1,32 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import {
 	SelectionsContext,
+	SelectionsDispatch,
 	SelectionsDispatchContext,
 	TranslationsContext,
 	TranslationsDispatchContext,
 } from "@/app/contexts";
 import { languages } from "@/app/constants";
-import { Translation } from "@/app/interfaces";
+import { Selections, Translation } from "@/app/interfaces";
 import { Languages } from "@/app/enums";
+
+const setDefaultTranslationId = (
+	translations: Translation[],
+	selections: Selections,
+	dispatch: SelectionsDispatch
+): void => {
+	const defaultTranslation = translations.find(
+		(translation) => translation.languageEnglishName === selections.languageName
+	);
+	const translationId = defaultTranslation?.id ?? "";
+	dispatch({
+		type: "SET_TRANSLATION",
+		payload: translationId,
+	});
+	localStorage.setItem("translation", translationId);
+};
 
 const Template = ({ children }: { children: React.ReactNode }) => {
 	const selections = useContext(SelectionsContext);
@@ -26,7 +43,6 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 			const availableTranslations = await request.json();
 
 			dispatchTranslations({
-				type: "SET_TRANSLATIONS",
 				payload: availableTranslations.translations as Translation[],
 			});
 		};
@@ -35,24 +51,40 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 	}, [dispatchTranslations]);
 
 	useEffect(() => {
-		let selectedLanguage = localStorage.getItem("language");
+		const storedTranslationId = localStorage.getItem("translation");
 
-		if (!selectedLanguage) {
-			selectedLanguage = Languages.English;
+		console.log("selections", selections);
+		let storedSelectedLanguage = localStorage.getItem("language");
+		if (
+			storedSelectedLanguage &&
+			storedSelectedLanguage !== selections.languageName &&
+			storedTranslationId &&
+			storedTranslationId !== selections.translationId
+		) {
+			dispatchSelections({
+				type: "SET_SELECTIONS",
+				payload: {
+					languageName: storedSelectedLanguage,
+					translationId: storedTranslationId,
+				},
+			});
+		} else if (!storedSelectedLanguage) {
+			storedSelectedLanguage = Languages.English;
 			dispatchSelections({
 				type: "SET_LANGUAGE",
-				payload: selectedLanguage as Languages,
+				payload: storedSelectedLanguage as Languages,
 			});
-			localStorage.setItem("language", selectedLanguage);
-		} else if (selectedLanguage !== selections.languageName) {
-			selectedLanguage = selections.languageName as string;
-			dispatchSelections({
-				type: "SET_LANGUAGE",
-				payload: selectedLanguage as Languages,
-			});
-			localStorage.setItem("language", selectedLanguage);
+			localStorage.setItem("language", storedSelectedLanguage);
+			// Occurs when translations aren't available yet
+		} else if (
+			storedSelectedLanguage &&
+			storedSelectedLanguage === selections.languageName &&
+			!storedTranslationId &&
+			translations.length
+		) {
+			setDefaultTranslationId(translations, selections, dispatchSelections);
 		}
-	}, [dispatchSelections, selections]);
+	}, [dispatchSelections, selections, translations]);
 
 	const handleLanguageChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -62,6 +94,18 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 		dispatchSelections({
 			type: "SET_LANGUAGE",
 			payload: selectedLanguage as Languages,
+		});
+		localStorage.setItem("translation", "");
+	};
+
+	const handleTranslationChange = (
+		even: React.ChangeEvent<HTMLSelectElement>
+	) => {
+		const selectedTranslationId = even.target.selectedOptions[0].value;
+		localStorage.setItem("translation", selectedTranslationId);
+		dispatchSelections({
+			type: "SET_TRANSLATION",
+			payload: selectedTranslationId,
 		});
 	};
 
@@ -77,11 +121,14 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 				</select>
 			</div>
 			<div>
-				<select>
+				<select
+					onChange={handleTranslationChange}
+					value={selections.translationId}
+				>
 					{translations
 						.filter(
 							(translation) =>
-								translation.languageName === selections.languageName
+								translation.languageEnglishName === selections.languageName
 						)
 						.map((translation) => (
 							<option key={translation.id} value={translation.id}>

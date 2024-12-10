@@ -2,13 +2,15 @@ import { createContext, useReducer } from "react";
 import { Selections } from "@/app/interfaces";
 import { selectionsReducer, SelectionsAction } from "@/app/reducers";
 
+export type SelectionsDispatch = (action: SelectionsAction) => void;
+
 export const SelectionsContext = createContext<Selections>({
 	languageName: "",
 	translationId: "",
 });
-export const SelectionsDispatchContext = createContext<
-	(action: SelectionsAction) => void
->(({}: SelectionsAction) => {});
+export const SelectionsDispatchContext = createContext<SelectionsDispatch>(
+	({}: SelectionsAction) => {}
+);
 
 export const SelectionsProvider = ({
 	children,
