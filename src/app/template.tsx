@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect } from "react";
+import Link from "next/link";
 import {
 	SelectionsContext,
 	SelectionsDispatch,
@@ -53,7 +54,6 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		const storedTranslationId = localStorage.getItem("translation");
 
-		console.log("selections", selections);
 		let storedSelectedLanguage = localStorage.getItem("language");
 		if (
 			storedSelectedLanguage &&
@@ -111,6 +111,9 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 
 	return (
 		<div>
+			<nav>
+				<Link href="/">Home</Link>
+			</nav>
 			<div>
 				<select onChange={handleLanguageChange} value={selections.languageName}>
 					{languages.map((language) => (
