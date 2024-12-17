@@ -1,7 +1,7 @@
 "use client";
 
 import { lectionary } from "@/app/constants";
-import { getReadingDisplay } from "@/app/utils";
+import { getReadingTitle } from "@/app/utils";
 import Link from "next/link";
 
 export default function Home() {
@@ -17,8 +17,8 @@ export default function Home() {
 							<h2>{month.name}</h2>
 							{month?.days?.map((day, dayIndex) => {
 								const date = dayIndex + 1;
-								const reading1Display = getReadingDisplay(day.reading_1);
-								const reading2Display = getReadingDisplay(day.reading_2);
+								const reading1Display = getReadingTitle(day.reading_1);
+								const reading2Display = getReadingTitle(day.reading_2);
 
 								return (
 									<div key={`${month.name}-${date}`}>
