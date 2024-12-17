@@ -89,8 +89,9 @@ const DayPage = () => {
 								);
 							} else if ((text as FormattedText)?.text) {
 								const formattedText = text as FormattedText;
-								const tab = <span>&emsp;</span>;
-								const indent = tab.repeat(formattedText.poem ?? 0);
+								// const tab = <span>&emsp;</span>;
+								// const indent = tab.repeat(formattedText.poem ?? 0);
+								const indent = "";
 								let node = (
 									<span key={formattedText.text}>
 										{indent}
