@@ -1,33 +1,40 @@
 "use client";
 
-import { useContext, useEffect } from "react";
-import { SelectionsContext } from "./contexts";
-import { Translation } from "./interfaces/helloao";
+import { lectionary } from "@/app/constants";
+import { getReadingTitle } from "@/app/utils";
+import Link from "next/link";
 
 export default function Home() {
-	const selections = useContext(SelectionsContext);
-
-	useEffect(() => {
-		const translation = "eng_abt";
-		fetch(`https://bible.helloao.org/api/${translation}/books.json`)
-			.then((request) => request.json())
-			.then((books) => {
-				console.log("The asv has the following books:", books);
-			});
-		fetch(`https://bible.helloao.org/api/available_translations.json`)
-			.then((request) => request.json())
-			.then((availableTranslations) => {
-				const eng = availableTranslations?.translations?.filter(
-					(translation: Translation) =>
-						translation.languageEnglishName === "English"
-				);
-				console.log("The API has the following translations:", eng);
-			});
-	}, [selections]);
-
 	return (
 		<div>
 			<h1>Lutheran Lectionary</h1>
+			<section>
+				{lectionary.map((month, monthIndex) => {
+					const monthNumber = monthIndex + 1;
+
+					return (
+						<div key={month.name}>
+							<h2>{month.name}</h2>
+							{month?.days?.map((day, dayIndex) => {
+								const date = dayIndex + 1;
+								const reading1Display = getReadingTitle(day.reading_1);
+								const reading2Display = getReadingTitle(day.reading_2);
+
+								return (
+									<div key={`${month.name}-${date}`}>
+										<Link href={`/${monthNumber}/${date}`}>
+											<h3>{date}</h3>
+											<p>{reading1Display}</p>
+											<p>{reading2Display}</p>
+										</Link>
+									</div>
+								);
+							})}
+							<br />
+						</div>
+					);
+				})}
+			</section>
 		</div>
 	);
 }
