@@ -1,52 +1,5 @@
-import { Book, BookId } from "@/app/enums/books";
-
-export interface BibleBook {
-	name: Book;
-	id: BookId;
-}
-
-export interface Reading {
-	book: BibleBook;
-	chapters: string;
-	verses?: string;
-}
-
-export interface Day {
-	reading_1: Reading;
-	reading_2: Reading;
-}
-
-export interface Month {
-	name: string;
-	days: Day[];
-}
-
-export type Lectionary = Month[];
-
-export const januaryReadings: Month = {
-	name: "January",
-	days: [
-		{
-			reading_1: {
-				book: { name: Book.Luke, id: BookId.Luke },
-				chapters: "1",
-				verses: "68-79",
-			},
-			reading_2: { book: { name: Book.Mark, id: BookId.Mark }, chapters: "2" },
-		},
-	],
-};
-
-export const februaryReadings: Month = { name: "February", days: [] };
-export const marchReadings: Month = { name: "March", days: [] };
-export const aprilReadings: Month = { name: "April", days: [] };
-export const mayReadings: Month = { name: "May", days: [] };
-export const juneReadings: Month = { name: "June", days: [] };
-export const julyReadings: Month = { name: "July", days: [] };
-export const augustReadings: Month = { name: "August", days: [] };
-export const septemberReadings: Month = { name: "September", days: [] };
-export const octoberReadings: Month = { name: "October", days: [] };
-export const novemberReadings: Month = { name: "November", days: [] };
+import { Book, BookId } from "@/app/enums";
+import { Month } from "@/app/interfaces";
 
 export const decemberReadings: Month = {
 	name: "December",
@@ -362,18 +315,3 @@ export const decemberReadings: Month = {
 		},
 	],
 };
-
-export const lectionary: Lectionary = [
-	januaryReadings,
-	februaryReadings,
-	marchReadings,
-	aprilReadings,
-	mayReadings,
-	juneReadings,
-	julyReadings,
-	augustReadings,
-	septemberReadings,
-	octoberReadings,
-	novemberReadings,
-	decemberReadings,
-];

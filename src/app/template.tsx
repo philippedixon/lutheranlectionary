@@ -55,6 +55,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 		const storedTranslationId = localStorage.getItem("translation");
 
 		let storedSelectedLanguage = localStorage.getItem("language");
+		// if storedSelectedLanguage and !storedTranslationId, then clear???
 		if (
 			storedSelectedLanguage &&
 			storedSelectedLanguage !== selections.languageName &&

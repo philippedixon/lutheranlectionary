@@ -1,6 +1,6 @@
 "use client";
 
-import { lectionary } from "@/app/constants";
+import lectionary from "@/app/constants/lectionary";
 import { getReadingTitle } from "@/app/utils";
 import Link from "next/link";
 

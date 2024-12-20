@@ -3,7 +3,8 @@
 import { useContext, useEffect, useState } from "react";
 import { SelectionsContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
-import { lectionary, Month } from "@/app/constants";
+import lectionary from "@/app/constants/lectionary";
+import { Month } from "@/app/interfaces";
 import { fetchChapter, getReadingContent, getReadingTitle } from "@/app/utils";
 import {
 	FormattedText,
