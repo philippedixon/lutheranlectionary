@@ -1,4 +1,4 @@
-import { Reading } from "@/app/constants/readings";
+import { Reading } from "@/app/interfaces";
 import {
 	ChapterContent,
 	ChapterVerse,
@@ -12,7 +12,8 @@ export const getReadingContent = (
 	if (!chapters?.length) {
 		return [];
 	}
-
+	// adjust to account for multiple books
+	// adjust to get all chapters if no chapters in reading
 	const { verses } = reading;
 
 	let content: ChapterContent[] = [];
@@ -46,6 +47,8 @@ export const getReadingTitle = (reading: Reading) => {
 	display = verses ? `${display}:${verses}` : display;
 	return display;
 };
+
+export const fetchBook = async () => {};
 
 export const fetchChapter = async (
 	translationId: string,
