@@ -43,14 +43,16 @@ export const getReadingContent = (
 
 export const getReadingTitle = (reading: Reading) => {
 	const { book, chapters, verses } = reading;
-	let display = `${book.name} ${chapters}`;
+	let display = book.name as string;
+	display = chapters ? `${display} ${chapters}` : display;
 	display = verses ? `${display}:${verses}` : display;
+
 	return display;
 };
 
 export const fetchBook = async () => {};
 
-export const fetchChapter = async (
+export const fetchChapters = async (
 	translationId: string,
 	reading: Reading
 ): Promise<TranslationBookChapter[]> => {
@@ -59,7 +61,7 @@ export const fetchChapter = async (
 	}
 
 	// eslint-disable-next-line prefer-const
-	let [firstChapter, lastChapter] = reading.chapters.split("-");
+	let [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
 
 	if (!lastChapter) {
 		lastChapter = firstChapter;

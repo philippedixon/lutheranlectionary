@@ -17,8 +17,12 @@ export default function Home() {
 							<h2>{month.name}</h2>
 							{month?.days?.map((day, dayIndex) => {
 								const date = dayIndex + 1;
-								const reading1Display = getReadingTitle(day.reading_1);
-								const reading2Display = getReadingTitle(day.reading_2);
+								const reading1Display = day.reading_1
+									.map((reading) => getReadingTitle(reading))
+									.join(", ");
+								const reading2Display = day.reading_2
+									.map((reading) => getReadingTitle(reading))
+									.join(", ");
 
 								return (
 									<div key={`${month.name}-${date}`}>
