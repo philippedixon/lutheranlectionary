@@ -50,7 +50,36 @@ export const getReadingTitle = (reading: Reading) => {
 	return display;
 };
 
-export const fetchBook = async () => {};
+// need to fetch book for philemon, titus
+export const fetchBook = async (
+	translationId: string,
+	reading: Reading
+): Promise<TranslationBookChapter[]> => {
+	if (!translationId) {
+		return [];
+	}
+
+	const bookId = reading.book.id;
+	let nextChapterApiLink:
+		| string
+		| null = `/api/${translationId}/${bookId}/1.json`;
+	const chapters = [];
+
+	try {
+		while (nextChapterApiLink) {
+			const response = await fetch(
+				`https://bible.helloao.org${nextChapterApiLink}`
+			);
+			const data: TranslationBookChapter = await response.json();
+			chapters.push(data);
+			nextChapterApiLink = data.nextChapterApiLink;
+		}
+	} catch (error) {
+		console.error(`Error fetching ${reading.book.name}:`, error);
+	}
+
+	return chapters;
+};
 
 export const fetchChapters = async (
 	translationId: string,
@@ -58,6 +87,10 @@ export const fetchChapters = async (
 ): Promise<TranslationBookChapter[]> => {
 	if (!translationId) {
 		return [];
+	}
+
+	if (!reading?.chapters) {
+		return fetchBook(translationId, reading);
 	}
 
 	// eslint-disable-next-line prefer-const

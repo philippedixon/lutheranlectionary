@@ -52,8 +52,6 @@ const DayPage = () => {
 					const response = await fetchChapters(translation, reading);
 					reading2Responses.push(response);
 				}
-				// const readingResponse1 = await fetchChapters(translation, reading1);
-				// const readingResponse2 = await fetchChapters(translation, reading2);
 				const readingResponses = [reading1Responses, reading2Responses];
 				setReadings(readingResponses);
 			} catch (error) {
@@ -75,57 +73,64 @@ const DayPage = () => {
 				<h2>First Reading</h2>
 				{reading1.map((reading, index) => {
 					const title = getReadingTitle(reading);
-					const chapters = getReadingContent(reading, readings?.[0]?.[index]);
+					const selectedContents = getReadingContent(
+						reading,
+						readings?.[0]?.[index]
+					);
 
 					return (
-						<div key={title}>
+						<div key={`${title}-${index}`}>
 							<h3>{title}</h3>
-							{chapters.map((chapter) => {
+							{selectedContents.map((chapterContent) => {
 								let node;
-								console.log("chapter", chapter);
-								// fix poem formatting
-								if (chapter.type === ContentType.Verse) {
-									node = chapter.content.map((text, index) => {
-										if (typeof text === "string") {
-											return (
-												<span key={text}>
-													<sup>{chapter.number}</sup>
-													&nbsp;
-													{text}
-												</span>
-											);
-										} else if ((text as InlineLineBreak)?.lineBreak) {
-											return <br key={`linebreak:${index}`} />;
-										} else if ((text as InlineHeading)?.heading) {
-											return (
-												<h5 key={`heading:${index}`}>
-													{(text as InlineHeading)?.heading}
-												</h5>
-											);
-										} else if ((text as FormattedText)?.text) {
-											const formattedText = text as FormattedText;
-											// const tab = <span>&emsp;</span>;
-											// const indent = tab.repeat(formattedText.poem ?? 0);
-											const indent = "";
-											let node = (
-												<span key={formattedText.text}>
-													{indent}
-													{formattedText.text}
-												</span>
-											);
-											if (formattedText.wordsOfJesus) {
-												node = (
-													<span key={formattedText.text}>
-														<span>{node}</span>
-													</span>
-												);
-											}
-											return node;
-										}
-									});
-								}
 
-								return node;
+								if (chapterContent.type === ContentType.Verse) {
+									node = (
+										<span>
+											<sup>{chapterContent.number}</sup>
+											{chapterContent.content.map((text, index) => {
+												if (typeof text === "string") {
+													return (
+														<span key={text}>
+															&nbsp;
+															{text}
+														</span>
+													);
+												} else if ((text as InlineLineBreak)?.lineBreak) {
+													return <br key={`linebreak:${index}`} />;
+												} else if ((text as InlineHeading)?.heading) {
+													return (
+														<h5 key={`heading:${index}`}>
+															{(text as InlineHeading)?.heading}
+														</h5>
+													);
+												} else if ((text as FormattedText)?.text) {
+													const formattedText = text as FormattedText;
+													const tab = "\t";
+													const indent = tab.repeat(formattedText.poem ?? 0);
+
+													let node = (
+														<pre key={formattedText.text}>
+															{indent}
+															{formattedText.text}
+														</pre>
+													);
+													if (formattedText.wordsOfJesus) {
+														node = (
+															<span key={formattedText.text}>
+																<span>{node}</span>
+															</span>
+														);
+													}
+													return node;
+												}
+											})}
+										</span>
+									);
+								}
+								// line breaks
+								// headings
+								return <div key={chapterContent.chapter.number}> {node}</div>;
 							})}
 						</div>
 					);
@@ -133,6 +138,70 @@ const DayPage = () => {
 			</div>
 			<div>
 				<h2>Second Reading</h2>
+				{reading2.map((reading, index) => {
+					const title = getReadingTitle(reading);
+					const selectedContents = getReadingContent(
+						reading,
+						readings?.[1]?.[index]
+					);
+
+					return (
+						<div key={`${title}-${index}-${new Date().getTime()}`}>
+							<h3>{title}</h3>
+							{selectedContents.map((chapterContent) => {
+								let node;
+
+								if (chapterContent.type === ContentType.Verse) {
+									node = (
+										<span>
+											<sup>{chapterContent.number}</sup>
+											{chapterContent.content.map((text, index) => {
+												if (typeof text === "string") {
+													return (
+														<span key={text}>
+															&nbsp;
+															{text}
+														</span>
+													);
+												} else if ((text as InlineLineBreak)?.lineBreak) {
+													return <br key={`linebreak:${index}`} />;
+												} else if ((text as InlineHeading)?.heading) {
+													return (
+														<h5 key={`heading:${index}`}>
+															{(text as InlineHeading)?.heading}
+														</h5>
+													);
+												} else if ((text as FormattedText)?.text) {
+													const formattedText = text as FormattedText;
+													const tab = "\t";
+													const indent = tab.repeat(formattedText.poem ?? 0);
+
+													let node = (
+														<pre key={formattedText.text}>
+															{indent}
+															{formattedText.text}
+														</pre>
+													);
+													if (formattedText.wordsOfJesus) {
+														node = (
+															<span key={formattedText.text}>
+																<span>{node}</span>
+															</span>
+														);
+													}
+													return node;
+												}
+											})}
+										</span>
+									);
+								}
+								// line breaks
+								// headings
+								return node;
+							})}
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
