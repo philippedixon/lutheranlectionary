@@ -1,6 +1,6 @@
 import { Book, BookId } from "@/app/enums";
 
-const booksIds: Record<BookId, Book> = {
+export const bookNames: Record<BookId, Book> = {
 	[BookId.Colossians]: Book.Colossians,
 	[BookId.Corinthians1]: Book.Corinthians1,
 	[BookId.Corinthians2]: Book.Corinthians2,
@@ -27,5 +27,3 @@ const booksIds: Record<BookId, Book> = {
 	[BookId.Timothy2]: Book.Timothy2,
 	[BookId.Titus]: Book.Titus,
 };
-
-export default booksIds;

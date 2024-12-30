@@ -1,7 +1,6 @@
-import { Book, BookId } from "@/app/enums";
+import { BookId } from "@/app/enums";
 
 export interface BibleBook {
-	name: Book;
 	id: BookId;
 }
 

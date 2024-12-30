@@ -1,7 +1,8 @@
-import { Reading } from "@/app/interfaces";
+import { bookNames } from "@/app/constants";
 import {
 	ChapterContent,
 	ChapterVerse,
+	Reading,
 	TranslationBookChapter,
 } from "@/app/interfaces";
 
@@ -43,7 +44,7 @@ export const getReadingContent = (
 
 export const getReadingTitle = (reading: Reading) => {
 	const { book, chapters, verses } = reading;
-	let display = book.name as string;
+	let display = bookNames[book.id] as string;
 	display = chapters ? `${display} ${chapters}` : display;
 	display = verses ? `${display}:${verses}` : display;
 
@@ -75,7 +76,8 @@ export const fetchBook = async (
 			nextChapterApiLink = data.nextChapterApiLink;
 		}
 	} catch (error) {
-		console.error(`Error fetching ${reading.book.name}:`, error);
+		const bookName = bookNames[reading.book.id];
+		console.error(`Error fetching ${bookName}:`, error);
 	}
 
 	return chapters;
@@ -109,7 +111,8 @@ export const fetchChapters = async (
 			const data = await response.json();
 			chapters.push(data);
 		} catch (error) {
-			console.error(`Error fetching ${reading.book.name} ${i}:`, error);
+			const bookName = bookNames[reading.book.id];
+			console.error(`Error fetching ${bookName} ${i}:`, error);
 		}
 	}
 

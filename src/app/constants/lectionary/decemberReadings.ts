@@ -1,4 +1,4 @@
-import { Book, BookId } from "@/app/enums";
+import { BookId } from "@/app/enums";
 import { Month } from "@/app/interfaces";
 
 export const decemberReadings: Month = {
@@ -7,14 +7,14 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Luke, id: BookId.Luke },
+					book: { id: BookId.Luke },
 					chapters: "1",
 					verses: "46-55",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "1-2",
 				},
 			],
@@ -22,13 +22,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "1",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "3-5",
 				},
 			],
@@ -36,13 +36,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "2",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "6-8",
 				},
 			],
@@ -50,13 +50,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "3",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "9-11",
 				},
 			],
@@ -64,13 +64,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "4",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "12-14",
 				},
 			],
@@ -78,13 +78,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "5",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "15-17",
 				},
 			],
@@ -92,13 +92,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "6",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "18-20",
 				},
 			],
@@ -106,13 +106,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "7",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Revelation, id: BookId.Revelation },
+					book: { id: BookId.Revelation },
 					chapters: "21-22",
 				},
 			],
@@ -120,13 +120,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "8",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "1-3",
 				},
 			],
@@ -134,13 +134,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "9",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "4-6",
 				},
 			],
@@ -148,13 +148,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "10",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "7-9",
 				},
 			],
@@ -162,13 +162,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "11",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "10-12",
 				},
 			],
@@ -176,13 +176,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "12",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "13-15",
 				},
 			],
@@ -190,13 +190,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "13",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "16-18",
 				},
 			],
@@ -204,13 +204,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "14",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "19-21",
 				},
 			],
@@ -218,13 +218,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "15",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "22-24",
 				},
 			],
@@ -232,13 +232,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "16",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "25-27",
 				},
 			],
@@ -246,13 +246,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "17",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "28-30",
 				},
 			],
@@ -260,13 +260,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "18",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "31-33",
 				},
 			],
@@ -274,13 +274,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "19",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "34-36",
 				},
 			],
@@ -288,13 +288,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "20",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "37-39",
 				},
 			],
@@ -302,13 +302,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "21",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "40-42",
 				},
 			],
@@ -316,13 +316,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "22",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "43-45",
 				},
 			],
@@ -330,13 +330,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "23",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "46-48",
 				},
 			],
@@ -344,13 +344,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "24",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "49-51",
 				},
 			],
@@ -358,13 +358,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "25",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "52-54",
 				},
 			],
@@ -372,13 +372,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "26",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "55-57",
 				},
 			],
@@ -386,13 +386,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "27",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "58-60",
 				},
 			],
@@ -400,13 +400,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "28",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "61-63",
 				},
 			],
@@ -414,13 +414,13 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Psalms, id: BookId.Psalms },
+					book: { id: BookId.Psalms },
 					chapters: "29",
 				},
 			],
 			reading_2: [
 				{
-					book: { name: Book.Isaiah, id: BookId.Isaiah },
+					book: { id: BookId.Isaiah },
 					chapters: "64-66",
 				},
 			],
@@ -428,14 +428,12 @@ export const decemberReadings: Month = {
 		{
 			reading_1: [
 				{
-					book: { name: Book.Luke, id: BookId.Luke },
+					book: { id: BookId.Luke },
 					chapters: "1",
 					verses: "46-55",
 				},
 			],
-			reading_2: [
-				{ book: { name: Book.Mark, id: BookId.Mark }, chapters: "1" },
-			],
+			reading_2: [{ book: { id: BookId.Mark }, chapters: "1" }],
 		},
 	],
 };

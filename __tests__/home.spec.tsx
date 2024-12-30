@@ -9,4 +9,6 @@ describe("Home", () => {
 
 		expect(heading).toBeInTheDocument();
 	});
+
+	it("should display only the book title when all chapters are included in the reading", () => {});
 });
