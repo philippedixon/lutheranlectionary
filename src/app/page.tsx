@@ -27,9 +27,13 @@ const Home = () => {
 								return (
 									<div key={`${month.name}-${date}`}>
 										<Link href={`/${monthNumber}/${date}`}>
-											<h3>{date}</h3>
-											<p>{reading1Display}</p>
-											<p>{reading2Display}</p>
+											<h3 data-testid={`date:${month.name}-${date}`}>{date}</h3>
+											<p data-testid={`reading1:${month.name}-${date}`}>
+												{reading1Display}
+											</p>
+											<p data-testid={`reading2:${month.name}-${date}`}>
+												{reading2Display}
+											</p>
 										</Link>
 									</div>
 								);
