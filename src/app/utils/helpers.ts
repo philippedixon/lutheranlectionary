@@ -5,6 +5,7 @@ import {
 	Reading,
 	TranslationBookChapter,
 } from "@/app/interfaces";
+import { BookId } from "../enums";
 
 export const getReadingContent = (
 	reading: Reading,
@@ -81,6 +82,27 @@ export const fetchBook = async (
 	}
 
 	return chapters;
+};
+
+export const fetchChapter = async (
+	translationId: string,
+	bookId: BookId,
+	chapterNumber: number
+): Promise<TranslationBookChapter | undefined> => {
+	let chapter: TranslationBookChapter | undefined = undefined;
+	try {
+		const data = await fetch(
+			`https://bible.helloao.org/api/${translationId}/${bookId}/${chapterNumber}.json`
+		);
+		chapter = await data.json();
+	} catch (error) {
+		console.error(
+			`Error fetching ${bookId}:${chapterNumber} for ${translationId}:`,
+			error
+		);
+	}
+
+	return chapter;
 };
 
 export const fetchChapters = async (
