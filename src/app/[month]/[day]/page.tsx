@@ -18,6 +18,12 @@ const DayPage = () => {
 	const path = usePathname();
 	const selections = useContext(SelectionsContext);
 	const [readings, setReadings] = useState<TranslationBookChapter[][][]>([]);
+	const [firstReading, setFirstReading] = useState<TranslationBookChapter[]>(
+		[]
+	);
+	const [secondReading, setSecondReading] = useState<TranslationBookChapter[]>(
+		[]
+	);
 	const [monthParameter, dayParameter] = path.split("/").slice(1);
 	const monthIndex = parseInt(monthParameter) - 1;
 	const dayIndex = parseInt(dayParameter) - 1;
@@ -130,7 +136,8 @@ const DayPage = () => {
 								}
 								// line breaks
 								// headings
-								return <div key={chapterContent.chapter.number}> {node}</div>;
+								// return <div key={chapterContent.chapter.number}> {node}</div>;
+								return <div key={new Date().getTime()}></div>;
 							})}
 						</div>
 					);

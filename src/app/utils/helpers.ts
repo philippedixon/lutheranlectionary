@@ -5,7 +5,7 @@ import {
 	Reading,
 	TranslationBookChapter,
 } from "@/app/interfaces";
-import { BookId } from "../enums";
+import { BookId } from "@/app/enums";
 
 export const getReadingContent = (
 	reading: Reading,
@@ -52,9 +52,48 @@ export const getReadingTitle = (reading: Reading) => {
 	return display;
 };
 
-// need to fetch book for philemon, titus
+export const fetchReading = async (
+	translationId: string | undefined,
+	reading: Reading
+): Promise<TranslationBookChapter[]> => {
+	if (!translationId) {
+		return [];
+	}
+
+	if (!reading?.chapters) {
+		console.log("fetchbook");
+		return fetchBook(translationId, reading);
+	}
+
+	const [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
+	const firstChapterNumber = parseInt(firstChapter);
+	let lastChapterNumber = parseInt(lastChapter);
+
+	if (!lastChapterNumber) {
+		lastChapterNumber = firstChapterNumber;
+	}
+
+	try {
+		const chapters = await Promise.all(
+			Array.from(
+				{ length: lastChapterNumber - firstChapterNumber + 1 },
+				(_, i) =>
+					fetchChapter(translationId, reading.book.id, firstChapterNumber + i)
+			)
+		);
+
+		return chapters.filter(
+			(chapter): chapter is TranslationBookChapter => chapter !== undefined
+		);
+	} catch (error) {
+		const bookName = bookNames[reading.book.id];
+		console.error(`Error fetching chapters for ${bookName}:`, error);
+		return [];
+	}
+};
+
 export const fetchBook = async (
-	translationId: string,
+	translationId: string | undefined,
 	reading: Reading
 ): Promise<TranslationBookChapter[]> => {
 	if (!translationId) {
