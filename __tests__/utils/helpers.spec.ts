@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 import { BookId } from "@/app/enums";
 import { fetchChapter, fetchBook, fetchReading } from "@/app/utils";
 import { Reading } from "@/app/interfaces";

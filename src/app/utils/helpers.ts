@@ -45,9 +45,15 @@ export const getReadingContent = (
 
 export const getReadingTitle = (reading: Reading) => {
 	const { book, chapters, verses } = reading;
+
 	let display = bookNames[book.id] as string;
-	display = chapters ? `${display} ${chapters}` : display;
-	display = verses ? `${display}:${verses}` : display;
+	if (chapters) {
+		display = `${display} ${chapters}`;
+	}
+
+	if (verses) {
+		display = `${display}:${verses}`;
+	}
 
 	return display;
 };
@@ -61,7 +67,6 @@ export const fetchReading = async (
 	}
 
 	if (!reading?.chapters) {
-		console.log("fetchbook");
 		return fetchBook(translationId, reading);
 	}
 
@@ -74,17 +79,21 @@ export const fetchReading = async (
 	}
 
 	try {
-		const chapters = await Promise.all(
-			Array.from(
-				{ length: lastChapterNumber - firstChapterNumber + 1 },
-				(_, i) =>
-					fetchChapter(translationId, reading.book.id, firstChapterNumber + i)
-			)
-		);
+		const chapters: TranslationBookChapter[] = [];
+		for (
+			let chapterNumber = firstChapterNumber;
+			chapterNumber < lastChapterNumber + 1;
+			chapterNumber++
+		) {
+			const chapter = await fetchChapter(
+				translationId,
+				reading.book.id,
+				chapterNumber
+			);
+			chapters.push(chapter);
+		}
 
-		return chapters.filter(
-			(chapter): chapter is TranslationBookChapter => chapter !== undefined
-		);
+		return chapters;
 	} catch (error) {
 		const bookName = bookNames[reading.book.id];
 		console.error(`Error fetching chapters for ${bookName}:`, error);
@@ -111,9 +120,9 @@ export const fetchBook = async (
 			const response = await fetch(
 				`https://bible.helloao.org${nextChapterApiLink}`
 			);
-			const data: TranslationBookChapter = await response.json();
-			chapters.push(data);
-			nextChapterApiLink = data.nextChapterApiLink;
+			const chapter: TranslationBookChapter = await response.json();
+			chapters.push(chapter);
+			nextChapterApiLink = chapter.nextChapterApiLink;
 		}
 	} catch (error) {
 		const bookName = bookNames[reading.book.id];
@@ -127,8 +136,8 @@ export const fetchChapter = async (
 	translationId: string,
 	bookId: BookId,
 	chapterNumber: number
-): Promise<TranslationBookChapter | undefined> => {
-	let chapter: TranslationBookChapter | undefined = undefined;
+): Promise<TranslationBookChapter> => {
+	let chapter: TranslationBookChapter = {} as TranslationBookChapter;
 	try {
 		const data = await fetch(
 			`https://bible.helloao.org/api/${translationId}/${bookId}/${chapterNumber}.json`
