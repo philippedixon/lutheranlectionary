@@ -5,14 +5,8 @@ import { SelectionsContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
 import lectionary from "@/app/constants/lectionary";
 import { Month } from "@/app/interfaces";
-import { fetchReading, getReadingContent, getReadingTitle } from "@/app/utils";
-import {
-	FormattedText,
-	InlineHeading,
-	InlineLineBreak,
-	TranslationBookChapter,
-} from "@/app/interfaces";
-import { ContentType } from "@/app/enums";
+import { fetchReading } from "@/app/utils";
+import { TranslationBookChapter } from "@/app/interfaces";
 import { ReadingPassage } from "@/app/components";
 
 const DayPage = () => {
@@ -32,19 +26,6 @@ const DayPage = () => {
 	const reading2 = month.days[dayIndex].reading_2;
 
 	useEffect(() => {
-		// const translation = "BSB";
-		// const book = "GEN";
-		// const chapter = 1;
-
-		// Get Genesis 1 from the BSB translation
-		// fetch(
-		// 	`https://bible.helloao.org/api/${translation}/${book}/${chapter}.json`
-		// )
-		// 	.then((request) => request.json())
-		// 	.then((chapter) => {
-		// 		console.log("Genesis 1 (BSB):", chapter);
-		// 	});
-
 		const fetchReadings = async () => {
 			const translation = selections.translationId ?? "";
 			try {
@@ -80,101 +61,32 @@ const DayPage = () => {
 			</h1>
 			<div>
 				<h2>First Reading</h2>
-				{firstReading.map((reading, index) => {
-					const title = getReadingTitle(reading1[index]);
-					// const selectedContents = getReadingContent(
-					// 	reading,
-					// 	readings?.[0]?.[index]
-					// );
+				{firstReading.map((passageChapters, index) => {
+					const readingInfo = reading1[index];
+					const key = `${passageChapters?.[0]?.book?.id}`;
+
 					return (
-						<ReadingPassage
-							key={`${title}:${index}`}
-							passage={reading}
-							title={title}
-						/>
-					);
-				})}
-			</div>
-			<div>
-				<h2>First Reading</h2>
-				{secondReading.map((reading, index) => {
-					const title = getReadingTitle(reading2[index]);
-					// const selectedContents = getReadingContent(
-					// 	reading,
-					// 	readings?.[0]?.[index]
-					// );
-					return (
-						<ReadingPassage
-							key={`${title}:${index}`}
-							passage={reading}
-							title={title}
-						/>
+						<div key={key}>
+							<ReadingPassage
+								passageChapters={passageChapters}
+								readingInfo={readingInfo}
+							/>
+						</div>
 					);
 				})}
 			</div>
 			<div>
 				<h2>Second Reading</h2>
-				{reading2.map((reading, index) => {
-					const title = getReadingTitle(reading);
-					// const selectedContents = getReadingContent(
-					// 	reading,
-					// 	readings?.[1]?.[index]
-					// );
 
+				{secondReading.map((passageChapters, index) => {
+					const readingInfo = reading2[index];
+					const key = `${passageChapters?.[0]?.book?.id}`;
 					return (
-						<div key={`${title}-${index}-${new Date().getTime()}`}>
-							<h3>{title}</h3>
-							{/* {selectedContents.map((chapterContent) => {
-								let node;
-
-								if (chapterContent.type === ContentType.Verse) {
-									node = (
-										<span>
-											<sup>{chapterContent.number}</sup>
-											{chapterContent.content.map((text, index) => {
-												if (typeof text === "string") {
-													return (
-														<span key={text}>
-															&nbsp;
-															{text}
-														</span>
-													);
-												} else if ((text as InlineLineBreak)?.lineBreak) {
-													return <br key={`linebreak:${index}`} />;
-												} else if ((text as InlineHeading)?.heading) {
-													return (
-														<h5 key={`heading:${index}`}>
-															{(text as InlineHeading)?.heading}
-														</h5>
-													);
-												} else if ((text as FormattedText)?.text) {
-													const formattedText = text as FormattedText;
-													const tab = "\t";
-													const indent = tab.repeat(formattedText.poem ?? 0);
-
-													let node = (
-														<pre key={formattedText.text}>
-															{indent}
-															{formattedText.text}
-														</pre>
-													);
-													if (formattedText.wordsOfJesus) {
-														node = (
-															<span key={formattedText.text}>
-																<span>{node}</span>
-															</span>
-														);
-													}
-													return node;
-												}
-											})}
-										</span>
-									);
-								}
-								// line breaks
-								// headings
-								return node;
-							})} */}
+						<div key={`${key}:${index}`}>
+							<ReadingPassage
+								passageChapters={passageChapters}
+								readingInfo={readingInfo}
+							/>
 						</div>
 					);
 				})}

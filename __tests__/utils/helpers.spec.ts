@@ -1,6 +1,12 @@
 import { BookId } from "@/app/enums";
-import { fetchChapter, fetchBook, fetchReading } from "@/app/utils";
-import { Reading } from "@/app/interfaces";
+import {
+	fetchChapter,
+	fetchBook,
+	fetchReading,
+	parseChapter,
+} from "@/app/utils";
+import { ChapterVerse, Reading } from "@/app/interfaces";
+import { lukeTranslationBookChapter } from "../../__mocks__/content";
 
 describe("fetchReading", () => {
 	afterEach(() => jest.clearAllMocks());
@@ -95,5 +101,21 @@ describe("fetchBook", () => {
 		const result = await fetchBook("BSB", reading);
 
 		expect(result).toEqual([]);
+	});
+});
+
+describe("parseChapter", () => {
+	it("should only return content between the start and end verse", () => {
+		const chapter = lukeTranslationBookChapter;
+		const firstVerseNumber = 68;
+		const lastVerseNumber = 79;
+
+		const content = parseChapter(chapter, firstVerseNumber, lastVerseNumber);
+
+		const firstVerse = content[0] as ChapterVerse;
+		const lastVerse = content[content.length - 1] as ChapterVerse;
+
+		expect(firstVerse.number).toEqual(firstVerseNumber);
+		expect(lastVerse.number).toEqual(lastVerseNumber);
 	});
 });

@@ -116,7 +116,7 @@ export const fetchBook = async (
 	const chapters = [];
 
 	try {
-		while (nextChapterApiLink) {
+		while (nextChapterApiLink?.includes(bookId)) {
 			const response = await fetch(
 				`https://bible.helloao.org${nextChapterApiLink}`
 			);
@@ -153,38 +153,26 @@ export const fetchChapter = async (
 	return chapter;
 };
 
-export const fetchChapters = async (
-	translationId: string,
-	reading: Reading
-): Promise<TranslationBookChapter[]> => {
-	if (!translationId) {
-		return [];
-	}
+export const parseChapter = (
+	chapter: TranslationBookChapter,
+	startVerse: number,
+	endVerse: number
+): ChapterContent[] => {
+	const chapterContent = chapter.chapter.content;
 
-	if (!reading?.chapters) {
-		return fetchBook(translationId, reading);
-	}
+	// Find the index of the first verse
+	const firstVerseIndex = chapterContent.findIndex(
+		(content) =>
+			content.type === "verse" &&
+			(content as ChapterVerse).number === startVerse
+	);
 
-	// eslint-disable-next-line prefer-const
-	let [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
+	// Find the index of the last verse
+	const lastVerseIndex = chapterContent.findIndex(
+		(content) =>
+			content.type === "verse" && (content as ChapterVerse).number === endVerse
+	);
 
-	if (!lastChapter) {
-		lastChapter = firstChapter;
-	}
-
-	const chapters = [];
-	for (let i = parseInt(firstChapter); i <= parseInt(lastChapter); i++) {
-		try {
-			const response = await fetch(
-				`https://bible.helloao.org/api/${translationId}/${reading.book.id}/${i}.json`
-			);
-			const data = await response.json();
-			chapters.push(data);
-		} catch (error) {
-			const bookName = bookNames[reading.book.id];
-			console.error(`Error fetching ${bookName} ${i}:`, error);
-		}
-	}
-
-	return chapters;
+	// Return a slice from the first verse to the last verse + 1
+	return chapterContent.slice(firstVerseIndex, lastVerseIndex + 1);
 };

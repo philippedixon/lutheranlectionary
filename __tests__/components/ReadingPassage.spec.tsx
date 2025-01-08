@@ -5,7 +5,7 @@ import { Book, BookId } from "@/app/enums";
 
 describe("ReadingPassage", () => {
 	beforeEach(() => {
-		render(<ReadingPassage passage={genesisPassage} title={Book.Genesis} />);
+		render(<ReadingPassage passageChapters={genesisPassage} />);
 	});
 
 	it("should display the book title for the passage", () => {
@@ -33,8 +33,4 @@ describe("ReadingPassage", () => {
 		expect(firstVerseNumber).toBeInTheDocument();
 		expect(lastVerseNumber).toBeInTheDocument();
 	});
-
-	it.todo("should format poem verses");
-
-	it.todo("should format Jesus' words");
 });
