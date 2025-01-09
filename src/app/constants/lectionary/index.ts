@@ -17,3 +17,4 @@ const lectionary = [
 ];
 
 export default lectionary;
+// structure should just have bookId, not object, include month and day
