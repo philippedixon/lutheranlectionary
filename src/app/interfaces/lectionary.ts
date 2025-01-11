@@ -6,6 +6,7 @@ export interface Chapters {
 }
 
 export interface Day {
+	ofMonth: number;
 	reading_1: Reading[];
 	reading_2: Reading[];
 }
