@@ -8,131 +8,131 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Luke,
-					chapters: "1",
-					verses: "68-79",
+					chapters: { first: 1, last: 1 },
+					verses: { first: 68, last: 79 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "2" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 2, last: 2 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "30",
+					chapters: { first: 30, last: 30 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "3" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 3, last: 3 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "31",
+					chapters: { first: 31, last: 31 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "4" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 4, last: 4 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "32",
+					chapters: { first: 32, last: 32 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "5" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 5, last: 5 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "33",
+					chapters: { first: 33, last: 33 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "6" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 6, last: 6 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "34",
+					chapters: { first: 34, last: 34 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "7" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 7, last: 7 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "35",
+					chapters: { first: 35, last: 35 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "8" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 8, last: 8 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "36",
+					chapters: { first: 36, last: 36 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "9" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 9, last: 9 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "37",
+					chapters: { first: 37, last: 37 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "10" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 10, last: 10 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "38",
+					chapters: { first: 38, last: 38 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "11" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 11, last: 11 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "39",
+					chapters: { first: 39, last: 39 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "12" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 12, last: 12 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "40",
+					chapters: { first: 40, last: 40 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "13" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 13, last: 13 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "41",
+					chapters: { first: 41, last: 41 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "14" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 14, last: 14 } }],
 		},
 		{
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "42",
+					chapters: { first: 42, last: 42 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Mark,
-					chapters: "14-15",
+					chapters: { first: 14, last: 15 },
 				},
 			],
 		},
@@ -140,13 +140,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "43",
+					chapters: { first: 43, last: 43 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
@@ -154,13 +154,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "44",
+					chapters: { first: 44, last: 44 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
@@ -168,13 +168,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "45",
+					chapters: { first: 45, last: 45 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "7-9",
+					chapters: { first: 7, last: 9 },
 				},
 			],
 		},
@@ -182,13 +182,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "46",
+					chapters: { first: 46, last: 46 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "10-12",
+					chapters: { first: 10, last: 12 },
 				},
 			],
 		},
@@ -196,13 +196,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "47",
+					chapters: { first: 47, last: 47 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "13-15",
+					chapters: { first: 13, last: 15 },
 				},
 			],
 		},
@@ -210,13 +210,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "48",
+					chapters: { first: 48, last: 48 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "16-18",
+					chapters: { first: 16, last: 18 },
 				},
 			],
 		},
@@ -224,13 +224,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "49",
+					chapters: { first: 49, last: 49 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "19-21",
+					chapters: { first: 19, last: 21 },
 				},
 			],
 		},
@@ -238,13 +238,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "50",
+					chapters: { first: 50, last: 50 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "22-24",
+					chapters: { first: 22, last: 24 },
 				},
 			],
 		},
@@ -252,13 +252,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "51",
+					chapters: { first: 51, last: 51 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "25-27",
+					chapters: { first: 25, last: 27 },
 				},
 			],
 		},
@@ -266,13 +266,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "52",
+					chapters: { first: 52, last: 52 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "28-30",
+					chapters: { first: 28, last: 30 },
 				},
 			],
 		},
@@ -280,13 +280,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "53",
+					chapters: { first: 53, last: 53 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "31-33",
+					chapters: { first: 31, last: 33 },
 				},
 			],
 		},
@@ -294,13 +294,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "54",
+					chapters: { first: 54, last: 54 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "34-36",
+					chapters: { first: 34, last: 36 },
 				},
 			],
 		},
@@ -308,13 +308,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "55",
+					chapters: { first: 55, last: 55 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "37-39",
+					chapters: { first: 37, last: 39 },
 				},
 			],
 		},
@@ -322,13 +322,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "56",
+					chapters: { first: 56, last: 56 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "40-42",
+					chapters: { first: 40, last: 42 },
 				},
 			],
 		},
@@ -336,13 +336,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "57",
+					chapters: { first: 57, last: 57 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "43-45",
+					chapters: { first: 43, last: 45 },
 				},
 			],
 		},
@@ -350,13 +350,13 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "58",
+					chapters: { first: 58, last: 58 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "46-48",
+					chapters: { first: 46, last: 48 },
 				},
 			],
 		},
@@ -364,14 +364,14 @@ export const januaryReadings: Month = {
 			reading_1: [
 				{
 					bookId: BookId.Luke,
-					chapters: "1",
-					verses: "68-79",
+					chapters: { first: 1, last: 1 },
+					verses: { first: 68, last: 79 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Genesis,
-					chapters: "49-50",
+					chapters: { first: 49, last: 50 },
 				},
 			],
 		},
