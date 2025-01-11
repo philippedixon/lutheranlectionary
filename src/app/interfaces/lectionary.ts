@@ -1,11 +1,7 @@
 import { BookId } from "@/app/enums";
 
-export interface BibleBook {
-	id: BookId;
-}
-
 export interface Reading {
-	book: BibleBook;
+	bookId: BookId;
 	chapters?: string;
 	verses?: string;
 }

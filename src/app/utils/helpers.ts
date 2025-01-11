@@ -44,9 +44,9 @@ export const getReadingContent = (
 };
 
 export const getReadingTitle = (reading: Reading) => {
-	const { book, chapters, verses } = reading;
+	const { bookId, chapters, verses } = reading;
 
-	let display = bookNames[book.id] as string;
+	let display = bookNames[bookId] as string;
 	if (chapters) {
 		display = `${display} ${chapters}`;
 	}
@@ -87,7 +87,7 @@ export const fetchReading = async (
 		) {
 			const chapter = await fetchChapter(
 				translationId,
-				reading.book.id,
+				reading.bookId,
 				chapterNumber
 			);
 			chapters.push(chapter);
@@ -95,7 +95,7 @@ export const fetchReading = async (
 
 		return chapters;
 	} catch (error) {
-		const bookName = bookNames[reading.book.id];
+		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching chapters for ${bookName}:`, error);
 		return [];
 	}
@@ -109,7 +109,7 @@ export const fetchBook = async (
 		return [];
 	}
 
-	const bookId = reading.book.id;
+	const bookId = reading.bookId;
 	let nextChapterApiLink:
 		| string
 		| null = `/api/${translationId}/${bookId}/1.json`;
@@ -125,7 +125,7 @@ export const fetchBook = async (
 			nextChapterApiLink = chapter.nextChapterApiLink;
 		}
 	} catch (error) {
-		const bookName = bookNames[reading.book.id];
+		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching ${bookName}:`, error);
 	}
 
