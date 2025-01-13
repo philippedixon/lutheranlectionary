@@ -4,6 +4,7 @@ import {
 	ChapterVerse,
 	Reading,
 	TranslationBookChapter,
+	Verses,
 } from "@/app/interfaces";
 import { BookId } from "@/app/enums";
 
@@ -20,14 +21,13 @@ export const getReadingContent = (
 
 	let content: ChapterContent[] = [];
 	if (verses) {
-		const [startVerseString, endVerseString] = verses.split("-");
-		const startVerse = parseInt(startVerseString);
-		const endVerse = endVerseString ? parseInt(endVerseString) : startVerse;
+		const { first: firstVerseNumber, last: lastVerseNumber } =
+			reading.verses as Verses;
 
 		content = chapters[0].chapter.content.filter((chapterContent) => {
 			const verseNumber = (chapterContent as ChapterVerse)?.number;
 			const isVerseInRange =
-				startVerse <= verseNumber && verseNumber <= endVerse;
+				firstVerseNumber <= verseNumber && verseNumber <= lastVerseNumber;
 			return chapterContent.type === "line_break" || isVerseInRange;
 		});
 
@@ -44,15 +44,23 @@ export const getReadingContent = (
 };
 
 export const getReadingTitle = (reading: Reading) => {
-	const { book, chapters, verses } = reading;
+	const { bookId, chapters, verses } = reading;
 
-	let display = bookNames[book.id] as string;
+	let display = bookNames[bookId] as string;
 	if (chapters) {
-		display = `${display} ${chapters}`;
+		const chapterRange =
+			chapters.first === chapters.last
+				? chapters.first
+				: `${chapters.first}-${chapters.last}`;
+		display = `${display} ${chapterRange}`;
 	}
 
 	if (verses) {
-		display = `${display}:${verses}`;
+		const verseRange =
+			verses.first === verses.last
+				? verses.first
+				: `${verses.first}-${verses.last}`;
+		display = `${display}:${verseRange}`;
 	}
 
 	return display;
@@ -70,13 +78,16 @@ export const fetchReading = async (
 		return fetchBook(translationId, reading);
 	}
 
-	const [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
-	const firstChapterNumber = parseInt(firstChapter);
-	let lastChapterNumber = parseInt(lastChapter);
+	const { first: firstChapterNumber, last: lastChapterNumber } =
+		reading.chapters;
 
-	if (!lastChapterNumber) {
-		lastChapterNumber = firstChapterNumber;
-	}
+	// const [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
+	// const firstChapterNumber = parseInt(firstChapter);
+	// let lastChapterNumber = parseInt(lastChapter);
+
+	// if (!lastChapterNumber) {
+	// 	lastChapterNumber = firstChapterNumber;
+	// }
 
 	try {
 		const chapters: TranslationBookChapter[] = [];
@@ -87,7 +98,7 @@ export const fetchReading = async (
 		) {
 			const chapter = await fetchChapter(
 				translationId,
-				reading.book.id,
+				reading.bookId,
 				chapterNumber
 			);
 			chapters.push(chapter);
@@ -95,7 +106,7 @@ export const fetchReading = async (
 
 		return chapters;
 	} catch (error) {
-		const bookName = bookNames[reading.book.id];
+		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching chapters for ${bookName}:`, error);
 		return [];
 	}
@@ -109,7 +120,7 @@ export const fetchBook = async (
 		return [];
 	}
 
-	const bookId = reading.book.id;
+	const bookId = reading.bookId;
 	let nextChapterApiLink:
 		| string
 		| null = `/api/${translationId}/${bookId}/1.json`;
@@ -125,7 +136,7 @@ export const fetchBook = async (
 			nextChapterApiLink = chapter.nextChapterApiLink;
 		}
 	} catch (error) {
-		const bookName = bookNames[reading.book.id];
+		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching ${bookName}:`, error);
 	}
 
@@ -155,8 +166,8 @@ export const fetchChapter = async (
 
 export const parseChapter = (
 	chapter: TranslationBookChapter,
-	startVerse: number,
-	endVerse: number
+	firstVerse: number,
+	lastVerse: number
 ): ChapterContent[] => {
 	const chapterContent = chapter.chapter.content;
 
@@ -164,13 +175,13 @@ export const parseChapter = (
 	const firstVerseIndex = chapterContent.findIndex(
 		(content) =>
 			content.type === "verse" &&
-			(content as ChapterVerse).number === startVerse
+			(content as ChapterVerse).number === firstVerse
 	);
 
 	// Find the index of the last verse
 	const lastVerseIndex = chapterContent.findIndex(
 		(content) =>
-			content.type === "verse" && (content as ChapterVerse).number === endVerse
+			content.type === "verse" && (content as ChapterVerse).number === lastVerse
 	);
 
 	// Return a slice from the first verse to the last verse + 1

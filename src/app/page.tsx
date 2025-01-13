@@ -15,8 +15,8 @@ const Home = () => {
 					return (
 						<div key={month.name}>
 							<h2>{month.name}</h2>
-							{month?.days?.map((day, dayIndex) => {
-								const date = dayIndex + 1;
+							{month?.days?.map((day) => {
+								const date = day.ofMonth;
 								const reading1Display = day.reading_1
 									.map((reading) => getReadingTitle(reading))
 									.join(", ");

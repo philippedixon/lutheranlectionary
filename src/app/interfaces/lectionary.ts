@@ -1,16 +1,12 @@
 import { BookId } from "@/app/enums";
 
-export interface BibleBook {
-	id: BookId;
-}
-
-export interface Reading {
-	book: BibleBook;
-	chapters?: string;
-	verses?: string;
+export interface Chapters {
+	first: number;
+	last: number;
 }
 
 export interface Day {
+	ofMonth: number;
 	reading_1: Reading[];
 	reading_2: Reading[];
 }
@@ -18,4 +14,15 @@ export interface Day {
 export interface Month {
 	name: string;
 	days: Day[];
+}
+
+export interface Reading {
+	bookId: BookId;
+	chapters?: Chapters;
+	verses?: Verses;
+}
+
+export interface Verses {
+	first: number;
+	last: number;
 }
