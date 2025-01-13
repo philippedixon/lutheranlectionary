@@ -5,461 +5,476 @@ export const aprilReadings: Month = {
 	name: "April",
 	days: [
 		{
+			ofMonth: 1,
 			reading_1: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "25",
-					verses: "1-9",
+					chapters: { first: 25, last: 25 },
+					verses: { first: 1, last: 9 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Romans,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 2,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "114",
+					chapters: { first: 114, last: 114 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Romans,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 3,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "115",
+					chapters: { first: 115, last: 115 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Romans,
-					chapters: "7-9",
+					chapters: { first: 7, last: 9 },
 				},
 			],
 		},
 		{
+			ofMonth: 4,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "116",
+					chapters: { first: 116, last: 116 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Romans,
-					chapters: "10-13",
+					chapters: { first: 10, last: 13 },
 				},
 			],
 		},
 		{
+			ofMonth: 5,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "117",
+					chapters: { first: 117, last: 117 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Romans,
-					chapters: "14-16",
+					chapters: { first: 14, last: 16 },
 				},
 			],
 		},
 		{
+			ofMonth: 6,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "118",
+					chapters: { first: 118, last: 118 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 7,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "1-8",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 1, last: 8 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 8,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "9-16",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 9, last: 16 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "7-9",
+					chapters: { first: 7, last: 9 },
 				},
 			],
 		},
 		{
+			ofMonth: 9,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "17-24",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 17, last: 24 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "10-11",
+					chapters: { first: 10, last: 11 },
 				},
 			],
 		},
 		{
+			ofMonth: 10,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "25-32",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 25, last: 32 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "12-14",
+					chapters: { first: 12, last: 14 },
 				},
 			],
 		},
 		{
+			ofMonth: 11,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "33-40",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 33, last: 40 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians1,
-					chapters: "15-16",
+					chapters: { first: 15, last: 16 },
 				},
 			],
 		},
 		{
+			ofMonth: 12,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "41-48",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 41, last: 48 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians2,
-					chapters: "1-4",
+					chapters: { first: 1, last: 4 },
 				},
 			],
 		},
 		{
+			ofMonth: 13,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "49-56",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 49, last: 56 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians2,
-					chapters: "5-7",
+					chapters: { first: 5, last: 7 },
 				},
 			],
 		},
 		{
+			ofMonth: 14,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "57-64",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 57, last: 64 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians2,
-					chapters: "8-10",
+					chapters: { first: 8, last: 10 },
 				},
 			],
 		},
 		{
+			ofMonth: 15,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "65-72",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 65, last: 72 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Corinthians2,
-					chapters: "11-13",
+					chapters: { first: 11, last: 13 },
 				},
 			],
 		},
 		{
+			ofMonth: 16,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "73-80",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 73, last: 80 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Galatians,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 17,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "81-88",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 81, last: 88 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Galatians,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 18,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "89-96",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 89, last: 96 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Ephesians,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 19,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "97-104",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 97, last: 104 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Ephesians,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 20,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "105-112",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 105, last: 112 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Philippians,
-					chapters: "1-2",
+					chapters: { first: 1, last: 2 },
 				},
 			],
 		},
 		{
+			ofMonth: 21,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "113-120",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 113, last: 120 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Philippians,
-					chapters: "3-4",
+					chapters: { first: 3, last: 4 },
 				},
 			],
 		},
 		{
+			ofMonth: 22,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "121-128",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 121, last: 128 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Colossians,
-					chapters: "1-2",
+					chapters: { first: 1, last: 2 },
 				},
 			],
 		},
 		{
+			ofMonth: 23,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "129-136",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 129, last: 136 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Colossians,
-					chapters: "3-4",
+					chapters: { first: 3, last: 4 },
 				},
 			],
 		},
 		{
+			ofMonth: 24,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "137-144",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 137, last: 144 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Thessalonians1,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 25,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "145-152",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 145, last: 152 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Thessalonians1,
-					chapters: "4-5",
+					chapters: { first: 4, last: 5 },
 				},
 			],
 		},
 		{
+			ofMonth: 26,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "153-160",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 153, last: 160 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Thessalonians2,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 27,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "153-160",
-				},
-			],
-			reading_2: [
-				{
-					bookId: BookId.Thessalonians2,
-					chapters: "1-3",
-				},
-			],
-		},
-		{
-			reading_1: [
-				{
-					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "161-168",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 161, last: 168 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Timothy1,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 28,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "119",
-					verses: "169-176",
+					chapters: { first: 119, last: 119 },
+					verses: { first: 169, last: 176 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Timothy1,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 29,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "120",
+					chapters: { first: 120, last: 120 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Timothy2,
-					chapters: "1-2",
+					chapters: { first: 1, last: 2 },
 				},
 			],
 		},
 		{
+			ofMonth: 30,
 			reading_1: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "25",
-					verses: "1-9",
+					chapters: { first: 25, last: 25 },
+					verses: { first: 1, last: 9 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Timothy2,
-					chapters: "3-4",
+					chapters: { first: 3, last: 4 },
 				},
 			],
 		},
