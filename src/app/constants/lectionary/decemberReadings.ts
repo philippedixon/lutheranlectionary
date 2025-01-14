@@ -5,435 +5,466 @@ export const decemberReadings: Month = {
 	name: "December",
 	days: [
 		{
+			ofMonth: 1,
 			reading_1: [
 				{
 					bookId: BookId.Luke,
-					chapters: "1",
-					verses: "46-55",
+					chapters: { first: 1, last: 1 },
+					verses: { first: 46, last: 55 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "1-2",
+					chapters: { first: 1, last: 2 },
 				},
 			],
 		},
 		{
+			ofMonth: 2,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "1",
+					chapters: { first: 1, last: 1 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "3-5",
+					chapters: { first: 3, last: 5 },
 				},
 			],
 		},
 		{
+			ofMonth: 3,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "2",
+					chapters: { first: 2, last: 2 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "6-8",
+					chapters: { first: 6, last: 8 },
 				},
 			],
 		},
 		{
+			ofMonth: 4,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "3",
+					chapters: { first: 3, last: 3 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "9-11",
+					chapters: { first: 9, last: 11 },
 				},
 			],
 		},
 		{
+			ofMonth: 5,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "4",
+					chapters: { first: 4, last: 4 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "12-14",
+					chapters: { first: 12, last: 14 },
 				},
 			],
 		},
 		{
+			ofMonth: 6,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "5",
+					chapters: { first: 5, last: 5 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "15-17",
+					chapters: { first: 15, last: 17 },
 				},
 			],
 		},
 		{
+			ofMonth: 7,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "6",
+					chapters: { first: 6, last: 6 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "18-20",
+					chapters: { first: 18, last: 20 },
 				},
 			],
 		},
 		{
+			ofMonth: 8,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "7",
+					chapters: { first: 7, last: 7 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Revelation,
-					chapters: "21-22",
+					chapters: { first: 21, last: 22 },
 				},
 			],
 		},
 		{
+			ofMonth: 9,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "8",
+					chapters: { first: 8, last: 8 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "1-3",
+					chapters: { first: 1, last: 3 },
 				},
 			],
 		},
 		{
+			ofMonth: 10,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "9",
+					chapters: { first: 9, last: 9 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "4-6",
+					chapters: { first: 4, last: 6 },
 				},
 			],
 		},
 		{
+			ofMonth: 11,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "10",
+					chapters: { first: 10, last: 10 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "7-9",
+					chapters: { first: 7, last: 9 },
 				},
 			],
 		},
 		{
+			ofMonth: 12,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "11",
+					chapters: { first: 11, last: 11 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "10-12",
+					chapters: { first: 10, last: 12 },
 				},
 			],
 		},
 		{
+			ofMonth: 13,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "12",
+					chapters: { first: 12, last: 12 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "13-15",
+					chapters: { first: 13, last: 15 },
 				},
 			],
 		},
 		{
+			ofMonth: 14,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "13",
+					chapters: { first: 13, last: 13 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "16-18",
+					chapters: { first: 16, last: 18 },
 				},
 			],
 		},
 		{
+			ofMonth: 15,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "14",
+					chapters: { first: 14, last: 14 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "19-21",
+					chapters: { first: 19, last: 21 },
 				},
 			],
 		},
 		{
+			ofMonth: 16,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "15",
+					chapters: { first: 15, last: 15 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "22-24",
+					chapters: { first: 22, last: 24 },
 				},
 			],
 		},
 		{
+			ofMonth: 17,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "16",
+					chapters: { first: 16, last: 16 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "25-27",
+					chapters: { first: 25, last: 27 },
 				},
 			],
 		},
 		{
+			ofMonth: 18,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "17",
+					chapters: { first: 17, last: 17 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "28-30",
+					chapters: { first: 28, last: 30 },
 				},
 			],
 		},
 		{
+			ofMonth: 19,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "18",
+					chapters: { first: 18, last: 18 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "31-33",
+					chapters: { first: 31, last: 33 },
 				},
 			],
 		},
 		{
+			ofMonth: 20,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "19",
+					chapters: { first: 19, last: 19 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "34-36",
+					chapters: { first: 34, last: 36 },
 				},
 			],
 		},
 		{
+			ofMonth: 21,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "20",
+					chapters: { first: 20, last: 20 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "37-39",
+					chapters: { first: 37, last: 39 },
 				},
 			],
 		},
 		{
+			ofMonth: 22,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "21",
+					chapters: { first: 21, last: 21 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "40-42",
+					chapters: { first: 40, last: 42 },
 				},
 			],
 		},
 		{
+			ofMonth: 23,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "22",
+					chapters: { first: 22, last: 22 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "43-45",
+					chapters: { first: 43, last: 45 },
 				},
 			],
 		},
 		{
+			ofMonth: 24,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "23",
+					chapters: { first: 23, last: 23 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "46-48",
+					chapters: { first: 46, last: 48 },
 				},
 			],
 		},
 		{
+			ofMonth: 25,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "24",
+					chapters: { first: 24, last: 24 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "49-51",
+					chapters: { first: 49, last: 51 },
 				},
 			],
 		},
 		{
+			ofMonth: 26,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "25",
+					chapters: { first: 25, last: 25 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "52-54",
+					chapters: { first: 52, last: 54 },
 				},
 			],
 		},
 		{
+			ofMonth: 27,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "26",
+					chapters: { first: 26, last: 26 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "55-57",
+					chapters: { first: 55, last: 57 },
 				},
 			],
 		},
 		{
+			ofMonth: 28,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "27",
+					chapters: { first: 27, last: 27 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "58-60",
+					chapters: { first: 58, last: 60 },
 				},
 			],
 		},
 		{
+			ofMonth: 29,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "28",
+					chapters: { first: 28, last: 28 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "61-63",
+					chapters: { first: 61, last: 63 },
 				},
 			],
 		},
 		{
+			ofMonth: 30,
 			reading_1: [
 				{
 					bookId: BookId.Psalms,
-					chapters: "29",
+					chapters: { first: 29, last: 29 },
 				},
 			],
 			reading_2: [
 				{
 					bookId: BookId.Isaiah,
-					chapters: "64-66",
+					chapters: { first: 64, last: 66 },
 				},
 			],
 		},
 		{
+			ofMonth: 31,
 			reading_1: [
 				{
 					bookId: BookId.Luke,
-					chapters: "1",
-					verses: "46-55",
+					chapters: { first: 1, last: 1 },
+					verses: { first: 46, last: 55 },
 				},
 			],
-			reading_2: [{ bookId: BookId.Mark, chapters: "1" }],
+			reading_2: [{ bookId: BookId.Mark, chapters: { first: 1, last: 1 } }],
 		},
 	],
 };
