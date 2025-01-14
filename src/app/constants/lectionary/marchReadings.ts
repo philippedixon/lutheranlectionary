@@ -5,15 +5,15 @@ export const marchReadings: Month = {
 	name: "March",
 	days: [
 		{
-			ofMonth: 1,
-			reading_1: [
+			ofTheMonth: 1,
+			firstReading: [
 				{
 					bookId: BookId.Isaiah,
 					chapters: { first: 64, last: 64 },
 					verses: { first: 1, last: 9 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 16, last: 18 },
@@ -21,14 +21,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 2,
-			reading_1: [
+			ofTheMonth: 2,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 85, last: 85 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 19, last: 21 },
@@ -36,14 +36,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 3,
-			reading_1: [
+			ofTheMonth: 3,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 86, last: 86 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 22, last: 24 },
@@ -51,14 +51,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 4,
-			reading_1: [
+			ofTheMonth: 4,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 87, last: 87 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 25, last: 27 },
@@ -66,14 +66,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 5,
-			reading_1: [
+			ofTheMonth: 5,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 88, last: 88 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 28, last: 30 },
@@ -81,14 +81,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 6,
-			reading_1: [
+			ofTheMonth: 6,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 89, last: 89 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 31, last: 33 },
@@ -96,14 +96,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 7,
-			reading_1: [
+			ofTheMonth: 7,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 90, last: 90 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Numbers,
 					chapters: { first: 34, last: 36 },
@@ -111,14 +111,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 8,
-			reading_1: [
+			ofTheMonth: 8,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 91, last: 91 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 1, last: 3 },
@@ -126,14 +126,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 9,
-			reading_1: [
+			ofTheMonth: 9,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 92, last: 92 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 4, last: 6 },
@@ -141,14 +141,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 10,
-			reading_1: [
+			ofTheMonth: 10,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 93, last: 93 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 7, last: 9 },
@@ -156,14 +156,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 11,
-			reading_1: [
+			ofTheMonth: 11,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 94, last: 94 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 10, last: 12 },
@@ -171,14 +171,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 12,
-			reading_1: [
+			ofTheMonth: 12,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 95, last: 95 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 13, last: 15 },
@@ -186,14 +186,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 13,
-			reading_1: [
+			ofTheMonth: 13,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 96, last: 96 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 16, last: 18 },
@@ -201,14 +201,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 14,
-			reading_1: [
+			ofTheMonth: 14,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 97, last: 97 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 19, last: 21 },
@@ -216,14 +216,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 15,
-			reading_1: [
+			ofTheMonth: 15,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 98, last: 98 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 22, last: 24 },
@@ -231,14 +231,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 16,
-			reading_1: [
+			ofTheMonth: 16,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 99, last: 99 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 25, last: 27 },
@@ -246,14 +246,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 17,
-			reading_1: [
+			ofTheMonth: 17,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 100, last: 100 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 28, last: 30 },
@@ -261,14 +261,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 18,
-			reading_1: [
+			ofTheMonth: 18,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 101, last: 101 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Deuteronomy,
 					chapters: { first: 31, last: 34 },
@@ -276,14 +276,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 19,
-			reading_1: [
+			ofTheMonth: 19,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 102, last: 102 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 1, last: 1 },
@@ -291,14 +291,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 20,
-			reading_1: [
+			ofTheMonth: 20,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 103, last: 103 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 2, last: 3 },
@@ -306,14 +306,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 21,
-			reading_1: [
+			ofTheMonth: 21,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 104, last: 104 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 4, last: 5 },
@@ -321,14 +321,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 22,
-			reading_1: [
+			ofTheMonth: 22,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 105, last: 105 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 6, last: 7 },
@@ -336,14 +336,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 23,
-			reading_1: [
+			ofTheMonth: 23,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 106, last: 106 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 8, last: 9 },
@@ -351,14 +351,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 24,
-			reading_1: [
+			ofTheMonth: 24,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 107, last: 107 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 10, last: 11 },
@@ -366,14 +366,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 25,
-			reading_1: [
+			ofTheMonth: 25,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 108, last: 108 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 12, last: 13 },
@@ -381,14 +381,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 26,
-			reading_1: [
+			ofTheMonth: 26,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 109, last: 109 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 14, last: 15 },
@@ -396,14 +396,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 27,
-			reading_1: [
+			ofTheMonth: 27,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 110, last: 110 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 16, last: 17 },
@@ -411,14 +411,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 28,
-			reading_1: [
+			ofTheMonth: 28,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 111, last: 111 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 18, last: 19 },
@@ -426,14 +426,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 29,
-			reading_1: [
+			ofTheMonth: 29,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 112, last: 112 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 20, last: 21 },
@@ -441,14 +441,14 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 30,
-			reading_1: [
+			ofTheMonth: 30,
+			firstReading: [
 				{
 					bookId: BookId.Psalms,
 					chapters: { first: 113, last: 113 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 22, last: 22 },
@@ -456,15 +456,15 @@ export const marchReadings: Month = {
 			],
 		},
 		{
-			ofMonth: 31,
-			reading_1: [
+			ofTheMonth: 31,
+			firstReading: [
 				{
 					bookId: BookId.Isaiah,
 					chapters: { first: 64, last: 64 },
 					verses: { first: 1, last: 9 },
 				},
 			],
-			reading_2: [
+			secondReading: [
 				{
 					bookId: BookId.Luke,
 					chapters: { first: 23, last: 24 },
