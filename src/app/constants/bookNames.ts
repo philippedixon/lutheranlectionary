@@ -3,6 +3,8 @@ import { Book, BookId } from "@/app/enums";
 export const bookNames: Record<BookId, Book> = {
 	[BookId.Acts]: Book.Acts,
 	[BookId.Amos]: Book.Amos,
+	[BookId.Chronicles1]: Book.Chronicles1,
+	[BookId.Chronicles2]: Book.Chronicles2,
 	[BookId.Colossians]: Book.Colossians,
 	[BookId.Corinthians1]: Book.Corinthians1,
 	[BookId.Corinthians2]: Book.Corinthians2,
@@ -28,6 +30,8 @@ export const bookNames: Record<BookId, Book> = {
 	[BookId.Joshua]: Book.Joshua,
 	[BookId.Jude]: Book.Jude,
 	[BookId.Judges]: Book.Judges,
+	[BookId.Kings1]: Book.Kings1,
+	[BookId.Kings2]: Book.Kings2,
 	[BookId.Lamentations]: Book.Lamentations,
 	[BookId.Leviticus]: Book.Leviticus,
 	[BookId.Luke]: Book.Luke,

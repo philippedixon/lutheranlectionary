@@ -4,6 +4,7 @@ import { marchReadings } from "./marchReadings";
 import { aprilReadings } from "./aprilReadings";
 import { mayReadings } from "./mayReadings";
 import { juneReadings } from "./juneReadings";
+import { julyReadings } from "./julyReadings";
 import { novemberReadings } from "./novemberReadings";
 import { decemberReadings } from "./decemberReadings";
 
@@ -14,6 +15,7 @@ const lectionary = [
 	aprilReadings,
 	mayReadings,
 	juneReadings,
+	julyReadings,
 	novemberReadings,
 	decemberReadings,
 ];
