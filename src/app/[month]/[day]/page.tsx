@@ -7,7 +7,7 @@ import lectionary from "@/app/constants/lectionary";
 import { Month } from "@/app/interfaces";
 import { fetchReading } from "@/app/utils";
 import { TranslationBookChapter } from "@/app/interfaces";
-import { ReadingPassage } from "@/app/components";
+import { ReadingPassage, VersePassage } from "@/app/components";
 
 const DayPage = () => {
 	const path = usePathname();
@@ -66,15 +66,22 @@ const DayPage = () => {
 			<div>
 				<h2>First Reading</h2>
 				{firstReadingContent.map((passageChapters, index) => {
-					const readingInfo = firstReadingProperties[index];
+					const readingInformation = firstReadingProperties[index];
 					const key = `${passageChapters?.[0]?.book?.id}`;
 
 					return (
 						<div key={key}>
-							<ReadingPassage
-								passageChapters={passageChapters}
-								readingInfo={readingInfo}
-							/>
+							{readingInformation.verses ? (
+								<VersePassage
+									passageChapter={passageChapters[0]}
+									readingInformation={readingInformation}
+								/>
+							) : (
+								<ReadingPassage
+									passageChapters={passageChapters}
+									readingInformation={readingInformation}
+								/>
+							)}
 						</div>
 					);
 				})}
@@ -83,13 +90,13 @@ const DayPage = () => {
 				<h2>Second Reading</h2>
 
 				{secondReadingContent.map((passageChapters, index) => {
-					const readingInfo = secondReadingProperties[index];
+					const readingInformation = secondReadingProperties[index];
 					const key = `${passageChapters?.[0]?.book?.id}`;
 					return (
 						<div key={`${key}:${index}`}>
 							<ReadingPassage
 								passageChapters={passageChapters}
-								readingInfo={readingInfo}
+								readingInformation={readingInformation}
 							/>
 						</div>
 					);
