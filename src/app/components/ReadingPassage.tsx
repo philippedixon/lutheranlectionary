@@ -9,14 +9,14 @@ import { getReadingTitle } from "@/app/utils";
 
 interface ReadingPassageProps {
 	passageChapters: TranslationBookChapter[];
-	readingInfo: Reading;
+	readingInformation: Reading;
 }
 
 export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 	passageChapters,
-	readingInfo,
+	readingInformation,
 }) => {
-	const title = getReadingTitle(readingInfo);
+	const title = getReadingTitle(readingInformation);
 
 	return (
 		<div>

@@ -1,98 +1,68 @@
 import { BookId } from "@/app/enums";
 import { Month } from "@/app/interfaces";
 
-export const aprilReadings: Month = {
-	name: "April",
+export const octoberReadings: Month = {
+	name: "October",
 	days: [
 		{
 			ofTheMonth: 1,
 			firstReading: [
 				{
-					bookId: BookId.Isaiah,
-					chapters: { first: 25, last: 25 },
-					verses: { first: 1, last: 9 },
+					bookId: BookId.Jonah,
+					chapters: { first: 2, last: 2 },
+					verses: { first: 2, last: 9 },
 				},
 			],
 			secondReading: [
 				{
-					bookId: BookId.Romans,
-					chapters: { first: 1, last: 3 },
+					bookId: BookId.Jeremiah,
+					chapters: { first: 32, last: 34 },
 				},
 			],
 		},
 		{
 			ofTheMonth: 2,
 			firstReading: [
-				{
-					bookId: BookId.Psalms,
-					chapters: { first: 114, last: 114 },
-				},
+				{ bookId: BookId.Psalms, chapters: { first: 114, last: 114 } },
 			],
 			secondReading: [
-				{
-					bookId: BookId.Romans,
-					chapters: { first: 4, last: 6 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 35, last: 37 } },
 			],
 		},
 		{
 			ofTheMonth: 3,
 			firstReading: [
-				{
-					bookId: BookId.Psalms,
-					chapters: { first: 115, last: 115 },
-				},
+				{ bookId: BookId.Psalms, chapters: { first: 115, last: 115 } },
 			],
 			secondReading: [
-				{
-					bookId: BookId.Romans,
-					chapters: { first: 7, last: 9 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 38, last: 40 } },
 			],
 		},
 		{
 			ofTheMonth: 4,
 			firstReading: [
-				{
-					bookId: BookId.Psalms,
-					chapters: { first: 116, last: 116 },
-				},
+				{ bookId: BookId.Psalms, chapters: { first: 116, last: 116 } },
 			],
 			secondReading: [
-				{
-					bookId: BookId.Romans,
-					chapters: { first: 10, last: 13 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 41, last: 43 } },
 			],
 		},
 		{
 			ofTheMonth: 5,
 			firstReading: [
-				{
-					bookId: BookId.Psalms,
-					chapters: { first: 117, last: 117 },
-				},
+				{ bookId: BookId.Psalms, chapters: { first: 117, last: 117 } },
 			],
 			secondReading: [
-				{
-					bookId: BookId.Romans,
-					chapters: { first: 14, last: 16 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 44, last: 47 } },
 			],
 		},
 		{
 			ofTheMonth: 6,
 			firstReading: [
-				{
-					bookId: BookId.Psalms,
-					chapters: { first: 118, last: 118 },
-				},
+				{ bookId: BookId.Psalms, chapters: { first: 118, last: 118 } },
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 48, last: 50 } },
 			],
 		},
 		{
@@ -105,10 +75,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 4, last: 6 },
-				},
+				{ bookId: BookId.Jeremiah, chapters: { first: 51, last: 52 } },
 			],
 		},
 		{
@@ -121,10 +88,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 7, last: 9 },
-				},
+				{ bookId: BookId.Lamentations, chapters: { first: 1, last: 2 } },
 			],
 		},
 		{
@@ -137,10 +101,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 10, last: 11 },
-				},
+				{ bookId: BookId.Lamentations, chapters: { first: 3, last: 5 } },
 			],
 		},
 		{
@@ -153,10 +114,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 12, last: 14 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 1, last: 3 } },
 			],
 		},
 		{
@@ -169,10 +127,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians1,
-					chapters: { first: 15, last: 16 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 4, last: 6 } },
 			],
 		},
 		{
@@ -185,10 +140,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians2,
-					chapters: { first: 1, last: 4 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 7, last: 9 } },
 			],
 		},
 		{
@@ -201,10 +153,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians2,
-					chapters: { first: 5, last: 7 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 10, last: 12 } },
 			],
 		},
 		{
@@ -217,10 +166,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians2,
-					chapters: { first: 8, last: 10 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 13, last: 15 } },
 			],
 		},
 		{
@@ -233,10 +179,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Corinthians2,
-					chapters: { first: 11, last: 13 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 16, last: 18 } },
 			],
 		},
 		{
@@ -249,10 +192,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Galatians,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 19, last: 21 } },
 			],
 		},
 		{
@@ -265,10 +205,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Galatians,
-					chapters: { first: 4, last: 6 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 22, last: 24 } },
 			],
 		},
 		{
@@ -281,10 +218,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Ephesians,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 25, last: 27 } },
 			],
 		},
 		{
@@ -297,10 +231,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Ephesians,
-					chapters: { first: 4, last: 6 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 28, last: 30 } },
 			],
 		},
 		{
@@ -313,10 +244,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Philippians,
-					chapters: { first: 1, last: 2 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 31, last: 33 } },
 			],
 		},
 		{
@@ -329,10 +257,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Philippians,
-					chapters: { first: 3, last: 4 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 34, last: 36 } },
 			],
 		},
 		{
@@ -345,10 +270,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Colossians,
-					chapters: { first: 1, last: 2 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 37, last: 39 } },
 			],
 		},
 		{
@@ -361,10 +283,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Colossians,
-					chapters: { first: 3, last: 4 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 40, last: 42 } },
 			],
 		},
 		{
@@ -377,10 +296,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Thessalonians1,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 43, last: 45 } },
 			],
 		},
 		{
@@ -393,10 +309,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Thessalonians1,
-					chapters: { first: 4, last: 5 },
-				},
+				{ bookId: BookId.Ezekiel, chapters: { first: 46, last: 48 } },
 			],
 		},
 		{
@@ -409,10 +322,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Thessalonians2,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Daniel, chapters: { first: 1, last: 3 } },
 			],
 		},
 		{
@@ -425,10 +335,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Timothy1,
-					chapters: { first: 1, last: 3 },
-				},
+				{ bookId: BookId.Daniel, chapters: { first: 4, last: 6 } },
 			],
 		},
 		{
@@ -441,10 +348,7 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Timothy1,
-					chapters: { first: 4, last: 6 },
-				},
+				{ bookId: BookId.Daniel, chapters: { first: 7, last: 9 } },
 			],
 		},
 		{
@@ -456,25 +360,31 @@ export const aprilReadings: Month = {
 				},
 			],
 			secondReading: [
-				{
-					bookId: BookId.Timothy2,
-					chapters: { first: 1, last: 2 },
-				},
+				{ bookId: BookId.Daniel, chapters: { first: 10, last: 12 } },
 			],
 		},
 		{
 			ofTheMonth: 30,
 			firstReading: [
+				{ bookId: BookId.Psalms, chapters: { first: 121, last: 121 } },
+			],
+			secondReading: [
+				{ bookId: BookId.Hosea, chapters: { first: 1, last: 4 } },
+			],
+		},
+		{
+			ofTheMonth: 31,
+			firstReading: [
 				{
-					bookId: BookId.Isaiah,
-					chapters: { first: 25, last: 25 },
-					verses: { first: 1, last: 9 },
+					bookId: BookId.Jonah,
+					chapters: { first: 2, last: 2 },
+					verses: { first: 2, last: 9 },
 				},
 			],
 			secondReading: [
 				{
-					bookId: BookId.Timothy2,
-					chapters: { first: 3, last: 4 },
+					bookId: BookId.Hosea,
+					chapters: { first: 5, last: 7 },
 				},
 			],
 		},

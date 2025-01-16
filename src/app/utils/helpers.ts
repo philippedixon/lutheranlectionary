@@ -4,44 +4,8 @@ import {
 	ChapterVerse,
 	Reading,
 	TranslationBookChapter,
-	Verses,
 } from "@/app/interfaces";
 import { BookId } from "@/app/enums";
-
-export const getReadingContent = (
-	reading: Reading,
-	chapters: TranslationBookChapter[]
-): ChapterContent[] => {
-	if (!chapters?.length) {
-		return [];
-	}
-	// adjust to account for multiple books
-	// adjust to get all chapters if no chapters in reading
-	const { verses } = reading;
-
-	let content: ChapterContent[] = [];
-	if (verses) {
-		const { first: firstVerseNumber, last: lastVerseNumber } =
-			reading.verses as Verses;
-
-		content = chapters[0].chapter.content.filter((chapterContent) => {
-			const verseNumber = (chapterContent as ChapterVerse)?.number;
-			const isVerseInRange =
-				firstVerseNumber <= verseNumber && verseNumber <= lastVerseNumber;
-			return chapterContent.type === "line_break" || isVerseInRange;
-		});
-
-		const firstVerse =
-			content.findIndex((content) => content.type === "verse") || 0;
-		const lastVerse =
-			content.findLastIndex((content) => content.type === "verse") || 0;
-		content = content.slice(firstVerse, lastVerse + 1);
-	} else {
-		content = chapters.map((chapter) => chapter.chapter.content).flat();
-	}
-
-	return content;
-};
 
 export const getReadingTitle = (reading: Reading) => {
 	const { bookId, chapters, verses } = reading;
@@ -80,14 +44,6 @@ export const fetchReading = async (
 
 	const { first: firstChapterNumber, last: lastChapterNumber } =
 		reading.chapters;
-
-	// const [firstChapter, lastChapter] = reading?.chapters?.split("-") ?? [];
-	// const firstChapterNumber = parseInt(firstChapter);
-	// let lastChapterNumber = parseInt(lastChapter);
-
-	// if (!lastChapterNumber) {
-	// 	lastChapterNumber = firstChapterNumber;
-	// }
 
 	try {
 		const chapters: TranslationBookChapter[] = [];

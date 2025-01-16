@@ -16,11 +16,11 @@ const Home = () => {
 						<div key={month.name}>
 							<h2>{month.name}</h2>
 							{month?.days?.map((day) => {
-								const date = day.ofMonth;
-								const reading1Display = day.reading_1
+								const date = day.ofTheMonth;
+								const reading1Display = day.firstReading
 									.map((reading) => getReadingTitle(reading))
 									.join(", ");
-								const reading2Display = day.reading_2
+								const reading2Display = day.secondReading
 									.map((reading) => getReadingTitle(reading))
 									.join(", ");
 
