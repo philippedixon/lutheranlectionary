@@ -9,6 +9,7 @@ export const bookNames: Record<BookId, Book> = {
 	[BookId.Corinthians1]: Book.Corinthians1,
 	[BookId.Corinthians2]: Book.Corinthians2,
 	[BookId.Deuteronomy]: Book.Deuteronomy,
+	[BookId.Ecclesiastes]: Book.Ecclesiastes,
 	[BookId.Ephesians]: Book.Ephesians,
 	[BookId.Esther]: Book.Esther,
 	[BookId.Exodus]: Book.Exodus,
