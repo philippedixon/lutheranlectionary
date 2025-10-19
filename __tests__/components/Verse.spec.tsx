@@ -51,6 +51,7 @@ describe("Verse Component", () => {
 			content: [{ wordsOfJesus: true, text: "I am the way" } as FormattedText],
 		};
 		const { getByText } = render(<Verse line={line} bookChapterNumber={1} />);
+
 		expect(getByText("I am the way")).toHaveClass("text-red-500");
 	});
 

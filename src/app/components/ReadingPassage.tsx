@@ -20,14 +20,15 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 
 	return (
 		<div>
-			<h3>{title}</h3>
+			<h3 data-testid="title">{title}</h3>
 			{passageChapters.map((bookChapter) => (
 				<div key={`${bookChapter.book.id}:${bookChapter.chapter.number}`}>
-					{bookChapter.chapter.content.map((line) => {
+					{bookChapter.chapter.content.map((line, index) => {
 						let node;
+						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4>
+								<h4 key={`${baseKey}-heading`} className="font-bold">
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}
@@ -36,13 +37,13 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						} else if (line.type === "verse") {
 							node = (
 								<Verse
-									key={line.number}
-									line={line as ChapterVerse}
 									bookChapterNumber={bookChapter.chapter.number}
+									key={`${baseKey}:${line.number}`}
+									line={line as ChapterVerse}
 								/>
 							);
 						} else if (line.type === "line_break") {
-							node = <br />;
+							node = <br key={`${baseKey}:break`} />;
 						}
 
 						return node;

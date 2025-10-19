@@ -13,7 +13,7 @@ describe("fetchReading", () => {
 
 	it("should return an empty array if no translationId is provided", async () => {
 		const result = await fetchReading(undefined, {
-			book: { id: BookId.Genesis },
+			bookId: BookId.Genesis,
 		});
 
 		expect(result).toEqual([]);
@@ -48,7 +48,7 @@ describe("fetchChapter", () => {
 
 describe("fetchBook", () => {
 	const reading: Reading = {
-		book: { id: BookId.Philemon },
+		bookId: BookId.Philemon,
 	};
 
 	afterEach(() => {

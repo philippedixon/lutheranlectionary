@@ -35,11 +35,12 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 	return (
 		<div>
 			<h3>{title}</h3>
-			{verseContents?.map((line) => {
+			{verseContents?.map((line, index) => {
 				let node;
+				const baseKey = `${passageChapter.book.id}:${passageChapter.chapter.number}:${index}`;
 				if (line.type === "heading") {
 					node = (
-						<h4>
+						<h4 key={`${baseKey}:heading`} className="font-bold">
 							{line.content
 								.filter((text) => typeof text === "string")
 								.join(" ")}
@@ -48,13 +49,13 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 				} else if (line.type === "verse") {
 					node = (
 						<Verse
-							key={line.number}
-							line={line as ChapterVerse}
 							bookChapterNumber={passageChapter.chapter.number}
+							key={`${baseKey}:${line.number}`}
+							line={line as ChapterVerse}
 						/>
 					);
 				} else if (line.type === "line_break") {
-					node = <br />;
+					node = <br key={`${baseKey}:break`} />;
 				}
 
 				return node;

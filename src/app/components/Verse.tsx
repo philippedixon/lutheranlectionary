@@ -7,18 +7,13 @@ import {
 } from "@/app/interfaces";
 
 interface VerseProps {
-	line: ChapterVerse;
 	bookChapterNumber: number;
+	line: ChapterVerse;
 }
 
 export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 	return (
-		<span>
-			{line.number === 1 ? (
-				<span className="text-2xl font-bold">
-					{`${bookChapterNumber}`}&nbsp;
-				</span>
-			) : null}
+		<div>
 			{line.content.map((verseLine, verseLineIndex) => {
 				const verseKey = `${line.number}:${verseLineIndex}`;
 				const testId = `${bookChapterNumber}:${line.number}-${verseLineIndex}`;
@@ -27,10 +22,16 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 				let verse: JSX.Element | null = null;
 				if (typeof verseLine === "string") {
 					verse = (
-						<span data-testid={testId} key={verseKey}>
-							<sup>{displayVerseNumber && `${line.number} `}</sup>
-							{verseLine}&nbsp;
-						</span>
+						<p data-testid={testId} key={verseKey}>
+							{line.number === 1 ? (
+								<span className="text-2xl font-bold">
+									{`${bookChapterNumber}`}&nbsp;
+								</span>
+							) : (
+								<sup>{displayVerseNumber && `${line.number} `}</sup>
+							)}
+							{verseLine}
+						</p>
 					);
 				} else if ((verseLine as InlineLineBreak)?.lineBreak) {
 					verse = <p key={verseKey}></p>;
@@ -51,16 +52,27 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 							{(verseLine as InlineHeading).heading}
 						</h4>
 					);
-				}
+				} else if ((verseLine as FormattedText)?.wordsOfJesus) {
+					verse = (
+						<p className="text-red-500" data-testid={testId} key={verseKey}>
+							{line.number === 1 ? (
+								<span className="text-2xl font-bold">
+									{`${bookChapterNumber}`}&nbsp;
+								</span>
+							) : (
+								<sup>{displayVerseNumber && `${line.number} `}</sup>
+							)}
+							{(verseLine as FormattedText).text}
+						</p>
+					);
 
-				if (verse && (verseLine as FormattedText)?.wordsOfJesus) {
-					verse = React.cloneElement(verse, {
-						className: `${verse.props.className || ""} text-red-500`,
-					});
+					// verse = React.cloneElement(verse, {
+					// 	className: `${verse.props.className || ""} text-red-500`,
+					// });
 				}
 
 				return verse;
 			})}
-		</span>
+		</div>
 	);
 };
