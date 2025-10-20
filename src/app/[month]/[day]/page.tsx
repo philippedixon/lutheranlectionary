@@ -56,8 +56,8 @@ const DayPage = () => {
 	]);
 
 	// format and display responses
-	useEffect(() => console.log("First READING", firstReadingContent));
-	useEffect(() => console.log("Second READING", secondReadingContent));
+	// useEffect(() => console.log("First READING", firstReadingContent));
+	// useEffect(() => console.log("Second READING", secondReadingContent));
 	return (
 		<div>
 			<h1>

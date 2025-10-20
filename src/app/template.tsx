@@ -9,7 +9,7 @@ import {
 	TranslationsContext,
 	TranslationsDispatchContext,
 } from "@/app/contexts";
-import { languages } from "@/app/constants";
+import { languages, translastionsBlackList } from "@/app/constants";
 import { Selections, Translation } from "@/app/interfaces";
 import { Languages } from "@/app/enums";
 
@@ -133,6 +133,9 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 						.filter(
 							(translation) =>
 								translation.languageEnglishName === selections.languageName
+						)
+						.filter(
+							(translation) => !translastionsBlackList.has(translation.id)
 						)
 						.map((translation) => (
 							<option key={translation.id} value={translation.id}>
