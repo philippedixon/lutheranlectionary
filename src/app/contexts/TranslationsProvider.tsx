@@ -1,6 +1,8 @@
-import { createContext, useReducer } from "react";
+"use client";
+
+import { createContext } from "react";
 import { Translation } from "@/app/interfaces";
-import { TranslationsAction, translationsReducer } from "@/app/reducers";
+import { TranslationsAction } from "@/app/reducers";
 
 export const TranslationsContext = createContext<Translation[]>([]);
 export const TranslationsDispatchContext = createContext<
@@ -9,16 +11,14 @@ export const TranslationsDispatchContext = createContext<
 
 export const TranslationsProvider = ({
 	children,
+	translations = [],
 }: {
 	children: React.ReactNode;
+	translations?: Translation[];
 }) => {
-	const [translations, dispatch] = useReducer(translationsReducer, []);
-
 	return (
 		<TranslationsContext.Provider value={translations}>
-			<TranslationsDispatchContext.Provider value={dispatch}>
-				{children}
-			</TranslationsDispatchContext.Provider>
+			{children}
 		</TranslationsContext.Provider>
 	);
 };

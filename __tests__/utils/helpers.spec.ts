@@ -4,9 +4,124 @@ import {
 	fetchBook,
 	fetchReading,
 	parseChapter,
+	fetchAvailableTranslations,
 } from "@/app/utils";
 import { ChapterVerse, Reading } from "@/app/interfaces";
 import { lukeTranslationBookChapter } from "../../__mocks__/content";
+
+describe("fetchAvailableTranslations", () => {
+	afterEach(() => jest.clearAllMocks());
+
+	it("should fetch available translations from the API", async () => {
+		const mockTranslations = {
+			translations: [
+				{ id: "BSB", languageEnglishName: "English" },
+				{ id: "FRN", languageEnglishName: "French" },
+			],
+		};
+
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				headers: { get: () => "application/json" },
+				json: () => Promise.resolve(mockTranslations),
+				ok: true,
+			})
+		) as jest.Mock;
+
+		const response = await fetchAvailableTranslations();
+
+		expect(global.fetch).toHaveBeenCalledWith(
+			"https://bible.helloao.org/api/available_translations.json"
+		);
+		expect(response).toEqual(mockTranslations);
+	});
+
+	it("should check for non-OK response and return empty array", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				headers: { get: () => "application/json" },
+				text: () => Promise.resolve("Error occurred"),
+				ok: false,
+				status: 500,
+			})
+		) as jest.Mock;
+
+		const response = await fetchAvailableTranslations();
+
+		expect(response).toEqual({ translations: [] });
+	});
+
+	it("should check for invalid content-type and return empty array", async () => {
+		const consoleErrorSpy = jest
+			.spyOn(console, "error")
+			.mockImplementation(() => {});
+
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				headers: { get: () => "text/html" },
+				text: () => Promise.resolve("<html>Error</html>"),
+				ok: true,
+			})
+		) as jest.Mock;
+
+		const response = await fetchAvailableTranslations();
+
+		expect(consoleErrorSpy).toHaveBeenCalledWith(
+			expect.stringContaining(
+				"Unexpected content-type when fetching translations:"
+			),
+			"<html>Error</html>"
+		);
+		expect(response).toEqual({ translations: [] });
+
+		consoleErrorSpy.mockRestore();
+	});
+
+	it.each([undefined, ""])(
+		"should verify JSON parsing and return empty array on failure",
+		async (jsonResult) => {
+			const consoleErrorSpy = jest
+				.spyOn(console, "error")
+				.mockImplementation(() => {});
+
+			global.fetch = jest.fn(() =>
+				Promise.resolve({
+					headers: { get: () => "application/json" },
+					ok: true,
+					json: () => Promise.resolve(jsonResult),
+				})
+			) as jest.Mock;
+
+			const response = await fetchAvailableTranslations();
+
+			expect(response).toEqual({ translations: [] });
+			expect(consoleErrorSpy).toHaveBeenCalledWith(
+				expect.stringContaining("Invalid translations payload:"),
+				jsonResult
+			);
+
+			consoleErrorSpy.mockRestore();
+		}
+	);
+
+	it("should handle fetch errors gracefully and return empty array", async () => {
+		const consoleErrorSpy = jest
+			.spyOn(console, "error")
+			.mockImplementation(() => {});
+
+		global.fetch = jest.fn(() => Promise.reject("Network error")) as jest.Mock;
+
+		const response = await fetchAvailableTranslations();
+
+		expect(response).toEqual({ translations: [] });
+		expect(consoleErrorSpy).toHaveBeenCalledWith(
+			"Error fetching available translations:",
+			"Network error"
+		);
+
+		consoleErrorSpy.mockRestore();
+	});
+});
 
 describe("fetchReading", () => {
 	afterEach(() => jest.clearAllMocks());
