@@ -2,9 +2,10 @@ import Link from "next/link";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SelectionsProvider } from "@/app/contexts";
-import { TranslationsProvider } from "@/app/contexts";
-import { LanguageDropdown, TranslationDropdown } from "@/app/components";
-import { fetchAvailableTranslations } from "@/app/utils";
+import {
+	LanguageDropdown,
+	TranslationsDropdownServerComponent,
+} from "@/app/components";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -23,27 +24,24 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	// check localStorage for selections, sync with context
-	const availableTranslations = await fetchAvailableTranslations();
 
 	return (
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<TranslationsProvider translations={availableTranslations.translations}>
-					<SelectionsProvider>
-						<nav>
-							<Link href="/">Home</Link>
-						</nav>
-						<div>
-							<LanguageDropdown />
-						</div>
-						<div>
-							<TranslationDropdown />
-						</div>
-						{children}
-					</SelectionsProvider>
-				</TranslationsProvider>
+				<SelectionsProvider>
+					<nav>
+						<Link href="/">Home</Link>
+					</nav>
+					<div>
+						<LanguageDropdown />
+					</div>
+					<div>
+						<TranslationsDropdownServerComponent />
+					</div>
+					{children}
+				</SelectionsProvider>
 			</body>
 		</html>
 	);

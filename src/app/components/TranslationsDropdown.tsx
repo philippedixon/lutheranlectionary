@@ -5,11 +5,14 @@ import {
 	SelectionsContext,
 	SelectionsDispatch,
 	SelectionsDispatchContext,
-	TranslationsContext,
 } from "@/app/contexts";
 import { translastionsBlackList } from "@/app/constants";
 import { Selections, Translation } from "@/app/interfaces";
 import { Languages } from "@/app/enums";
+
+interface TranslationDropdownProps {
+	translations: Translation[];
+}
 
 const setDefaultTranslationId = (
 	translations: Translation[],
@@ -27,11 +30,12 @@ const setDefaultTranslationId = (
 	localStorage.setItem("translation", translationId);
 };
 
-export const TranslationDropdown = () => {
+export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
+	translations,
+}) => {
 	const selections = useContext(SelectionsContext);
 	const dispatchSelections = useContext(SelectionsDispatchContext);
-	const translations = useContext(TranslationsContext);
-
+	console.log("TranslationsDropdown render with translations:", translations);
 	useEffect(() => {
 		const storedTranslationId = localStorage.getItem("translation");
 
