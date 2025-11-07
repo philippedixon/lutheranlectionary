@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useReducer } from "react";
 import { Selections } from "@/app/interfaces";
 import { selectionsReducer, SelectionsAction } from "@/app/reducers";

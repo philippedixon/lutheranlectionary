@@ -1,5 +1,5 @@
 "use client";
-
+// todo: convert to server component?
 import { useContext, useEffect, useState } from "react";
 import { SelectionsContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
@@ -28,6 +28,8 @@ const DayPage = () => {
 	useEffect(() => {
 		const fetchReadings = async () => {
 			const translation = selections.translationId ?? "";
+			// todo: parallelize calls and reassemble in order
+			// add Promise.allSettled?
 			try {
 				const firstReadingResponses: TranslationBookChapter[][] = [];
 				for (const reading of firstReadingProperties) {

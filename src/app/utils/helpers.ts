@@ -1,5 +1,6 @@
 import { bookNames } from "@/app/constants";
 import {
+	AvailableTranslations,
 	ChapterContent,
 	ChapterVerse,
 	Reading,
@@ -29,6 +30,45 @@ export const getReadingTitle = (reading: Reading) => {
 
 	return display;
 };
+
+export const fetchAvailableTranslations =
+	async (): Promise<AvailableTranslations> => {
+		try {
+			const response = await fetch(
+				`https://bible.helloao.org/api/available_translations.json`
+			);
+
+			if (!response.ok) {
+				const text = await response.text();
+				console.error(
+					`Failed to fetch available translations (${response.status}):`,
+					text
+				);
+				return { translations: [] };
+			}
+
+			const contentType = response.headers.get("content-type") ?? "";
+			if (!contentType.includes("application/json")) {
+				const text = await response.text();
+				console.error(
+					`Unexpected content-type when fetching translations: ${contentType}`,
+					text
+				);
+				return { translations: [] };
+			}
+
+			const json = await response.json();
+			if (!json || !Array.isArray(json.translations)) {
+				console.error("Invalid translations payload:", json);
+				return { translations: [] };
+			}
+
+			return json as AvailableTranslations;
+		} catch (err) {
+			console.error("Error fetching available translations:", err);
+			return { translations: [] };
+		}
+	};
 
 export const fetchReading = async (
 	translationId: string | undefined,
