@@ -1,0 +1,16 @@
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=development
+ENV PORT=3000
+
+# copy only manifests to install deps (cached by Docker)
+COPY package.json package-lock.json* ./
+RUN npm install
+
+# copy everything (will be overridden by volume in compose)
+COPY . .
+
+EXPOSE 3000
+
+# run dev server; when used with docker-compose we mount source so changes hot-reload
+CMD ["npm", "run", "dev"]
