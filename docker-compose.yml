@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app:delegated
+      - /app/node_modules      # anonymous volume to keep container node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      # optional: if file watching is flaky on your platform uncomment:
+      # - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
