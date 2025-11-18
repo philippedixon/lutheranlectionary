@@ -7,7 +7,7 @@ import Link from "next/link";
 const Home = () => {
 	return (
 		<div>
-			<h1>Lutheran Lectionary</h1>
+			<h1 className="text-center">Lutheran Lectionary</h1>
 			<section>
 				{lectionary.map((month, monthIndex) => {
 					const monthNumber = monthIndex + 1;

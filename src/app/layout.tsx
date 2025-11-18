@@ -31,14 +31,16 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<SelectionsProvider>
-					<nav>
-						<Link href="/">Home</Link>
-					</nav>
-					<div>
-						<LanguageDropdown />
-					</div>
-					<div>
-						<TranslationsDropdownServerComponent />
+					<div className="flex flex-col items-center gap-4">
+						<nav>
+							<Link href="/">Home</Link>
+						</nav>
+						<div>
+							<LanguageDropdown />
+						</div>
+						<div>
+							<TranslationsDropdownServerComponent />
+						</div>
 					</div>
 					{children}
 				</SelectionsProvider>
