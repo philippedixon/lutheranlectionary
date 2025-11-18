@@ -15,8 +15,11 @@ jobs:
       - name: Log in to GHCR
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+      - name: Debug repo contents
+        run: ls -R
+
       - name: Build Next.js image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/nextjs-app:latest ./app
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/nextjs-app:latest .
 
       - name: Push image to GHCR
         run: docker push ghcr.io/${{ github.repository_owner }}/nextjs-app:latest
