@@ -33,8 +33,8 @@ jobs:
             # Log in to GHCR on the droplet (use same PAT)
             echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             # Pull latest app image
-            docker-compose pull nextjs
+            docker compose pull nextjs
             # Recreate containers with latest image (no rebuild needed)
-            docker-compose up -d
+            docker compose up -d
             # Optional: verify Nginx and app are healthy
             docker ps
