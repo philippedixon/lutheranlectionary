@@ -31,7 +31,7 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<SelectionsProvider>
-					<div className="flex flex-col items-center gap-4">
+					<div className="flex flex-col items-center gap-4 pb-4">
 						<nav>
 							<Link href="/">Home</Link>
 						</nav>

@@ -84,7 +84,11 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 	};
 
 	return (
-		<select onChange={handleTranslationChange} value={selections.translationId}>
+		<select
+			id="translation-dropdown"
+			onChange={handleTranslationChange}
+			value={selections.translationId}
+		>
 			{translations
 				.filter(
 					(translation) =>
