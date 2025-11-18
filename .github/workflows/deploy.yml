@@ -15,23 +15,11 @@ jobs:
       - name: Log in to GHCR
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Debug repo contents
-        run: ls -R
-
       - name: Build Next.js image
         run: docker build -t ghcr.io/${{ github.repository_owner }}/nextjs-app:latest .
 
       - name: Push image to GHCR
         run: docker push ghcr.io/${{ github.repository_owner }}/nextjs-app:latest
-
-      - name: Test SSH connection
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.DO_HOST }}
-          username: ${{ secrets.DO_USER }}
-          key: ${{ secrets.DO_SSH_KEY }}
-          script: |
-            echo "SSH connection successful"
 
       - name: Deploy to droplet via SSH
         uses: appleboy/ssh-action@v0.1.7
