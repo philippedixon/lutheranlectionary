@@ -24,6 +24,15 @@ jobs:
       - name: Push image to GHCR
         run: docker push ghcr.io/${{ github.repository_owner }}/nextjs-app:latest
 
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            echo "SSH connection successful"
+
       - name: Deploy to droplet via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
