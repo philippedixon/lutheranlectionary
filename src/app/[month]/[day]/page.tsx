@@ -62,47 +62,49 @@ const DayPage = () => {
 	// useEffect(() => console.log("Second READING", secondReadingContent));
 	return (
 		<div>
-			<h1>
+			<h1 className="text-center">
 				{month.name} {dayParameter}
 			</h1>
-			<div>
-				<h2>First Reading</h2>
-				{firstReadingContent.map((passageChapters, index) => {
-					const readingInformation = firstReadingProperties[index];
-					const key = `${passageChapters?.[0]?.book?.id}`;
+			<div className="max-w-3xl mx-auto space-y-8 px-6">
+				<div>
+					<h2>First Reading</h2>
+					{firstReadingContent.map((passageChapters, index) => {
+						const readingInformation = firstReadingProperties[index];
+						const key = `${passageChapters?.[0]?.book?.id}`;
 
-					return (
-						<div key={key}>
-							{readingInformation.verses ? (
-								<VersePassage
-									passageChapter={passageChapters[0]}
-									readingInformation={readingInformation}
-								/>
-							) : (
+						return (
+							<div key={key}>
+								{readingInformation.verses ? (
+									<VersePassage
+										passageChapter={passageChapters[0]}
+										readingInformation={readingInformation}
+									/>
+								) : (
+									<ReadingPassage
+										passageChapters={passageChapters}
+										readingInformation={readingInformation}
+									/>
+								)}
+							</div>
+						);
+					})}
+				</div>
+				<div>
+					<h2>Second Reading</h2>
+
+					{secondReadingContent.map((passageChapters, index) => {
+						const readingInformation = secondReadingProperties[index];
+						const key = `${passageChapters?.[0]?.book?.id}`;
+						return (
+							<div key={`${key}:${index}`}>
 								<ReadingPassage
 									passageChapters={passageChapters}
 									readingInformation={readingInformation}
 								/>
-							)}
-						</div>
-					);
-				})}
-			</div>
-			<div>
-				<h2>Second Reading</h2>
-
-				{secondReadingContent.map((passageChapters, index) => {
-					const readingInformation = secondReadingProperties[index];
-					const key = `${passageChapters?.[0]?.book?.id}`;
-					return (
-						<div key={`${key}:${index}`}>
-							<ReadingPassage
-								passageChapters={passageChapters}
-								readingInformation={readingInformation}
-							/>
-						</div>
-					);
-				})}
+							</div>
+						);
+					})}
+				</div>
 			</div>
 		</div>
 	);
