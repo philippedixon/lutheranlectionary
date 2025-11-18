@@ -1,40 +1,40 @@
-name: Deploy Next.js to DigitalOcean
+name: Build, Push to GHCR, and Deploy
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build Docker image
-        run: docker build -t nextjs-app .
+      - name: Log in to GHCR
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Save Docker image to tar
-        run: docker save nextjs-app | gzip > nextjs-app.tar.gz
+      - name: Build Next.js image
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/nextjs-app:latest ./app
 
-      - name: Copy image to droplet
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.DO_HOST }}
-          username: ${{ secrets.DO_USER }}
-          key: ${{ secrets.DO_SSH_KEY }}
-          source: "nextjs-app.tar.gz"
-          target: "~/"
+      - name: Push image to GHCR
+        run: docker push ghcr.io/${{ github.repository_owner }}/nextjs-app:latest
 
-      - name: Load and run container on droplet
+      - name: Deploy to droplet via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
           script: |
-            docker load < ~/nextjs-app.tar.gz
-            docker stop nextjs-app || true
-            docker rm nextjs-app || true
-            docker run -d --name nextjs-app -p 80:3000 nextjs-app
+            set -e
+            cd ${{ secrets.REPO_PATH_ON_DROPLET }}
+            # Log in to GHCR on the droplet (use same PAT)
+            echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            # Pull latest app image
+            docker-compose pull nextjs
+            # Recreate containers with latest image (no rebuild needed)
+            docker-compose up -d
+            # Optional: verify Nginx and app are healthy
+            docker ps
