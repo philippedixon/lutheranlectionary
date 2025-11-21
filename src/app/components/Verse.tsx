@@ -37,14 +37,15 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					verse = <p key={verseKey}></p>;
 				} else if ((verseLine as FormattedText)?.poem) {
 					const formattedText = verseLine as FormattedText;
-					const tab = "\t";
-					const indent = tab.repeat(formattedText.poem ?? 0);
 					verse = (
-						<pre data-testid={testId} key={`poem:${formattedText.text}`}>
-							{indent}
+						<p
+							className="pl-4"
+							data-testid={testId}
+							key={`poem:${formattedText.text}`}
+						>
 							<sup>{displayVerseNumber && `${line.number} `}</sup>
-							{formattedText.text}
-						</pre>
+							<i>{formattedText.text}</i>
+						</p>
 					);
 				} else if ((verseLine as InlineHeading)?.heading) {
 					verse = (
@@ -65,10 +66,6 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 							{(verseLine as FormattedText).text}
 						</p>
 					);
-
-					// verse = React.cloneElement(verse, {
-					// 	className: `${verse.props.className || ""} text-red-500`,
-					// });
 				}
 
 				return verse;
