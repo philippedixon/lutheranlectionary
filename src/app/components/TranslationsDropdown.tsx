@@ -87,6 +87,7 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 		<select
 			id="translation-dropdown"
 			onChange={handleTranslationChange}
+			style={{ display: "block", margin: "auto", width: "90%" }}
 			value={selections.translationId}
 		>
 			{translations

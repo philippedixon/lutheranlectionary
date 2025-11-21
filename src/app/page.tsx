@@ -1,6 +1,7 @@
 "use client";
 
 import lectionary from "@/app/constants/lectionary";
+import { ScrollToTopButton } from "./components/ScrollToTopButton";
 import { getReadingTitle } from "@/app/utils";
 import Link from "next/link";
 
@@ -47,6 +48,7 @@ const Home = () => {
 					);
 				})}
 			</section>
+			<ScrollToTopButton />
 		</div>
 	);
 };
