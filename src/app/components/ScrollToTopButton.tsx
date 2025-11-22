@@ -3,13 +3,19 @@
 import Image from "next/image";
 
 export const ScrollToTopButton = () => {
+	const handleClick = () => {
+		const element = document.getElementById("top");
+		if (element) {
+			element.scrollIntoView({ behavior: "smooth", block: "start" });
+			history.replaceState(null, "", `#top`);
+		}
+	};
+
 	return (
 		<button
 			type="button"
 			aria-label="Scroll to top"
-			onClick={() =>
-				document.getElementById("top")?.scrollIntoView({ behavior: "smooth" })
-			}
+			onClick={handleClick}
 			className="fixed bottom-6 right-6 p-2"
 		>
 			<Image
