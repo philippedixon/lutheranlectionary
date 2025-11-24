@@ -35,7 +35,7 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 }) => {
 	const selections = useContext(SelectionsContext);
 	const dispatchSelections = useContext(SelectionsDispatchContext);
-	console.log("TranslationsDropdown render with translations:", translations);
+
 	useEffect(() => {
 		const storedTranslationId = localStorage.getItem("translation");
 

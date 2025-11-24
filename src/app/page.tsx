@@ -10,7 +10,7 @@ const MonthList = () => {
 	const monthNumbers = [...Array(12).keys()].map((i) => i + 1);
 
 	return (
-		<div className="flex gap-3 flex-wrap justify-between">
+		<div className="grid grid-cols-4 grid-rows-3 gap-3 justify-items-start text-left sm:grid-cols-6 sm:grid-rows-2  max-[430px]:grid-cols-3 max-[430px]:grid-rows-4 mb-6">
 			{monthNumbers.map((monthNumber) => {
 				const monthName = months[monthNumber];
 
@@ -41,7 +41,7 @@ const MonthList = () => {
 const Home = () => {
 	return (
 		<div className="px-6">
-			<h1 className="text-center">Lutheran Lectionary</h1>
+			<h1 className="text-center text-4xl my-5">Lutheran Lectionary</h1>
 			<section className="max-w-xl mx-auto">
 				<MonthList />
 				{lectionary.map((month, monthIndex) => {
@@ -49,8 +49,8 @@ const Home = () => {
 
 					return (
 						<div id={`month-${monthNumber}`} key={month.name}>
-							<h2 className="text-center">{month.name}</h2>
-							<div className="grid grid-flow-col grid-rows-[repeat(11,auto)] auto-cols-[minmax(0,12rem)] gap-4 justify-center">
+							<h2 className="text-3xl mb-3">{month.name}</h2>
+							<div className="grid grid-cols-3 max-[374px]:grid-cols-2 gap-4">
 								{month?.days?.map((day) => {
 									const date = day.ofTheMonth;
 									const reading1Display = day.firstReading
@@ -63,7 +63,10 @@ const Home = () => {
 									return (
 										<div key={`${month.name}-${date}`}>
 											<Link href={`/${monthNumber}/${date}`}>
-												<h3 data-testid={`date:${month.name}-${date}`}>
+												<h3
+													className="font-bold"
+													data-testid={`date:${month.name}-${date}`}
+												>
 													{date}
 												</h3>
 												<p data-testid={`reading1:${month.name}-${date}`}>
