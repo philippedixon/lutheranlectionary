@@ -23,7 +23,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 				if (typeof verseLine === "string") {
 					verse = (
 						<p data-testid={testId} key={verseKey}>
-							{line.number === 1 ? (
+							{line.number === 1 && verseLineIndex == 0 ? (
 								<span className="text-2xl font-bold">
 									{`${bookChapterNumber}`}&nbsp;
 								</span>
