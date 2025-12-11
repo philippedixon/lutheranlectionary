@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -44,6 +45,7 @@ export default async function RootLayout({
 					</div>
 					{children}
 				</SelectionsProvider>
+				<GoogleAnalytics gaId="G-GFXVNJNTHD" />
 			</body>
 		</html>
 	);
