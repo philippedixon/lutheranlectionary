@@ -36,10 +36,8 @@ export default async function RootLayout({
 						<nav>
 							<Link href="/">Home</Link>
 						</nav>
-						<div>
+						<div className="w-full max-w-[350px] mx-auto px-4 flex flex-col gap-4">
 							<LanguageDropdown />
-						</div>
-						<div>
 							<TranslationsDropdownServerComponent />
 						</div>
 					</div>

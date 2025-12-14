@@ -28,7 +28,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4 key={`${baseKey}-heading`} className="font-bold">
+								<h4 key={`${baseKey}-heading`} className="font-bold pt-3">
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}
@@ -43,7 +43,12 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 								/>
 							);
 						} else if (line.type === "line_break") {
-							node = <br key={`${baseKey}:break`} />;
+							const topMargin =
+								index !== 0 &&
+								bookChapter.chapter.content[index - 1]?.type === "heading"
+									? "mt-3"
+									: "mt-5";
+							node = <p className={`${topMargin}`} key={`${baseKey}:break`} />;
 						}
 
 						return node;
