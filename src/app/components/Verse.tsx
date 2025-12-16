@@ -41,7 +41,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 						<p
 							className="pl-4"
 							data-testid={testId}
-							key={`poem:${formattedText.text}`}
+							key={`poem:${formattedText.text}:${verseLineIndex}`}
 						>
 							<sup>{displayVerseNumber && `${line.number} `}</sup>
 							<i>{formattedText.text}</i>
