@@ -95,6 +95,7 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 						translation.languageEnglishName === selections.languageName
 				)
 				.filter((translation) => !translastionsBlackList.has(translation.id))
+				.sort((a, b) => (a.name < b.name ? -1 : 1))
 				.map((translation) => (
 					<option key={translation.id} value={translation.id}>
 						{translation.name}

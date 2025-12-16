@@ -49,7 +49,12 @@ const Home = () => {
 
 					return (
 						<div id={`month-${monthNumber}`} key={month.name}>
-							<h2 className="text-3xl mb-3">{month.name}</h2>
+							<h2
+								data-testid={`monthId-${monthNumber}`}
+								className="text-3xl mb-3"
+							>
+								{month.name}
+							</h2>
 							<div className="grid grid-cols-3 max-[374px]:grid-cols-2 gap-4">
 								{month?.days?.map((day) => {
 									const date = day.ofTheMonth;

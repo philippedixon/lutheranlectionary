@@ -41,7 +41,7 @@ describe("Verse Component", () => {
 		const poemElement = getByText("In the beginning");
 
 		expect(poemElement).toBeInTheDocument();
-		expect(poemElement.tagName).toBe("PRE");
+		expect(poemElement.tagName).toBe("I");
 	});
 
 	it("renders words of Jesus in red", () => {

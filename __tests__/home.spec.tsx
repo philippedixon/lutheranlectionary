@@ -13,7 +13,7 @@ describe("Home", () => {
 	});
 
 	it("should display readings for a given month", () => {
-		const month = screen.queryByText("December");
+		const month = screen.getByTestId("monthId-12");
 		const date = screen.getByTestId("date:December-2");
 		const reading1Display = screen.getByTestId("reading1:December-2");
 		const reading2Display = screen.getByTestId("reading2:December-2");
