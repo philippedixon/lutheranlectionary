@@ -73,9 +73,9 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 	}, [dispatchSelections, selections, translations]);
 
 	const handleTranslationChange = (
-		even: React.ChangeEvent<HTMLSelectElement>
+		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
-		const selectedTranslationId = even.target.selectedOptions[0].value;
+		const selectedTranslationId = event.target.selectedOptions[0].value;
 		localStorage.setItem("translation", selectedTranslationId);
 		dispatchSelections({
 			type: "SET_TRANSLATION",
