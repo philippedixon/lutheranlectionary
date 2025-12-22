@@ -64,7 +64,6 @@ const DayPage = () => {
 			</h1>
 			<div className="max-w-2xl mx-auto space-y-8 px-6 flex flex-col items-center">
 				<div>
-					<h2 className="text-center text-xl mt-4">First Reading</h2>
 					{firstReadingContent.map((passageChapters, index) => {
 						const readingInformation = firstReadingProperties[index];
 						const key = `${passageChapters?.[0]?.book?.id}`;
@@ -87,8 +86,6 @@ const DayPage = () => {
 					})}
 				</div>
 				<div>
-					<h2 className="text-center text-xl text-bold mt-4">Second Reading</h2>
-
 					{secondReadingContent.map((passageChapters, index) => {
 						const readingInformation = secondReadingProperties[index];
 						const key = `${passageChapters?.[0]?.book?.id}`;
