@@ -1,9 +1,11 @@
 import { Languages } from "../enums";
 
 export const languages = [
+	Languages.Dutch,
 	Languages.English,
 	Languages.French,
 	Languages.German,
+	Languages.Polish,
 	Languages.Spanish,
 	Languages.Swedish,
 ];

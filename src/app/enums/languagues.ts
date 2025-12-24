@@ -1,7 +1,9 @@
 export enum Languages {
+	Dutch = "Dutch",
 	English = "English",
 	French = "French",
 	German = "German",
+	Polish = "Polish",
 	Spanish = "Spanish",
 	Swedish = "Swedish",
 	// Todo: Use unicode characters for native spelling
