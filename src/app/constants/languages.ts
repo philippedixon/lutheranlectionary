@@ -1,9 +1,11 @@
 import { Languages } from "../enums";
 
 export const languages = [
+	Languages.Dutch,
 	Languages.English,
 	Languages.French,
 	Languages.German,
+	Languages.Polish,
 	Languages.Spanish,
 	Languages.Swedish,
 ];
@@ -26,4 +28,6 @@ export const translastionsBlackList = new Set([
 	"eng_tce", //?
 	"eng_tnt", //?
 	"eng_w88", //?
+	"nld_gbv",
+	"pol_bib",
 ]);

@@ -6,7 +6,6 @@ import {
 	SelectionsDispatch,
 	SelectionsDispatchContext,
 } from "@/app/contexts";
-import { translastionsBlackList } from "@/app/constants";
 import { Selections, Translation } from "@/app/interfaces";
 import { Languages } from "@/app/enums";
 
@@ -17,10 +16,11 @@ interface TranslationDropdownProps {
 const setDefaultTranslationId = (
 	translations: Translation[],
 	selections: Selections,
-	dispatch: SelectionsDispatch
+	dispatch: SelectionsDispatch,
 ): void => {
 	const defaultTranslation = translations.find(
-		(translation) => translation.languageEnglishName === selections.languageName
+		(translation) =>
+			translation.languageEnglishName === selections.languageName,
 	);
 	const translationId = defaultTranslation?.id ?? "";
 	dispatch({
@@ -73,7 +73,7 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 	}, [dispatchSelections, selections, translations]);
 
 	const handleTranslationChange = (
-		event: React.ChangeEvent<HTMLSelectElement>
+		event: React.ChangeEvent<HTMLSelectElement>,
 	) => {
 		const selectedTranslationId = event.target.selectedOptions[0].value;
 		localStorage.setItem("translation", selectedTranslationId);
@@ -92,9 +92,8 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 			{translations
 				.filter(
 					(translation) =>
-						translation.languageEnglishName === selections.languageName
+						translation.languageEnglishName === selections.languageName,
 				)
-				.filter((translation) => !translastionsBlackList.has(translation.id))
 				.sort((a, b) => (a.name < b.name ? -1 : 1))
 				.map((translation) => (
 					<option key={translation.id} value={translation.id}>
