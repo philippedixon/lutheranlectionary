@@ -28,4 +28,6 @@ export const translastionsBlackList = new Set([
 	"eng_tce", //?
 	"eng_tnt", //?
 	"eng_w88", //?
+	"nld_gbv",
+	"pol_bib",
 ]);

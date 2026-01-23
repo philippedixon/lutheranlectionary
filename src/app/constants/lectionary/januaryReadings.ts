@@ -156,7 +156,7 @@ export const januaryReadings: Month = {
 			secondReading: [
 				{
 					bookId: BookId.Mark,
-					chapters: { first: 14, last: 15 },
+					chapters: { first: 15, last: 16 },
 				},
 			],
 		},
@@ -271,7 +271,7 @@ export const januaryReadings: Month = {
 				},
 			],
 			secondReading: [
-				{ bookId: BookId.Mark, chapters: { first: 23, last: 23 } },
+				{ bookId: BookId.Genesis, chapters: { first: 22, last: 24 } },
 			],
 		},
 		{
