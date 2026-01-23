@@ -5,9 +5,9 @@ import { SelectionsContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
 import lectionary from "@/app/constants/lectionary";
 import { Month } from "@/app/interfaces";
-import { fetchReading } from "@/app/utils";
 import { TranslationBookChapter } from "@/app/interfaces";
 import { ReadingPassage, VersePassage } from "@/app/components";
+import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
 
 const DayPage = () => {
 	const path = usePathname();
@@ -27,19 +27,21 @@ const DayPage = () => {
 
 	useEffect(() => {
 		const fetchReadings = async () => {
-			const translation = selections.translationId ?? "";
+			const strategy = new ApiStrategyFactory().create({
+				translationId: selections.translationId ?? "",
+			});
 			// todo: parallelize calls and reassemble in order
 			// add Promise.allSettled?
 			try {
 				const firstReadingResponses: TranslationBookChapter[][] = [];
 				for (const reading of firstReadingProperties) {
-					const response = await fetchReading(translation, reading);
+					const response = await strategy.fetchData(reading);
 					firstReadingResponses.push(response);
 				}
 
 				const secondReadingResponses: TranslationBookChapter[][] = [];
 				for (const reading of secondReadingProperties) {
-					const response = await fetchReading(translation, reading);
+					const response = await strategy.fetchData(reading);
 					secondReadingResponses.push(response);
 				}
 
