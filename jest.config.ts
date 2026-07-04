@@ -49,8 +49,18 @@ const config: Config = {
 	//   "clover"
 	// ],
 
-	// An object that configures minimum threshold enforcement for coverage results
-	// coverageThreshold: undefined,
+	// An object that configures minimum threshold enforcement for coverage results.
+	// New ESV code is held to 95% until the feature is proven out.
+	// (Adapter, strategy, and component thresholds are added in their stages.)
+	coverageThreshold: {
+		global: {},
+		"src/app/api/esv/**/*.ts": {
+			branches: 95,
+			functions: 95,
+			lines: 95,
+			statements: 95,
+		},
+	},
 
 	// A path to a custom dependency extractor
 	// dependencyExtractor: undefined,
