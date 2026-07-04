@@ -1,5 +1,6 @@
 import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
 import { HelloAOApiStrategy } from "@/lib/api/strategies/HelloAOApiStrategy";
+import { EsvApiStrategy } from "@/lib/api/strategies/EsvApiStrategy";
 import { BookId } from "@/app/enums";
 import type { Reading } from "@/app/interfaces";
 
@@ -16,7 +17,7 @@ describe("ApiStrategyFactory", () => {
 		expect(strategy).toBeInstanceOf(HelloAOApiStrategy);
 	});
 
-	it.skip("returns ESVApiStrategy for eng_esv translation Id", () => {
+	it("returns EsvApiStrategy for eng_esv translation Id", () => {
 		const params = {
 			translationId: "eng_esv",
 			reading: { bookId: BookId.Psalms } as Reading,
@@ -25,6 +26,6 @@ describe("ApiStrategyFactory", () => {
 		const factory = new ApiStrategyFactory();
 		const strategy = factory.create(params);
 
-		expect(strategy).toBeUndefined();
+		expect(strategy).toBeInstanceOf(EsvApiStrategy);
 	});
 });

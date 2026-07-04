@@ -65,6 +65,12 @@ const config: Config = {
 			lines: 95,
 			statements: 95,
 		},
+		"src/lib/api/strategies/EsvApiStrategy.ts": {
+			branches: 95,
+			functions: 95,
+			lines: 95,
+			statements: 95,
+		},
 	},
 
 	// A path to a custom dependency extractor
