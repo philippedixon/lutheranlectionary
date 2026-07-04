@@ -71,6 +71,12 @@ const config: Config = {
 			lines: 95,
 			statements: 95,
 		},
+		"src/app/components/EsvPassage.tsx": {
+			branches: 95,
+			functions: 95,
+			lines: 95,
+			statements: 95,
+		},
 	},
 
 	// A path to a custom dependency extractor
