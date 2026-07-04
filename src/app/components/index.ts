@@ -1,3 +1,4 @@
+export * from "./DarkModeToggle";
 export * from "./EsvPassage";
 export * from "./LanguageDropdown";
 export * from "./ReadingPassage";

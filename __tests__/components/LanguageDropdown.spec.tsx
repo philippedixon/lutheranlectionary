@@ -15,11 +15,13 @@ describe("LanguageDropdown", () => {
 	it("should render all available language options", () => {
 		const options = screen.getAllByRole("option");
 
-		expect(options[0]).toHaveTextContent(Languages.English);
-		expect(options[1]).toHaveTextContent(Languages.French);
-		expect(options[2]).toHaveTextContent(Languages.German);
-		expect(options[3]).toHaveTextContent(Languages.Spanish);
-		expect(options[4]).toHaveTextContent(Languages.Swedish);
+		expect(options[0]).toHaveTextContent(Languages.Dutch);
+		expect(options[1]).toHaveTextContent(Languages.English);
+		expect(options[2]).toHaveTextContent(Languages.French);
+		expect(options[3]).toHaveTextContent(Languages.German);
+		expect(options[4]).toHaveTextContent(Languages.Polish);
+		expect(options[5]).toHaveTextContent(Languages.Spanish);
+		expect(options[6]).toHaveTextContent(Languages.Swedish);
 	});
 
 	it("should handle language changes correctly", () => {

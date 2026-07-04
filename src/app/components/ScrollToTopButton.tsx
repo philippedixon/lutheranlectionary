@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useTheme } from "@/app/contexts";
 
 export const ScrollToTopButton = () => {
+	const { theme } = useTheme();
+
 	const handleClick = () => {
 		const element = document.getElementById("top");
 		if (element) {
@@ -19,7 +22,7 @@ export const ScrollToTopButton = () => {
 			className="sticky bottom-6 ml-auto block p-2"
 		>
 			<Image
-				src="/thin-chevron-round-top-icon-inverted.svg"
+				src={theme === "dark" ? "/thin-chevron-round-top-icon-light.svg" : "/thin-chevron-round-top-icon.svg"}
 				alt="Scroll to top"
 				width={24}
 				height={24}
