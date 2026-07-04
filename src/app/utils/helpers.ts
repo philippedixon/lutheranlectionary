@@ -86,13 +86,13 @@ export const fetchReading = async (
 		reading.chapters;
 
 	try {
-		const chapters: TranslationBookChapter[] = [];
+		const chapters: Promise<TranslationBookChapter>[] = [];
 		for (
 			let chapterNumber = firstChapterNumber;
 			chapterNumber < lastChapterNumber + 1;
 			chapterNumber++
 		) {
-			const chapter = await fetchChapter(
+			const chapter = fetchChapter(
 				translationId,
 				reading.bookId,
 				chapterNumber
@@ -100,7 +100,7 @@ export const fetchReading = async (
 			chapters.push(chapter);
 		}
 
-		return chapters;
+		return Promise.all(chapters);
 	} catch (error) {
 		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching chapters for ${bookName}:`, error);

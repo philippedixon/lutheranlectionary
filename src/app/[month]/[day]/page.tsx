@@ -33,20 +33,26 @@ const DayPage = () => {
 			// todo: parallelize calls and reassemble in order
 			// add Promise.allSettled?
 			try {
-				const firstReadingResponses: TranslationBookChapter[][] = [];
+				// const firstReadingResponses: TranslationBookChapter[][] = [];
+				let secondReadingIndex = 0;
+				const readingResponses: Promise<TranslationBookChapter[]>[] = [];
 				for (const reading of firstReadingProperties) {
-					const response = await strategy.fetchData(reading);
-					firstReadingResponses.push(response);
+					const response = strategy.fetchData(reading);
+					// firstReadingResponses.push(response);
+					readingResponses.push(response);
+					secondReadingIndex++;
 				}
 
-				const secondReadingResponses: TranslationBookChapter[][] = [];
+				// const secondReadingResponses: TranslationBookChapter[][] = [];
 				for (const reading of secondReadingProperties) {
-					const response = await strategy.fetchData(reading);
-					secondReadingResponses.push(response);
+					const response = strategy.fetchData(reading);
+					// secondReadingResponses.push(response);
+					readingResponses.push(response);
 				}
 
-				setFirstReadingContent(firstReadingResponses);
-				setSecondReadingContent(secondReadingResponses);
+				const allResponses = await Promise.all(readingResponses);
+				setFirstReadingContent(allResponses.slice(0, secondReadingIndex));
+				setSecondReadingContent(allResponses.slice(secondReadingIndex));
 			} catch (error) {
 				console.error("Error fetching readings:", error);
 			}
