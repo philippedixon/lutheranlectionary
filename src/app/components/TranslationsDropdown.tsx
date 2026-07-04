@@ -94,6 +94,7 @@ export const TranslationsDropdown: React.FC<TranslationDropdownProps> = ({
 			id="translation-dropdown"
 			onChange={handleTranslationChange}
 			value={selections.translationId}
+			className="bg-white text-black dark:bg-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-2 py-1 w-full"
 		>
 			{translations
 				.filter(

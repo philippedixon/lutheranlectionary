@@ -43,4 +43,9 @@ describe("Home", () => {
 
 		expect(readingWithMultipleBooks).toHaveTextContent("Titus, Philemon");
 	});
+
+	it("should style day links with blue color class", () => {
+		const dayLink = screen.getByTestId("date:December-2").closest("a");
+		expect(dayLink).toHaveClass("text-blue-600");
+	});
 });

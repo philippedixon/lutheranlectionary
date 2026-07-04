@@ -67,7 +67,7 @@ const Home = () => {
 
 									return (
 										<div key={`${month.name}-${date}`}>
-											<Link href={`/${monthNumber}/${date}`}>
+											<Link href={`/${monthNumber}/${date}`} className="text-blue-600 dark:text-blue-400 hover:underline">
 												<h3
 													className="font-bold"
 													data-testid={`date:${month.name}-${date}`}
