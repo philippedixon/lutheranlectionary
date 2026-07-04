@@ -1,3 +1,4 @@
+export * from "./EsvPassage";
 export * from "./LanguageDropdown";
 export * from "./ReadingPassage";
 export * from "./ScrollToTopButton";

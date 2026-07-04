@@ -19,3 +19,28 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ESV passage HTML — style to match existing passage typography */
+.esv-passage p {
+  margin-bottom: 0.25rem;
+}
+
+.esv-passage .verse-num {
+  font-weight: normal;
+  font-size: 0.75rem;
+  vertical-align: super;
+  margin-right: 0.15rem;
+}
+
+.esv-passage h2,
+.esv-passage h3,
+.esv-passage h4 {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.esv-passage .copyright {
+  font-size: 0.75rem;
+  color: #6b7280;
+}

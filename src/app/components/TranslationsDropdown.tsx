@@ -18,10 +18,16 @@ const setDefaultTranslationId = (
 	selections: Selections,
 	dispatch: SelectionsDispatch,
 ): void => {
-	const defaultTranslation = translations.find(
-		(translation) =>
-			translation.languageEnglishName === selections.languageName,
-	);
+	const defaultTranslation =
+		translations.find(
+			(translation) =>
+				translation.id === "eng_esv" &&
+				translation.languageEnglishName === selections.languageName,
+		) ??
+		translations.find(
+			(translation) =>
+				translation.languageEnglishName === selections.languageName,
+		);
 	const translationId = defaultTranslation?.id ?? "";
 	dispatch({
 		type: "SET_TRANSLATION",

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512">
+  <!-- filled circle -->
+  <circle cx="256" cy="256" r="256" fill="black"/>
+  <!-- chevron arrow in white -->
+  <path fill="white" fill-rule="nonzero" d="M170.86 294.91c-3.91 3.81-10.21 3.76-14.06-.11a9.788 9.788 0 0 1 .12-13.92l93.37-90.56c3.9-3.8 10.17-3.76 14.02.07l90.85 90.56a9.778 9.778 0 0 1-.04 13.92c-3.9 3.83-10.19 3.82-14.06-.04l-83.89-83.63-86.31 83.71z"/>
+</svg>

@@ -89,8 +89,8 @@ const Home = () => {
 						</div>
 					);
 				})}
+				<ScrollToTopButton />
 			</section>
-			<ScrollToTopButton />
 		</div>
 	);
 };

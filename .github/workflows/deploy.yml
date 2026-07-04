@@ -27,9 +27,15 @@ jobs:
           host: ${{ secrets.DO_HOST }}
           username: ${{ secrets.DO_USER }}
           key: ${{ secrets.DO_SSH_KEY }}
+          envs: ESV_API_KEY
           script: |
             set -e
             cd ${{ secrets.REPO_PATH_ON_DROPLET }}
+            # Refresh ESV key in .env, preserving other vars
+            touch .env
+            grep -v '^ESV_API_KEY=' .env > .env.tmp || true
+            echo "ESV_API_KEY=${ESV_API_KEY}" >> .env.tmp
+            mv .env.tmp .env
             # Log in to GHCR on the droplet (use same PAT)
             echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             # Pull latest app image
@@ -38,3 +44,5 @@ jobs:
             docker compose up -d
             # Optional: verify Nginx and app are healthy
             docker ps
+        env:
+          ESV_API_KEY: ${{ secrets.ESV_API_KEY }}

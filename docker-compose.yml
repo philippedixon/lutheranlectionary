@@ -10,6 +10,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
+      - ESV_API_KEY=${ESV_API_KEY}
       # optional: if file watching is flaky on your platform uncomment:
       # - CHOKIDAR_USEPOLLING=true
     stdin_open: true

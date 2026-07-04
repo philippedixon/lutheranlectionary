@@ -16,10 +16,10 @@ export const ScrollToTopButton = () => {
 			type="button"
 			aria-label="Scroll to top"
 			onClick={handleClick}
-			className="fixed bottom-6 right-6 p-2"
+			className="sticky bottom-6 ml-auto block p-2"
 		>
 			<Image
-				src="/thin-chevron-round-top-icon.svg"
+				src="/thin-chevron-round-top-icon-inverted.svg"
 				alt="Scroll to top"
 				width={24}
 				height={24}
