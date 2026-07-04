@@ -6,17 +6,19 @@ import { usePathname } from "next/navigation";
 import lectionary from "@/app/constants/lectionary";
 import { Month } from "@/app/interfaces";
 import { TranslationBookChapter } from "@/app/interfaces";
-import { ReadingPassage, VersePassage } from "@/app/components";
+import { EsvPassage, ReadingPassage, VersePassage } from "@/app/components";
 import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
+
+type PassageResult = TranslationBookChapter[] | string[];
 
 const DayPage = () => {
 	const path = usePathname();
 	const selections = useContext(SelectionsContext);
 	const [firstReadingContent, setFirstReadingContent] = useState<
-		TranslationBookChapter[][]
+		PassageResult[]
 	>([]);
 	const [secondReadingContent, setSecondReadingContent] = useState<
-		TranslationBookChapter[][]
+		PassageResult[]
 	>([]);
 	const [monthParameter, dayParameter] = path.split("/").slice(1);
 	const monthIndex = parseInt(monthParameter) - 1;
@@ -30,24 +32,16 @@ const DayPage = () => {
 			const strategy = new ApiStrategyFactory().create({
 				translationId: selections.translationId ?? "",
 			});
-			// todo: parallelize calls and reassemble in order
-			// add Promise.allSettled?
 			try {
-				// const firstReadingResponses: TranslationBookChapter[][] = [];
 				let secondReadingIndex = 0;
-				const readingResponses: Promise<TranslationBookChapter[]>[] = [];
+				const readingResponses: Promise<PassageResult>[] = [];
 				for (const reading of firstReadingProperties) {
-					const response = strategy.fetchData(reading);
-					// firstReadingResponses.push(response);
-					readingResponses.push(response);
+					readingResponses.push(strategy.fetchData(reading));
 					secondReadingIndex++;
 				}
 
-				// const secondReadingResponses: TranslationBookChapter[][] = [];
 				for (const reading of secondReadingProperties) {
-					const response = strategy.fetchData(reading);
-					// secondReadingResponses.push(response);
-					readingResponses.push(response);
+					readingResponses.push(strategy.fetchData(reading));
 				}
 
 				const allResponses = await Promise.all(readingResponses);
@@ -65,6 +59,8 @@ const DayPage = () => {
 		selections.translationId,
 	]);
 
+	const isEsv = selections.translationId === "eng_esv";
+
 	return (
 		<div>
 			<h1 className="text-center text-2xl text-bold">
@@ -72,10 +68,21 @@ const DayPage = () => {
 			</h1>
 			<div className="max-w-2xl mx-auto space-y-8 px-6 flex flex-col items-center">
 				<div>
-					{firstReadingContent.map((passageChapters, index) => {
+					{firstReadingContent.map((passage, index) => {
 						const readingInformation = firstReadingProperties[index];
-						const key = `${passageChapters?.[0]?.book?.id}`;
+						const key = `first-${index}`;
 
+						if (isEsv) {
+							return (
+								<EsvPassage
+									key={key}
+									html={(passage as string[])[0] ?? ""}
+									readingInformation={readingInformation}
+								/>
+							);
+						}
+
+						const passageChapters = passage as TranslationBookChapter[];
 						return (
 							<div key={key}>
 								{readingInformation.verses ? (
@@ -94,11 +101,23 @@ const DayPage = () => {
 					})}
 				</div>
 				<div>
-					{secondReadingContent.map((passageChapters, index) => {
+					{secondReadingContent.map((passage, index) => {
 						const readingInformation = secondReadingProperties[index];
-						const key = `${passageChapters?.[0]?.book?.id}`;
+						const key = `second-${index}`;
+
+						if (isEsv) {
+							return (
+								<EsvPassage
+									key={key}
+									html={(passage as string[])[0] ?? ""}
+									readingInformation={readingInformation}
+								/>
+							);
+						}
+
+						const passageChapters = passage as TranslationBookChapter[];
 						return (
-							<div key={`${key}:${index}`}>
+							<div key={key}>
 								<ReadingPassage
 									passageChapters={passageChapters}
 									readingInformation={readingInformation}
