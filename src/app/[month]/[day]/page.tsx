@@ -29,6 +29,8 @@ const DayPage = () => {
 
 	useEffect(() => {
 		const fetchReadings = async () => {
+			setFirstReadingContent([]);
+			setSecondReadingContent([]);
 			const strategy = new ApiStrategyFactory().create({
 				translationId: selections.translationId ?? "",
 			});
