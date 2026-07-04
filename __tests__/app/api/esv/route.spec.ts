@@ -97,6 +97,20 @@ describe("GET /api/esv", () => {
 		expect(consoleErrorSpy).toHaveBeenCalled();
 	});
 
+	it("returns empty array when the ESV API response has no passages field", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				ok: true,
+				json: () => Promise.resolve({ query: "John 11:35", canonical: "John 11:35" }),
+			})
+		) as jest.Mock;
+
+		const response = await GET(makeRequest("John 11:35"));
+		const body = await response.json();
+
+		expect(body).toEqual({ passages: [] });
+	});
+
 	it("returns empty passages and logs when the fetch throws", async () => {
 		const consoleErrorSpy = jest
 			.spyOn(console, "error")
