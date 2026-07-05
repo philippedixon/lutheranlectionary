@@ -65,10 +65,11 @@ const DayPage = () => {
 
 	return (
 		<div>
-			<h1 className="text-center text-2xl text-bold">
+			<h1 className="font-cormorant font-semibold text-[38px] text-primary text-center mt-6 mb-2">
 				{month.name} {dayParameter}
 			</h1>
-			<div className="max-w-2xl mx-auto space-y-8 px-6 flex flex-col items-center">
+			<hr className="w-[60px] border-t border-gold mx-auto mb-7" />
+			<div className="max-w-[720px] mx-auto space-y-8 px-6 flex flex-col items-center">
 				<div>
 					{firstReadingContent.map((passage, index) => {
 						const readingInformation = firstReadingProperties[index];

@@ -3,46 +3,67 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #F3ECDD;
+  --color-card: #FBF7EC;
+  --color-primary: #5C1F1F;
+  --color-primary-hover: #7A2E2E;
+  --color-gold: #A6873A;
+  --color-body-text: #2E2A20;
+  --color-border: #C9BC9C;
+  --color-divider: #D9CEB0;
+  --color-today-fill: rgba(92, 31, 31, 0.07);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-}
-
-.dark .esv-passage .copyright {
-  color: #9ca3af;
+  --color-bg: #211C16;
+  --color-card: #332B1E;
+  --color-primary: #E8B4B4;
+  --color-primary-hover: #D69A9A;
+  --color-gold: #D4B25A;
+  --color-body-text: #E4DCC8;
+  --color-border: #3A3327;
+  --color-divider: #4A4232;
+  --color-today-fill: rgba(232, 180, 180, 0.10);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-body-text);
+  background: var(--color-bg);
+  font-family: var(--font-eb-garamond), Georgia, serif;
+  transition: background 0.35s ease, color 0.35s ease;
 }
 
-/* ESV passage HTML — style to match existing passage typography */
+/* ESV passage HTML */
 .esv-passage p {
+  font-family: var(--font-eb-garamond), Georgia, serif;
+  font-size: 19px;
+  line-height: 1.75;
+  color: var(--color-body-text);
   margin-bottom: 0.25rem;
 }
 
+
 .esv-passage .verse-num {
-  font-weight: normal;
-  font-size: 0.75rem;
+  font-family: var(--font-eb-garamond), Georgia, serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
   vertical-align: super;
-  margin-right: 0.15rem;
+  color: var(--color-gold);
+  margin-right: 4px;
 }
 
 .esv-passage h2,
 .esv-passage h3,
 .esv-passage h4 {
-  font-weight: bold;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 600;
+  color: var(--color-primary);
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
 }
 
 .esv-passage .copyright {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--color-gold);
 }

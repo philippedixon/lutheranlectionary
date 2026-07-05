@@ -47,4 +47,18 @@ describe("DarkModeToggle", () => {
 		expect(document.documentElement.classList.contains("dark")).toBe(false);
 		expect(screen.getByLabelText("Switch to dark mode")).toBeInTheDocument();
 	});
+
+	it("renders inline sun SVG in dark mode", () => {
+		renderWithProvider("dark");
+		const svg = screen.getByTestId("sun-icon");
+		expect(svg.tagName).toBe("svg");
+		expect(svg).toHaveAttribute("viewBox");
+	});
+
+	it("renders inline moon SVG in light mode", () => {
+		renderWithProvider("light");
+		const svg = screen.getByTestId("moon-icon");
+		expect(svg.tagName).toBe("svg");
+		expect(svg).toHaveAttribute("viewBox");
+	});
 });

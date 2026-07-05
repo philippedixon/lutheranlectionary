@@ -21,6 +21,26 @@ describe("Verse Component", () => {
 		).toBeInTheDocument();
 	});
 
+	it("does not italicise regular prose verse text", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 2,
+			content: ["Now the earth was formless and empty."],
+		};
+		const { getByText } = render(<Verse line={line} bookChapterNumber={1} />);
+		expect(getByText("Now the earth was formless and empty.")).not.toHaveClass("italic");
+	});
+
+	it("does not italicise words of Jesus", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 6,
+			content: [{ wordsOfJesus: true, text: "I am the way" } as FormattedText],
+		};
+		const { getByText } = render(<Verse line={line} bookChapterNumber={14} />);
+		expect(getByText("I am the way")).not.toHaveClass("italic");
+	});
+
 	it("renders an inline break", () => {
 		const line: ChapterVerse = {
 			type: "verse",
@@ -41,7 +61,8 @@ describe("Verse Component", () => {
 		const poemElement = getByText("In the beginning");
 
 		expect(poemElement).toBeInTheDocument();
-		expect(poemElement.tagName).toBe("I");
+		expect(poemElement.tagName).toBe("P");
+		expect(poemElement).toHaveClass("italic");
 	});
 
 	it("renders words of Jesus in red", () => {

@@ -1,9 +1,9 @@
 import { fetchAvailableTranslations } from "@/app/utils";
-import { TranslationsDropdown } from "./TranslationsDropdown";
 import { Translation } from "@/app/interfaces";
 import { translastionsBlackList } from "@/app/constants";
+import { AppHeader } from "./AppHeader";
 
-export const TranslationsDropdownServerComponent = async () => {
+export const AppHeaderServer = async () => {
 	const availableTranslations = await fetchAvailableTranslations();
 	const esvTranslation = {
 		id: "eng_esv",
@@ -13,8 +13,8 @@ export const TranslationsDropdownServerComponent = async () => {
 
 	availableTranslations.translations.push(esvTranslation);
 	const filteredTranslations = availableTranslations.translations.filter(
-		(translation) => !translastionsBlackList.has(translation.id),
+		(translation) => !translastionsBlackList.has(translation.id)
 	);
 
-	return <TranslationsDropdown translations={filteredTranslations} />;
+	return <AppHeader translations={filteredTranslations} />;
 };
