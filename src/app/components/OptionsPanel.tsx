@@ -82,6 +82,11 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [onClose]);
 
+	useEffect(() => {
+		document.body.style.overflow = isOpen ? "hidden" : "";
+		return () => { document.body.style.overflow = ""; };
+	}, [isOpen]);
+
 	const handleLanguageClick = (language: Languages) => {
 		localStorage.setItem("language", language);
 		localStorage.setItem("translation", "");
@@ -108,7 +113,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 			/>
 			<aside
 				data-testid="options-panel"
-				className={`absolute right-0 top-0 h-full w-[320px] max-w-[88vw] bg-card border-l border-border shadow-[-8px_0_24px_rgba(20,15,8,0.18)] transition-transform duration-[280ms] ease-[cubic-bezier(.16,.9,.35,1)] ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+				className={`absolute right-0 top-0 h-full w-[320px] max-w-[88vw] overflow-y-auto bg-card border-l border-border shadow-[-8px_0_24px_rgba(20,15,8,0.18)] transition-transform duration-[280ms] ease-[cubic-bezier(.16,.9,.35,1)] ${isOpen ? "translate-x-0" : "translate-x-full"}`}
 			>
 				<div className="flex items-center justify-between p-6 pb-4">
 					<h2 className="font-cormorant font-semibold text-[24px] text-primary">
@@ -147,8 +152,8 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								onClick={() => handleLanguageClick(language)}
 								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond text-[17px] ${
 									selections.languageName === language
-										? "border-primary bg-today-fill"
-										: "border-border bg-transparent"
+										? "border-primary text-primary font-semibold"
+										: "border-border"
 								}`}
 							>
 								{language}
@@ -170,8 +175,8 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								onClick={() => handleTranslationClick(translation.id)}
 								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond text-[17px] ${
 									selections.translationId === translation.id
-										? "border-primary bg-today-fill"
-										: "border-border bg-transparent"
+										? "border-primary text-primary font-semibold"
+										: "border-border"
 								}`}
 							>
 								{translation.name}

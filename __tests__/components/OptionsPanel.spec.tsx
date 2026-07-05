@@ -229,4 +229,71 @@ describe("OptionsPanel", () => {
 			);
 		});
 	});
+
+	describe("scroll and body lock", () => {
+		afterEach(() => {
+			document.body.style.overflow = "";
+		});
+
+		it("panel aside has overflow-y-auto to allow independent scrolling", () => {
+			renderPanel(true);
+			expect(screen.getByTestId("options-panel")).toHaveClass("overflow-y-auto");
+		});
+
+		it("locks body scroll when panel is open", () => {
+			renderPanel(true);
+			expect(document.body.style.overflow).toBe("hidden");
+		});
+
+		it("restores body scroll when panel closes", () => {
+			const { rerender } = render(
+				<SelectionsProvider>
+					<ThemeProvider>
+						<OptionsPanel isOpen={true} onClose={jest.fn()} translations={mockTranslations} />
+					</ThemeProvider>
+				</SelectionsProvider>
+			);
+			expect(document.body.style.overflow).toBe("hidden");
+			rerender(
+				<SelectionsProvider>
+					<ThemeProvider>
+						<OptionsPanel isOpen={false} onClose={jest.fn()} translations={mockTranslations} />
+					</ThemeProvider>
+				</SelectionsProvider>
+			);
+			expect(document.body.style.overflow).toBe("");
+		});
+	});
+
+	describe("active row styling", () => {
+		it("active language row has text-primary class", async () => {
+			localStorage.setItem("language", "English");
+			localStorage.setItem("translation", "eng_esv");
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "English" })).toHaveClass("text-primary")
+			);
+		});
+
+		it("inactive language rows do not have text-primary class", async () => {
+			localStorage.setItem("language", "English");
+			localStorage.setItem("translation", "eng_esv");
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "English" })).toHaveClass("text-primary")
+			);
+			expect(screen.getByRole("button", { name: "Dutch" })).not.toHaveClass("text-primary");
+		});
+
+		it("active translation row has text-primary class", async () => {
+			localStorage.setItem("language", "English");
+			localStorage.setItem("translation", "eng_esv");
+			renderPanel();
+			await waitFor(() =>
+				expect(
+					screen.getByRole("button", { name: "English Standard Version" })
+				).toHaveClass("text-primary")
+			);
+		});
+	});
 });

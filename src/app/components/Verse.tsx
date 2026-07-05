@@ -22,13 +22,13 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 				let verse: JSX.Element | null = null;
 				if (typeof verseLine === "string") {
 					verse = (
-						<p data-testid={testId} key={verseKey}>
+						<p data-testid={testId} key={verseKey} className="font-eb-garamond text-[19px] leading-[1.75] text-body-text">
 							{line.number === 1 && verseLineIndex == 0 ? (
-								<span className="text-2xl font-bold">
+								<span className="font-cormorant font-semibold not-italic text-[24px] text-primary">
 									{`${bookChapterNumber}`}&nbsp;
 								</span>
 							) : (
-								<sup>{displayVerseNumber && `${line.number} `}</sup>
+								<sup className="font-eb-garamond font-semibold not-italic text-[13px] text-gold mr-1">{displayVerseNumber && `${line.number}`}</sup>
 							)}
 							{verseLine}
 						</p>
@@ -39,29 +39,29 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					const formattedText = verseLine as FormattedText;
 					verse = (
 						<p
-							className="pl-4"
+							className="pl-4 font-eb-garamond italic text-[19px] leading-[1.75] text-body-text"
 							data-testid={testId}
 							key={`poem:${formattedText.text}:${verseLineIndex}`}
 						>
-							<sup>{displayVerseNumber && `${line.number} `}</sup>
-							<i>{formattedText.text}</i>
+							<sup className="font-eb-garamond font-semibold not-italic text-[13px] text-gold mr-1">{displayVerseNumber && `${line.number}`}</sup>
+							{formattedText.text}
 						</p>
 					);
 				} else if ((verseLine as InlineHeading)?.heading) {
 					verse = (
-						<h4 className="font-bold" data-testid={testId} key={verseKey}>
+						<h4 className="font-cormorant font-semibold text-primary" data-testid={testId} key={verseKey}>
 							{(verseLine as InlineHeading).heading}
 						</h4>
 					);
 				} else if ((verseLine as FormattedText)?.wordsOfJesus) {
 					verse = (
-						<p className="text-red-500" data-testid={testId} key={verseKey}>
+						<p className="font-eb-garamond text-[19px] leading-[1.75] text-red-500" data-testid={testId} key={verseKey}>
 							{line.number === 1 ? (
-								<span className="text-2xl font-bold">
+								<span className="font-cormorant font-semibold not-italic text-[24px] text-primary">
 									{`${bookChapterNumber}`}&nbsp;
 								</span>
 							) : (
-								<sup>{displayVerseNumber && `${line.number} `}</sup>
+								<sup className="font-eb-garamond font-semibold not-italic text-[13px] text-gold mr-1">{displayVerseNumber && `${line.number}`}</sup>
 							)}
 							{(verseLine as FormattedText).text}
 						</p>

@@ -20,7 +20,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 
 	return (
 		<div>
-			<h3 data-testid="title">{title}</h3>
+			<h3 data-testid="title" className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
 			{passageChapters.map((bookChapter) => (
 				<div key={`${bookChapter.book.id}:${bookChapter.chapter.number}`}>
 					{bookChapter.chapter.content.map((line, index) => {
@@ -28,7 +28,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4 key={`${baseKey}-heading`} className="font-bold pt-3">
+								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary pt-3">
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}

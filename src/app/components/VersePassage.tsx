@@ -34,13 +34,13 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 
 	return (
 		<div>
-			<h3>{title}</h3>
+			<h3 className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
 			{verseContents?.map((line, index) => {
 				let node;
 				const baseKey = `${passageChapter.book.id}:${passageChapter.chapter.number}:${index}`;
 				if (line.type === "heading") {
 					node = (
-						<h4 key={`${baseKey}:heading`} className="font-bold">
+						<h4 key={`${baseKey}:heading`} className="font-cormorant font-semibold text-primary">
 							{line.content
 								.filter((text) => typeof text === "string")
 								.join(" ")}

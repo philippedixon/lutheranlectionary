@@ -1,51 +1,44 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Home from "../src/app/page";
 
 describe("Home", () => {
-	beforeEach(() => {
-		render(<Home />);
-	});
-
 	it("should display the heading", () => {
-		const heading = screen.queryByText("Lutheran Lectionary");
-
-		expect(heading).toBeInTheDocument();
+		render(<Home />);
+		expect(screen.queryByText("Lutheran Lectionary")).toBeInTheDocument();
 	});
 
-	it("should display readings for a given month", () => {
-		const month = screen.getByTestId("monthId-12");
-		const date = screen.getByTestId("date:December-2");
-		const reading1Display = screen.getByTestId("reading1:December-2");
-		const reading2Display = screen.getByTestId("reading2:December-2");
-
-		expect(month).toBeInTheDocument();
-		expect(date).toHaveTextContent("2");
-		expect(reading1Display).toHaveTextContent("Psalms 1");
-		expect(reading2Display).toHaveTextContent("Revelation 3-5");
+	it("should display readings for a given month", async () => {
+		render(<Home />);
+		await userEvent.click(screen.getByRole("button", { name: "December" }));
+		expect(screen.getByTestId("monthId-12")).toBeInTheDocument();
+		expect(screen.getByTestId("date:December-2")).toHaveTextContent("2");
+		expect(screen.getByTestId("reading1:December-2")).toHaveTextContent("Psalms 1");
+		expect(screen.getByTestId("reading2:December-2")).toHaveTextContent("Revelation 3-5");
 	});
 
-	it("should display verses for readings that include only parts of a chapter", () => {
-		const readingWithVersesDisplay = screen.getByTestId("reading1:December-1");
-
-		expect(readingWithVersesDisplay).toHaveTextContent("Luke 1:46-55");
+	it("should display verses for readings that include only parts of a chapter", async () => {
+		render(<Home />);
+		await userEvent.click(screen.getByRole("button", { name: "December" }));
+		expect(screen.getByTestId("reading1:December-1")).toHaveTextContent("Luke 1:46-55");
 	});
 
-	it("should display only the book title when all chapters are included in the reading", () => {
-		const readingWithEntireBookDisplay = screen.getByTestId(
-			"reading2:November-3"
-		);
-
-		expect(readingWithEntireBookDisplay).toHaveTextContent("Joel");
+	it("should display only the book title when all chapters are included in the reading", async () => {
+		render(<Home />);
+		await userEvent.click(screen.getByRole("button", { name: "November" }));
+		expect(screen.getByTestId("reading2:November-3")).toHaveTextContent("Joel");
 	});
 
-	it("should comma-separate books when there are multiple books in a reading", () => {
-		const readingWithMultipleBooks = screen.getByTestId("reading2:May-1");
-
-		expect(readingWithMultipleBooks).toHaveTextContent("Titus, Philemon");
+	it("should comma-separate books when there are multiple books in a reading", async () => {
+		render(<Home />);
+		await userEvent.click(screen.getByRole("button", { name: "May" }));
+		expect(screen.getByTestId("reading2:May-1")).toHaveTextContent("Titus, Philemon");
 	});
 
-	it("should style day links with blue color class", () => {
+	it("should style day links with primary color class", async () => {
+		render(<Home />);
+		await userEvent.click(screen.getByRole("button", { name: "December" }));
 		const dayLink = screen.getByTestId("date:December-2").closest("a");
-		expect(dayLink).toHaveClass("text-blue-600");
+		expect(dayLink).toHaveClass("text-primary");
 	});
 });
