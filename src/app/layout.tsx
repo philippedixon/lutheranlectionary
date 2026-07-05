@@ -1,6 +1,7 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { Cormorant_Garamond, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { SelectionsProvider, ThemeProvider } from "@/app/contexts";
 import {
@@ -21,6 +22,22 @@ const geistMono = localFont({
 	weight: "100 900",
 });
 
+const cormorant = Cormorant_Garamond({
+	subsets: ["latin"],
+	weight: ["500", "600"],
+	style: ["normal", "italic"],
+	variable: "--font-cormorant",
+	display: "swap",
+});
+
+const ebGaramond = EB_Garamond({
+	subsets: ["latin"],
+	weight: ["400", "600"],
+	style: ["normal", "italic"],
+	variable: "--font-eb-garamond",
+	display: "swap",
+});
+
 export default async function RootLayout({
 	children,
 }: Readonly<{
@@ -31,7 +48,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${ebGaramond.variable} antialiased`}
 			>
 				<ThemeProvider>
 				<SelectionsProvider>
