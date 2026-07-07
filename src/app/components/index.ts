@@ -4,6 +4,7 @@ export * from "./DarkModeToggle";
 export * from "./EsvPassage";
 export * from "./OptionsPanel";
 export * from "./ReadingPassage";
+export * from "./ReadingTabs";
 export * from "./ScrollToTopButton";
 export * from "./Verse";
 export * from "./VersePassage";
