@@ -63,9 +63,10 @@ describe("Verse Component", () => {
 		expect(poemElement).toBeInTheDocument();
 		expect(poemElement.tagName).toBe("P");
 		expect(poemElement).toHaveClass("italic");
+		expect(poemElement).toHaveClass("poem-line");
 	});
 
-	it("renders words of Jesus in red", () => {
+	it("renders words of Jesus in the words-of-christ color", () => {
 		const line: ChapterVerse = {
 			type: "verse",
 			number: 1,
@@ -73,7 +74,7 @@ describe("Verse Component", () => {
 		};
 		const { getByText } = render(<Verse line={line} bookChapterNumber={1} />);
 
-		expect(getByText("I am the way")).toHaveClass("text-red-500");
+		expect(getByText("I am the way")).toHaveClass("text-words-of-christ");
 	});
 
 	it("renders a heading", () => {

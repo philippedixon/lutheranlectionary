@@ -4,7 +4,8 @@ import {
 	TranslationBookChapter,
 	Verses,
 } from "@/app/interfaces";
-import { getReadingTitle } from "@/app/utils";
+import { getReadingTitle, isPoetryPassage } from "@/app/utils";
+import { PassageUnavailable } from "./PassageUnavailable";
 import { Verse } from "./Verse";
 
 interface VersePassageProps {
@@ -31,10 +32,12 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 		firstVerseIndex,
 		lastVerseIndex + 1
 	);
+	const hasPoetry = isPoetryPassage(verseContents ?? []);
 
 	return (
-		<div>
+		<div className={hasPoetry ? "poetry-passage" : undefined}>
 			<h3 className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
+			{!verseContents?.length && <PassageUnavailable />}
 			{verseContents?.map((line, index) => {
 				let node;
 				const baseKey = `${passageChapter.book.id}:${passageChapter.chapter.number}:${index}`;

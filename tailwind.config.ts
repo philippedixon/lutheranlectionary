@@ -20,6 +20,7 @@ export default {
         border: "var(--color-border)",
         divider: "var(--color-divider)",
         "today-fill": "var(--color-today-fill)",
+        "words-of-christ": "var(--color-words-of-christ)",
       },
       fontFamily: {
         cormorant: ["var(--font-cormorant)", "Georgia", "serif"],

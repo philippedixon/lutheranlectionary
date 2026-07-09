@@ -2,6 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { ReadingPassage } from "@/app/components";
 import { genesisPassage } from "../../__mocks__/helloao-api";
 import { Book, BookId } from "@/app/enums";
+import { TranslationBookChapter } from "@/app/interfaces";
+
+const chapterWith = (
+	content: TranslationBookChapter["chapter"]["content"]
+): TranslationBookChapter[] =>
+	[
+		{ book: { id: "PSA" }, chapter: { number: 1, content } },
+	] as unknown as TranslationBookChapter[];
 
 describe("ReadingPassage", () => {
 	beforeEach(() => {
@@ -45,4 +53,85 @@ describe("ReadingPassage", () => {
 	it.todo(
 		"should not display the first verse number if it is the start of a chapter"
 	);
+});
+
+describe("ReadingPassage with missing chapter data", () => {
+	it("renders the title without crashing when a chapter has no data", () => {
+		render(
+			<ReadingPassage
+				passageChapters={[{} as TranslationBookChapter]}
+				readingInformation={{
+					bookId: BookId.Psalms,
+					chapters: { first: 32, last: 32 },
+				}}
+			/>
+		);
+
+		expect(screen.getByTestId("title")).toHaveTextContent("Psalms 32");
+	});
+
+	it("shows an unavailable message when no chapter has data", () => {
+		render(
+			<ReadingPassage
+				passageChapters={[{} as TranslationBookChapter]}
+				readingInformation={{
+					bookId: BookId.Psalms,
+					chapters: { first: 32, last: 32 },
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByText("Passage not available in this translation.")
+		).toBeInTheDocument();
+	});
+
+	it("does not show the unavailable message when content is present", () => {
+		render(
+			<ReadingPassage
+				passageChapters={genesisPassage}
+				readingInformation={{
+					bookId: BookId.Genesis,
+					chapters: { first: 1, last: 3 },
+				}}
+			/>
+		);
+
+		expect(
+			screen.queryByText("Passage not available in this translation.")
+		).not.toBeInTheDocument();
+	});
+});
+
+describe("ReadingPassage poetry column", () => {
+	const readingInformation = {
+		bookId: BookId.Psalms,
+		chapters: { first: 1, last: 1 },
+	};
+
+	it("applies the poetry column when the passage contains poem-formatted text", () => {
+		const { container } = render(
+			<ReadingPassage
+				passageChapters={chapterWith([
+					{ type: "verse", number: 1, content: [{ poem: 1, text: "A poem line" }] },
+				])}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		expect(container.firstChild).toHaveClass("poetry-passage");
+	});
+
+	it("does not apply the poetry column for plain prose", () => {
+		const { container } = render(
+			<ReadingPassage
+				passageChapters={chapterWith([
+					{ type: "verse", number: 1, content: ["A prose line"] },
+				])}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		expect(container.firstChild).not.toHaveClass("poetry-passage");
+	});
 });

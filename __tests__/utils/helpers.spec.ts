@@ -5,8 +5,9 @@ import {
 	fetchReading,
 	parseChapter,
 	fetchAvailableTranslations,
+	isPoetryPassage,
 } from "@/app/utils";
-import { ChapterVerse, Reading } from "@/app/interfaces";
+import { ChapterContent, ChapterVerse, Reading } from "@/app/interfaces";
 import { lukeTranslationBookChapter } from "../../__mocks__/content";
 
 describe("fetchAvailableTranslations", () => {
@@ -138,7 +139,36 @@ describe("fetchReading", () => {
 
 	it.todo("should fetch the specified chapters if chapters are provided");
 
-	it.todo("should handle errors gracefully");
+	it("excludes chapters whose fetch fails", async () => {
+		global.fetch = jest
+			.fn()
+			.mockImplementationOnce(() =>
+				Promise.resolve({
+					ok: true,
+					json: () =>
+						Promise.resolve({
+							book: { id: "PSA" },
+							chapter: { number: 1, content: [] },
+						}),
+				})
+			)
+			.mockImplementationOnce(() =>
+				Promise.resolve({
+					ok: false,
+					status: 404,
+					json: () =>
+						Promise.reject(new SyntaxError("Unexpected token '<'")),
+				})
+			);
+
+		const result = await fetchReading("BSB", {
+			bookId: BookId.Psalms,
+			chapters: { first: 1, last: 2 },
+		});
+
+		expect(result).toHaveLength(1);
+		expect(result[0].chapter.number).toEqual(1);
+	});
 });
 
 describe("fetchChapter", () => {
@@ -158,6 +188,33 @@ describe("fetchChapter", () => {
 		expect(global.fetch).toHaveBeenCalledWith(
 			"https://bible.helloao.org/api/BSB/REV/1.json"
 		);
+	});
+
+	it("returns null when the response is not ok", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				ok: false,
+				status: 404,
+				json: () => Promise.reject(new SyntaxError("Unexpected token '<'")),
+			})
+		) as jest.Mock;
+
+		const chapter = await fetchChapter("garth_hlt", BookId.Psalms, 32);
+
+		expect(chapter).toBeNull();
+	});
+
+	it("returns null when the response is not valid JSON", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				ok: true,
+				json: () => Promise.reject(new SyntaxError("Unexpected token '<'")),
+			})
+		) as jest.Mock;
+
+		const chapter = await fetchChapter("garth_hlt", BookId.Psalms, 32);
+
+		expect(chapter).toBeNull();
 	});
 });
 
@@ -232,5 +289,32 @@ describe("parseChapter", () => {
 
 		expect(firstVerse.number).toEqual(firstVerseNumber);
 		expect(lastVerse.number).toEqual(lastVerseNumber);
+	});
+});
+
+describe("isPoetryPassage", () => {
+	it("returns true when a verse line contains poem-formatted text", () => {
+		const content: ChapterContent[] = [
+			{
+				type: "verse",
+				number: 1,
+				content: [{ poem: 1, text: "Blessed is the one" }],
+			},
+		];
+
+		expect(isPoetryPassage(content)).toBe(true);
+	});
+
+	it("returns false when the passage is plain prose", () => {
+		const content: ChapterContent[] = [
+			{ type: "heading", content: ["A Prose Heading"] },
+			{ type: "verse", number: 1, content: ["In the beginning God created"] },
+		];
+
+		expect(isPoetryPassage(content)).toBe(false);
+	});
+
+	it("returns false for empty content", () => {
+		expect(isPoetryPassage([])).toBe(false);
 	});
 });
