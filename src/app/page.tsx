@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { months } from "@/app/constants";
 import lectionary from "@/app/constants/lectionary";
 import { ScrollToTopButton } from "@/app/components/ScrollToTopButton";
 import { getReadingTitle } from "@/app/utils";
 
+const subscribe = () => () => {};
+const getTodayKey = () => {
+	const d = new Date();
+	return `${d.getMonth() + 1}-${d.getDate()}`;
+};
+
 const Home = () => {
 	const [selectedMonth, setSelectedMonth] = useState(() => new Date().getMonth() + 1);
-	const [todayKey, setTodayKey] = useState<string | null>(null);
-
-	useEffect(() => {
-		const d = new Date();
-		setTodayKey(`${d.getMonth() + 1}-${d.getDate()}`);
-	}, []);
+	const todayKey = useSyncExternalStore(subscribe, getTodayKey, () => null);
 	const monthData = lectionary[selectedMonth - 1];
 
 	return (
