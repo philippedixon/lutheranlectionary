@@ -2,6 +2,14 @@ import { render, screen } from "@testing-library/react";
 import { ReadingPassage } from "@/app/components";
 import { genesisPassage } from "../../__mocks__/helloao-api";
 import { Book, BookId } from "@/app/enums";
+import { TranslationBookChapter } from "@/app/interfaces";
+
+const chapterWith = (
+	content: TranslationBookChapter["chapter"]["content"]
+): TranslationBookChapter[] =>
+	[
+		{ book: { id: "PSA" }, chapter: { number: 1, content } },
+	] as unknown as TranslationBookChapter[];
 
 describe("ReadingPassage", () => {
 	beforeEach(() => {
@@ -45,4 +53,37 @@ describe("ReadingPassage", () => {
 	it.todo(
 		"should not display the first verse number if it is the start of a chapter"
 	);
+});
+
+describe("ReadingPassage poetry column", () => {
+	const readingInformation = {
+		bookId: BookId.Psalms,
+		chapters: { first: 1, last: 1 },
+	};
+
+	it("applies the poetry column when the passage contains poem-formatted text", () => {
+		const { container } = render(
+			<ReadingPassage
+				passageChapters={chapterWith([
+					{ type: "verse", number: 1, content: [{ poem: 1, text: "A poem line" }] },
+				])}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		expect(container.firstChild).toHaveClass("poetry-passage");
+	});
+
+	it("does not apply the poetry column for plain prose", () => {
+		const { container } = render(
+			<ReadingPassage
+				passageChapters={chapterWith([
+					{ type: "verse", number: 1, content: ["A prose line"] },
+				])}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		expect(container.firstChild).not.toHaveClass("poetry-passage");
+	});
 });

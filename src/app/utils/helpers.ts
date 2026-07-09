@@ -3,10 +3,23 @@ import {
 	AvailableTranslations,
 	ChapterContent,
 	ChapterVerse,
+	FormattedText,
 	Reading,
 	TranslationBookChapter,
 } from "@/app/interfaces";
 import { BookId } from "@/app/enums";
+
+export const isPoetryPassage = (content: ChapterContent[]): boolean =>
+	content.some(
+		(line) =>
+			line.type === "verse" &&
+			(line as ChapterVerse).content.some(
+				(part) =>
+					typeof part === "object" &&
+					part !== null &&
+					(part as FormattedText).poem !== undefined
+			)
+	);
 
 export const getReadingTitle = (reading: Reading) => {
 	const { bookId, chapters, verses } = reading;

@@ -5,7 +5,7 @@ import {
 	Reading,
 	TranslationBookChapter,
 } from "@/app/interfaces";
-import { getReadingTitle } from "@/app/utils";
+import { getReadingTitle, isPoetryPassage } from "@/app/utils";
 
 interface ReadingPassageProps {
 	passageChapters: TranslationBookChapter[];
@@ -17,9 +17,12 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 	readingInformation,
 }) => {
 	const title = getReadingTitle(readingInformation);
+	const hasPoetry = passageChapters.some((bookChapter) =>
+		isPoetryPassage(bookChapter.chapter.content)
+	);
 
 	return (
-		<div>
+		<div className={hasPoetry ? "poetry-passage" : undefined}>
 			<h3 data-testid="title" className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
 			{passageChapters.map((bookChapter) => (
 				<div key={`${bookChapter.book.id}:${bookChapter.chapter.number}`}>

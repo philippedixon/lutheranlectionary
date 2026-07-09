@@ -67,3 +67,12 @@ body {
   font-size: 0.75rem;
   color: var(--color-gold);
 }
+
+/* Poetry column: shrink-wrap to the longest line, cap the width, then centre
+   that block so ragged-right psalter lines read as optically centred. */
+.poetry-passage,
+.esv-passage .block-indent {
+  display: table;
+  max-width: 480px;
+  margin: 0 auto;
+}
