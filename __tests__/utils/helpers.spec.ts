@@ -139,7 +139,36 @@ describe("fetchReading", () => {
 
 	it.todo("should fetch the specified chapters if chapters are provided");
 
-	it.todo("should handle errors gracefully");
+	it("excludes chapters whose fetch fails", async () => {
+		global.fetch = jest
+			.fn()
+			.mockImplementationOnce(() =>
+				Promise.resolve({
+					ok: true,
+					json: () =>
+						Promise.resolve({
+							book: { id: "PSA" },
+							chapter: { number: 1, content: [] },
+						}),
+				})
+			)
+			.mockImplementationOnce(() =>
+				Promise.resolve({
+					ok: false,
+					status: 404,
+					json: () =>
+						Promise.reject(new SyntaxError("Unexpected token '<'")),
+				})
+			);
+
+		const result = await fetchReading("BSB", {
+			bookId: BookId.Psalms,
+			chapters: { first: 1, last: 2 },
+		});
+
+		expect(result).toHaveLength(1);
+		expect(result[0].chapter.number).toEqual(1);
+	});
 });
 
 describe("fetchChapter", () => {
@@ -159,6 +188,33 @@ describe("fetchChapter", () => {
 		expect(global.fetch).toHaveBeenCalledWith(
 			"https://bible.helloao.org/api/BSB/REV/1.json"
 		);
+	});
+
+	it("returns null when the response is not ok", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				ok: false,
+				status: 404,
+				json: () => Promise.reject(new SyntaxError("Unexpected token '<'")),
+			})
+		) as jest.Mock;
+
+		const chapter = await fetchChapter("garth_hlt", BookId.Psalms, 32);
+
+		expect(chapter).toBeNull();
+	});
+
+	it("returns null when the response is not valid JSON", async () => {
+		global.fetch = jest.fn(() =>
+			Promise.resolve({
+				ok: true,
+				json: () => Promise.reject(new SyntaxError("Unexpected token '<'")),
+			})
+		) as jest.Mock;
+
+		const chapter = await fetchChapter("garth_hlt", BookId.Psalms, 32);
+
+		expect(chapter).toBeNull();
 	});
 });
 

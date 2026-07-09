@@ -3,6 +3,7 @@ export * from "./AppHeaderServer";
 export * from "./DarkModeToggle";
 export * from "./EsvPassage";
 export * from "./OptionsPanel";
+export * from "./PassageUnavailable";
 export * from "./ReadingPassage";
 export * from "./ReadingTabs";
 export * from "./ScrollToTopButton";

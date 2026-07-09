@@ -54,6 +54,10 @@ const DayPage = () => {
 		PassageResult[]
 	>([]);
 	const [activeTab, setActiveTab] = useState(0);
+	// The translation the fetched content belongs to. Rendering decisions must
+	// use this rather than the current selection, which can change a render
+	// ahead of the refetch and mismatch the content shape.
+	const [contentTranslationId, setContentTranslationId] = useState("");
 	const [monthParameter, dayParameter] = path.split("/").slice(1);
 	const monthIndex = parseInt(monthParameter) - 1;
 	const dayIndex = parseInt(dayParameter) - 1;
@@ -62,13 +66,14 @@ const DayPage = () => {
 	const secondReadingProperties = month.days[dayIndex].secondReading;
 
 	useEffect(() => {
+		let isCancelled = false;
+
 		const fetchReadings = async () => {
 			setFirstReadingContent([]);
 			setSecondReadingContent([]);
 			setActiveTab(0);
-			const strategy = new ApiStrategyFactory().create({
-				translationId: selections.translationId ?? "",
-			});
+			const translationId = selections.translationId ?? "";
+			const strategy = new ApiStrategyFactory().create({ translationId });
 			try {
 				let secondReadingIndex = 0;
 				const readingResponses: Promise<PassageResult>[] = [];
@@ -82,21 +87,27 @@ const DayPage = () => {
 				}
 
 				const allResponses = await Promise.all(readingResponses);
+				if (isCancelled) return; // a newer effect run owns the state now
 				setFirstReadingContent(allResponses.slice(0, secondReadingIndex));
 				setSecondReadingContent(allResponses.slice(secondReadingIndex));
+				setContentTranslationId(translationId);
 			} catch (error) {
 				console.error("Error fetching readings:", error);
 			}
 		};
 
 		fetchReadings();
+
+		return () => {
+			isCancelled = true;
+		};
 	}, [
 		firstReadingProperties,
 		secondReadingProperties,
 		selections.translationId,
 	]);
 
-	const isEsv = selections.translationId === "eng_esv";
+	const isEsv = contentTranslationId === "eng_esv";
 
 	const readingProperties = [
 		...firstReadingProperties,

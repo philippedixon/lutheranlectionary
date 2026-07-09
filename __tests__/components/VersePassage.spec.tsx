@@ -46,6 +46,38 @@ describe("VersePassage", () => {
 	});
 });
 
+describe("VersePassage with missing chapter data", () => {
+	it("shows an unavailable message when the chapter has no data", () => {
+		render(
+			<VersePassage
+				passageChapter={undefined as unknown as TranslationBookChapter}
+				readingInformation={{
+					bookId: BookId.Luke,
+					chapters: { first: 1, last: 1 },
+					verses: { first: 68, last: 79 },
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByText("Passage not available in this translation.")
+		).toBeInTheDocument();
+	});
+
+	it("does not show the unavailable message when content is present", () => {
+		render(
+			<VersePassage
+				passageChapter={lukeTranslationBookChapter}
+				readingInformation={lectionary[0].days[0].firstReading[0]}
+			/>
+		);
+
+		expect(
+			screen.queryByText("Passage not available in this translation.")
+		).not.toBeInTheDocument();
+	});
+});
+
 describe("VersePassage poetry column", () => {
 	const readingInformation = {
 		bookId: BookId.Psalms,

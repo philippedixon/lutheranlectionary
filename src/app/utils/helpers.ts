@@ -99,7 +99,7 @@ export const fetchReading = async (
 		reading.chapters;
 
 	try {
-		const chapters: Promise<TranslationBookChapter>[] = [];
+		const chapters: Promise<TranslationBookChapter | null>[] = [];
 		for (
 			let chapterNumber = firstChapterNumber;
 			chapterNumber < lastChapterNumber + 1;
@@ -113,7 +113,10 @@ export const fetchReading = async (
 			chapters.push(chapter);
 		}
 
-		return Promise.all(chapters);
+		const fetchedChapters = await Promise.all(chapters);
+		return fetchedChapters.filter(
+			(chapter): chapter is TranslationBookChapter => chapter !== null
+		);
 	} catch (error) {
 		const bookName = bookNames[reading.bookId];
 		console.error(`Error fetching chapters for ${bookName}:`, error);
@@ -156,21 +159,25 @@ export const fetchChapter = async (
 	translationId: string,
 	bookId: BookId,
 	chapterNumber: number
-): Promise<TranslationBookChapter> => {
-	let chapter: TranslationBookChapter = {} as TranslationBookChapter;
+): Promise<TranslationBookChapter | null> => {
 	try {
-		const data = await fetch(
+		const response = await fetch(
 			`https://bible.helloao.org/api/${translationId}/${bookId}/${chapterNumber}.json`
 		);
-		chapter = await data.json();
+		if (!response.ok) {
+			console.error(
+				`Failed to fetch ${bookId}:${chapterNumber} for ${translationId} (${response.status})`
+			);
+			return null;
+		}
+		return await response.json();
 	} catch (error) {
 		console.error(
 			`Error fetching ${bookId}:${chapterNumber} for ${translationId}:`,
 			error
 		);
+		return null;
 	}
-
-	return chapter;
 };
 
 export const parseChapter = (

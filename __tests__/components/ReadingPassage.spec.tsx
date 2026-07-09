@@ -55,6 +55,54 @@ describe("ReadingPassage", () => {
 	);
 });
 
+describe("ReadingPassage with missing chapter data", () => {
+	it("renders the title without crashing when a chapter has no data", () => {
+		render(
+			<ReadingPassage
+				passageChapters={[{} as TranslationBookChapter]}
+				readingInformation={{
+					bookId: BookId.Psalms,
+					chapters: { first: 32, last: 32 },
+				}}
+			/>
+		);
+
+		expect(screen.getByTestId("title")).toHaveTextContent("Psalms 32");
+	});
+
+	it("shows an unavailable message when no chapter has data", () => {
+		render(
+			<ReadingPassage
+				passageChapters={[{} as TranslationBookChapter]}
+				readingInformation={{
+					bookId: BookId.Psalms,
+					chapters: { first: 32, last: 32 },
+				}}
+			/>
+		);
+
+		expect(
+			screen.getByText("Passage not available in this translation.")
+		).toBeInTheDocument();
+	});
+
+	it("does not show the unavailable message when content is present", () => {
+		render(
+			<ReadingPassage
+				passageChapters={genesisPassage}
+				readingInformation={{
+					bookId: BookId.Genesis,
+					chapters: { first: 1, last: 3 },
+				}}
+			/>
+		);
+
+		expect(
+			screen.queryByText("Passage not available in this translation.")
+		).not.toBeInTheDocument();
+	});
+});
+
 describe("ReadingPassage poetry column", () => {
 	const readingInformation = {
 		bookId: BookId.Psalms,

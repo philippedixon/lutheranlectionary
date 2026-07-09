@@ -1,5 +1,5 @@
 import React from "react";
-import { Verse } from "@/app/components";
+import { PassageUnavailable, Verse } from "@/app/components";
 import {
 	ChapterVerse,
 	Reading,
@@ -17,14 +17,19 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 	readingInformation,
 }) => {
 	const title = getReadingTitle(readingInformation);
-	const hasPoetry = passageChapters.some((bookChapter) =>
+	// A failed fetch can leave a chapter without data; skip it rather than crash.
+	const chaptersWithData = passageChapters.filter(
+		(bookChapter) => bookChapter.book && bookChapter.chapter?.content
+	);
+	const hasPoetry = chaptersWithData.some((bookChapter) =>
 		isPoetryPassage(bookChapter.chapter.content)
 	);
 
 	return (
 		<div className={hasPoetry ? "poetry-passage" : undefined}>
 			<h3 data-testid="title" className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
-			{passageChapters.map((bookChapter) => (
+			{chaptersWithData.length === 0 && <PassageUnavailable />}
+			{chaptersWithData.map((bookChapter) => (
 				<div key={`${bookChapter.book.id}:${bookChapter.chapter.number}`}>
 					{bookChapter.chapter.content.map((line, index) => {
 						let node;
