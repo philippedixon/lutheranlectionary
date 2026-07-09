@@ -12,6 +12,7 @@
   --color-border: #C9BC9C;
   --color-divider: #D9CEB0;
   --color-today-fill: rgba(92, 31, 31, 0.07);
+  --color-words-of-christ: #A13E2E;
 }
 
 .dark {
@@ -24,6 +25,7 @@
   --color-border: #3A3327;
   --color-divider: #4A4232;
   --color-today-fill: rgba(232, 180, 180, 0.10);
+  --color-words-of-christ: #E08A76;
 }
 
 body {
@@ -40,6 +42,11 @@ body {
   line-height: 1.75;
   color: var(--color-body-text);
   margin-bottom: 0.25rem;
+}
+
+/* Red-letter words of Christ; verse numbers keep their gold via .verse-num. */
+.esv-passage span.woc {
+  color: var(--color-words-of-christ);
 }
 
 
@@ -75,4 +82,17 @@ body {
   display: table;
   max-width: 480px;
   margin: 0 auto;
+}
+
+/* ESV poetry has no per-line class, so italicise the block; HelloAO poem
+   lines get their italic from the Verse poem branch instead, which keeps
+   prose in a mixed reading upright. */
+.esv-passage .block-indent {
+  font-style: italic;
+}
+
+/* Hanging indent: the verse's first line sits flush; wrapped lines hang. */
+.poem-line {
+  padding-left: 22px;
+  text-indent: -22px;
 }

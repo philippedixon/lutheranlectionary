@@ -39,7 +39,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					const formattedText = verseLine as FormattedText;
 					verse = (
 						<p
-							className="pl-4 font-eb-garamond italic text-[19px] leading-[1.75] text-body-text"
+							className="poem-line font-eb-garamond italic text-[19px] leading-[1.75] text-body-text"
 							data-testid={testId}
 							key={`poem:${formattedText.text}:${verseLineIndex}`}
 						>
@@ -55,7 +55,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					);
 				} else if ((verseLine as FormattedText)?.wordsOfJesus) {
 					verse = (
-						<p className="font-eb-garamond text-[19px] leading-[1.75] text-red-500" data-testid={testId} key={verseKey}>
+						<p className="font-eb-garamond text-[19px] leading-[1.75] text-words-of-christ" data-testid={testId} key={verseKey}>
 							{line.number === 1 ? (
 								<span className="font-cormorant font-semibold not-italic text-[24px] text-primary">
 									{`${bookChapterNumber}`}&nbsp;
