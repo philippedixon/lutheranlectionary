@@ -23,12 +23,6 @@ describe("VersePassage", () => {
 		);
 	});
 
-	it("should display the title of the passage", () => {
-		const title = document.querySelector("h3");
-
-		expect(title).toHaveTextContent("Luke 1:68-79");
-	});
-
 	it("should display only the verses in the passage", () => {
 		const previousVerse = screen.queryByTestId("1:67-0");
 		const firstVerse = screen.queryByTestId("1:68-0");

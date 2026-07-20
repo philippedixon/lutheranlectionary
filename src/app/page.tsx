@@ -19,7 +19,7 @@ const Home = () => {
 	const monthData = lectionary[selectedMonth - 1];
 
 	return (
-		<div className="px-8 max-w-[960px] mx-auto pb-8" id="top">
+		<div className="px-8 max-w-[960px] mx-auto pb-8">
 			<h1 className="font-cormorant font-semibold text-[44px] text-primary text-center mt-6 mb-1">
 				Lutheran Lectionary
 			</h1>
@@ -98,7 +98,9 @@ const Home = () => {
 				})}
 			</div>
 
-			<ScrollToTopButton />
+			<div className="flex justify-center mt-14 pt-[22px] border-t border-divider">
+				<ScrollToTopButton />
+			</div>
 		</div>
 	);
 };
