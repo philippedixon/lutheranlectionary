@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ReadingPassage } from "@/app/components";
 import { genesisPassage } from "../../__mocks__/helloao-api";
-import { Book, BookId } from "@/app/enums";
 import { TranslationBookChapter } from "@/app/interfaces";
 
 const chapterWith = (
@@ -14,26 +13,20 @@ const chapterWith = (
 describe("ReadingPassage", () => {
 	beforeEach(() => {
 		render(
-			<ReadingPassage
-				passageChapters={genesisPassage}
-				readingInformation={{
-					bookId: BookId.Genesis,
-					chapters: { first: 1, last: 3 },
-				}}
-			/>
+			<ReadingPassage passageChapters={genesisPassage} />
 		);
-	});
-
-	it("should display the book title for the passage", () => {
-		const bookTitle = screen.queryByTestId("title");
-
-		expect(bookTitle).toHaveTextContent(Book.Genesis);
 	});
 
 	it("should display headings in the passage", () => {
 		const passageHeading = screen.queryByText("The Creation");
 
 		expect(passageHeading).toBeInTheDocument();
+	});
+
+	it("should center and size the pericope heading at 24px", () => {
+		const passageHeading = screen.getByText("The Creation");
+
+		expect(passageHeading).toHaveClass("text-center", "text-[24px]");
 	});
 
 	it("should display the chapter number for the passage", () => {
@@ -56,29 +49,9 @@ describe("ReadingPassage", () => {
 });
 
 describe("ReadingPassage with missing chapter data", () => {
-	it("renders the title without crashing when a chapter has no data", () => {
-		render(
-			<ReadingPassage
-				passageChapters={[{} as TranslationBookChapter]}
-				readingInformation={{
-					bookId: BookId.Psalms,
-					chapters: { first: 32, last: 32 },
-				}}
-			/>
-		);
-
-		expect(screen.getByTestId("title")).toHaveTextContent("Psalms 32");
-	});
-
 	it("shows an unavailable message when no chapter has data", () => {
 		render(
-			<ReadingPassage
-				passageChapters={[{} as TranslationBookChapter]}
-				readingInformation={{
-					bookId: BookId.Psalms,
-					chapters: { first: 32, last: 32 },
-				}}
-			/>
+			<ReadingPassage passageChapters={[{} as TranslationBookChapter]} />
 		);
 
 		expect(
@@ -88,13 +61,7 @@ describe("ReadingPassage with missing chapter data", () => {
 
 	it("does not show the unavailable message when content is present", () => {
 		render(
-			<ReadingPassage
-				passageChapters={genesisPassage}
-				readingInformation={{
-					bookId: BookId.Genesis,
-					chapters: { first: 1, last: 3 },
-				}}
-			/>
+			<ReadingPassage passageChapters={genesisPassage} />
 		);
 
 		expect(
@@ -104,18 +71,12 @@ describe("ReadingPassage with missing chapter data", () => {
 });
 
 describe("ReadingPassage poetry column", () => {
-	const readingInformation = {
-		bookId: BookId.Psalms,
-		chapters: { first: 1, last: 1 },
-	};
-
 	it("applies the poetry column when the passage contains poem-formatted text", () => {
 		const { container } = render(
 			<ReadingPassage
 				passageChapters={chapterWith([
 					{ type: "verse", number: 1, content: [{ poem: 1, text: "A poem line" }] },
 				])}
-				readingInformation={readingInformation}
 			/>
 		);
 
@@ -128,7 +89,6 @@ describe("ReadingPassage poetry column", () => {
 				passageChapters={chapterWith([
 					{ type: "verse", number: 1, content: ["A prose line"] },
 				])}
-				readingInformation={readingInformation}
 			/>
 		);
 

@@ -1,24 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { months } from "@/app/constants";
 import lectionary from "@/app/constants/lectionary";
 import { ScrollToTopButton } from "@/app/components/ScrollToTopButton";
 import { getReadingTitle } from "@/app/utils";
 
+const subscribe = () => () => {};
+const getTodayKey = () => {
+	const d = new Date();
+	return `${d.getMonth() + 1}-${d.getDate()}`;
+};
+
 const Home = () => {
 	const [selectedMonth, setSelectedMonth] = useState(() => new Date().getMonth() + 1);
-	const [todayKey, setTodayKey] = useState<string | null>(null);
-
-	useEffect(() => {
-		const d = new Date();
-		setTodayKey(`${d.getMonth() + 1}-${d.getDate()}`);
-	}, []);
+	const todayKey = useSyncExternalStore(subscribe, getTodayKey, () => null);
 	const monthData = lectionary[selectedMonth - 1];
 
 	return (
-		<div className="px-8 max-w-[960px] mx-auto pb-8" id="top">
+		<div className="px-8 max-w-[960px] mx-auto pb-8">
 			<h1 className="font-cormorant font-semibold text-[44px] text-primary text-center mt-6 mb-1">
 				Lutheran Lectionary
 			</h1>
@@ -97,7 +98,9 @@ const Home = () => {
 				})}
 			</div>
 
-			<ScrollToTopButton />
+			<div className="flex justify-center mt-14 pt-[22px] border-t border-divider">
+				<ScrollToTopButton />
+			</div>
 		</div>
 	);
 };

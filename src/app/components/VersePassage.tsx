@@ -4,7 +4,7 @@ import {
 	TranslationBookChapter,
 	Verses,
 } from "@/app/interfaces";
-import { getReadingTitle, isPoetryPassage } from "@/app/utils";
+import { isPoetryPassage } from "@/app/utils";
 import { PassageUnavailable } from "./PassageUnavailable";
 import { Verse } from "./Verse";
 
@@ -17,8 +17,6 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 	passageChapter,
 	readingInformation,
 }) => {
-	const title = getReadingTitle(readingInformation);
-
 	const { first: firstVerse, last: lastVerse } =
 		readingInformation.verses as Verses;
 
@@ -36,14 +34,13 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 
 	return (
 		<div className={hasPoetry ? "poetry-passage" : undefined}>
-			<h3 className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
 			{!verseContents?.length && <PassageUnavailable />}
 			{verseContents?.map((line, index) => {
 				let node;
 				const baseKey = `${passageChapter.book.id}:${passageChapter.chapter.number}:${index}`;
 				if (line.type === "heading") {
 					node = (
-						<h4 key={`${baseKey}:heading`} className="font-cormorant font-semibold text-primary">
+						<h4 key={`${baseKey}:heading`} className="font-cormorant font-semibold text-primary text-center text-[24px]">
 							{line.content
 								.filter((text) => typeof text === "string")
 								.join(" ")}

@@ -1,6 +1,7 @@
 "use client";
 // todo: convert to server component?
 import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
 import { SelectionsContext } from "@/app/contexts";
 import { usePathname } from "next/navigation";
 import lectionary from "@/app/constants/lectionary";
@@ -10,9 +11,11 @@ import {
 	EsvPassage,
 	ReadingPassage,
 	ReadingTabs,
+	ScrollToTopButton,
 	VersePassage,
 } from "@/app/components";
 import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
+import { getAdjacentDay } from "@/app/utils";
 
 type PassageResult = TranslationBookChapter[] | string[];
 
@@ -22,12 +25,7 @@ const renderPassage = (
 	isEsv: boolean
 ) => {
 	if (isEsv) {
-		return (
-			<EsvPassage
-				html={(passage as string[])[0] ?? ""}
-				readingInformation={readingInformation}
-			/>
-		);
+		return <EsvPassage html={(passage as string[])[0] ?? ""} />;
 	}
 
 	const passageChapters = passage as TranslationBookChapter[];
@@ -37,10 +35,7 @@ const renderPassage = (
 			readingInformation={readingInformation}
 		/>
 	) : (
-		<ReadingPassage
-			passageChapters={passageChapters}
-			readingInformation={readingInformation}
-		/>
+		<ReadingPassage passageChapters={passageChapters} />
 	);
 };
 
@@ -117,8 +112,12 @@ const DayPage = () => {
 	const activePassage = readingContent[activeTab];
 	const activeReading = readingProperties[activeTab];
 
+	const dayOfMonth = parseInt(dayParameter);
+	const prevDay = getAdjacentDay(monthIndex, dayOfMonth, -1);
+	const nextDay = getAdjacentDay(monthIndex, dayOfMonth, 1);
+
 	return (
-		<div>
+		<div className="pb-8">
 			<h1 className="font-cormorant font-semibold text-[38px] text-primary text-center mt-6 mb-2">
 				{month.name} {dayParameter}
 			</h1>
@@ -131,6 +130,21 @@ const DayPage = () => {
 			<div className="max-w-[720px] mx-auto space-y-8 px-6 flex flex-col items-center">
 				{activePassage &&
 					renderPassage(activePassage, activeReading, isEsv)}
+			</div>
+			<div className="flex items-center justify-center gap-9 mt-14 pt-[22px] border-t border-divider">
+				<Link
+					href={`/${prevDay.monthIndex + 1}/${prevDay.day}`}
+					className="font-eb-garamond italic text-[16px] text-gold"
+				>
+					&lsaquo; Prev Day
+				</Link>
+				<ScrollToTopButton />
+				<Link
+					href={`/${nextDay.monthIndex + 1}/${nextDay.day}`}
+					className="font-eb-garamond italic text-[16px] text-gold"
+				>
+					Next Day &rsaquo;
+				</Link>
 			</div>
 		</div>
 	);

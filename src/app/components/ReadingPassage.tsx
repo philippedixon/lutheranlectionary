@@ -1,22 +1,15 @@
 import React from "react";
 import { PassageUnavailable, Verse } from "@/app/components";
-import {
-	ChapterVerse,
-	Reading,
-	TranslationBookChapter,
-} from "@/app/interfaces";
-import { getReadingTitle, isPoetryPassage } from "@/app/utils";
+import { ChapterVerse, TranslationBookChapter } from "@/app/interfaces";
+import { isPoetryPassage } from "@/app/utils";
 
 interface ReadingPassageProps {
 	passageChapters: TranslationBookChapter[];
-	readingInformation: Reading;
 }
 
 export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 	passageChapters,
-	readingInformation,
 }) => {
-	const title = getReadingTitle(readingInformation);
 	// A failed fetch can leave a chapter without data; skip it rather than crash.
 	const chaptersWithData = passageChapters.filter(
 		(bookChapter) => bookChapter.book && bookChapter.chapter?.content
@@ -27,7 +20,6 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 
 	return (
 		<div className={hasPoetry ? "poetry-passage" : undefined}>
-			<h3 data-testid="title" className="font-eb-garamond italic text-[17px] text-gold text-center mb-2">{title}</h3>
 			{chaptersWithData.length === 0 && <PassageUnavailable />}
 			{chaptersWithData.map((bookChapter) => (
 				<div key={`${bookChapter.book.id}:${bookChapter.chapter.number}`}>
@@ -36,7 +28,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary pt-3">
+								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary text-center text-[24px] pt-3">
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}

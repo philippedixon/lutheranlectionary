@@ -47,7 +47,9 @@ describe("DayPage translation switch", () => {
 		expect(() => rerender(dayPageWithTranslation("BSB"))).not.toThrow();
 
 		await waitFor(() =>
-			expect(screen.getByTestId("title")).toHaveTextContent("Psalms 32")
+			expect(screen.getByTestId("32:1-0")).toHaveTextContent(
+				"Blessed is the one"
+			)
 		);
 		expect(container.querySelector(".esv-passage")).not.toBeInTheDocument();
 	});
