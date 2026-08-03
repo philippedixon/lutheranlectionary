@@ -1,6 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import localFont from "next/font/local";
-import { Cormorant_Garamond, EB_Garamond } from "next/font/google";
+import { Cormorant_Garamond, EB_Garamond, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { SelectionsProvider, ThemeProvider } from "@/app/contexts";
 import { AppHeaderServer } from "@/app/components";
@@ -32,6 +32,14 @@ const ebGaramond = EB_Garamond({
 	display: "swap",
 });
 
+const sourceSerif = Source_Serif_4({
+	subsets: ["latin"],
+	weight: ["400", "600"],
+	style: ["normal", "italic"],
+	variable: "--font-source-serif",
+	display: "swap",
+});
+
 export default async function RootLayout({
 	children,
 }: Readonly<{
@@ -42,7 +50,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${ebGaramond.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${ebGaramond.variable} ${sourceSerif.variable} antialiased`}
 			>
 				<ThemeProvider>
 				<SelectionsProvider>

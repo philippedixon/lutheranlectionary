@@ -44,6 +44,24 @@ body {
   margin-bottom: 0.25rem;
 }
 
+/* Reading Font / Text Size options panel selections; class applied on the
+   .esv-passage wrapper by EsvPassage.tsx since the HTML body is opaque
+   dangerouslySetInnerHTML content. */
+.esv-passage.font-serif4 p,
+.esv-passage.font-serif4 .block-indent {
+  font-family: var(--font-source-serif), Georgia, serif;
+}
+
+.esv-passage.size-small p,
+.esv-passage.size-small .block-indent {
+  font-size: 17px;
+}
+
+.esv-passage.size-large p,
+.esv-passage.size-large .block-indent {
+  font-size: 22px;
+}
+
 /* Red-letter words of Christ; verse numbers keep their gold via .verse-num. */
 .esv-passage span.woc {
   color: var(--color-words-of-christ);
@@ -68,6 +86,30 @@ body {
   color: var(--color-primary);
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
+}
+
+/* Pericope title and psalm superscription only: centered and capped to the
+   poetry column width, matching the non-ESV heading/hebrew_subtitle
+   treatment. Scoped to direct children so the unrelated "Footnotes" h3
+   (nested inside .footnotes) is unaffected. */
+.esv-passage > h2,
+.esv-passage > h3,
+.esv-passage > h4 {
+  text-align: center;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Psalm superscription (e.g. "To the choirmaster..."); read as a small
+   caption under the title, matching the non-ESV hebrew_subtitle styling. */
+.esv-passage > h4.psalm-title {
+  font-family: var(--font-eb-garamond), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--color-gold);
+  margin-bottom: 30px;
 }
 
 .esv-passage .copyright {

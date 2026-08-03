@@ -25,6 +25,7 @@ export default {
       fontFamily: {
         cormorant: ["var(--font-cormorant)", "Georgia", "serif"],
         "eb-garamond": ["var(--font-eb-garamond)", "Georgia", "serif"],
+        "source-serif": ["var(--font-source-serif)", "Georgia", "serif"],
       },
     },
   },

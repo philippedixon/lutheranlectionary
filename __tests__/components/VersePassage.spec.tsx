@@ -104,3 +104,35 @@ describe("VersePassage poetry column", () => {
 		expect(container.firstChild).not.toHaveClass("poetry-passage");
 	});
 });
+
+describe("VersePassage hebrew_subtitle", () => {
+	const readingInformation = {
+		bookId: BookId.Psalms,
+		verses: { first: 1, last: 2 },
+	};
+
+	it("renders the subtitle text, centered, italic, and width-capped", () => {
+		render(
+			<VersePassage
+				passageChapter={singleVerseChapter([
+					{ type: "verse", number: 1, content: ["A verse line"] },
+					{
+						type: "hebrew_subtitle",
+						content: ["A Psalm. A song for the Sabbath day."],
+					},
+					{ type: "verse", number: 2, content: ["Another verse line"] },
+				])}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		const subtitle = screen.getByText("A Psalm. A song for the Sabbath day.");
+		expect(subtitle).toHaveClass(
+			"italic",
+			"text-center",
+			"text-[15px]",
+			"max-w-[480px]",
+			"mx-auto"
+		);
+	});
+});

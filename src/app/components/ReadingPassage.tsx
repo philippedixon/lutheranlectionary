@@ -1,6 +1,10 @@
 import React from "react";
 import { PassageUnavailable, Verse } from "@/app/components";
-import { ChapterVerse, TranslationBookChapter } from "@/app/interfaces";
+import {
+	ChapterHebrewSubtitle,
+	ChapterVerse,
+	TranslationBookChapter,
+} from "@/app/interfaces";
 import { isPoetryPassage } from "@/app/utils";
 
 interface ReadingPassageProps {
@@ -28,11 +32,22 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary text-center text-[24px] pt-3">
+								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary text-center text-[24px] max-w-[480px] mx-auto pt-3">
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}
 								</h4>
+							);
+						} else if (line.type === "hebrew_subtitle") {
+							node = (
+								<p
+									key={`${baseKey}-subtitle`}
+									className="font-eb-garamond italic text-gold text-center text-[15px] max-w-[480px] mx-auto mb-[30px]"
+								>
+									{(line as ChapterHebrewSubtitle).content
+										.filter((text) => typeof text === "string")
+										.join(" ")}
+								</p>
 							);
 						} else if (line.type === "verse") {
 							node = (
