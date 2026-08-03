@@ -8,7 +8,18 @@ import {
 	SelectionsDispatchContext,
 } from "@/app/contexts";
 import { Languages } from "@/app/enums";
-import { Selections, Translation } from "@/app/interfaces";
+import { BodyFont, FontSize, Selections, Translation } from "@/app/interfaces";
+
+const BODY_FONT_OPTIONS: { key: BodyFont; label: string; stack: string }[] = [
+	{ key: "garamond", label: "EB Garamond", stack: "font-eb-garamond" },
+	{ key: "serif4", label: "Source Serif 4", stack: "font-source-serif" },
+];
+
+const FONT_SIZE_OPTIONS: { key: FontSize; label: string; previewPx: number }[] = [
+	{ key: "small", label: "Small", previewPx: 17 },
+	{ key: "medium", label: "Medium", previewPx: 19 },
+	{ key: "large", label: "Large", previewPx: 22 },
+];
 
 interface OptionsPanelProps {
 	isOpen: boolean;
@@ -75,6 +86,24 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 	}, [dispatchSelections, selections, translations]);
 
 	useEffect(() => {
+		const storedBodyFont = localStorage.getItem("bodyFont") as BodyFont | null;
+		if (storedBodyFont && storedBodyFont !== selections.bodyFont) {
+			dispatchSelections({ type: "SET_BODY_FONT", payload: storedBodyFont });
+		} else if (!storedBodyFont) {
+			dispatchSelections({ type: "SET_BODY_FONT", payload: "garamond" });
+			localStorage.setItem("bodyFont", "garamond");
+		}
+
+		const storedFontSize = localStorage.getItem("fontSize") as FontSize | null;
+		if (storedFontSize && storedFontSize !== selections.fontSize) {
+			dispatchSelections({ type: "SET_FONT_SIZE", payload: storedFontSize });
+		} else if (!storedFontSize) {
+			dispatchSelections({ type: "SET_FONT_SIZE", payload: "medium" });
+			localStorage.setItem("fontSize", "medium");
+		}
+	}, [dispatchSelections, selections.bodyFont, selections.fontSize]);
+
+	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape") onClose();
 		};
@@ -96,6 +125,16 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 	const handleTranslationClick = (translationId: string) => {
 		localStorage.setItem("translation", translationId);
 		dispatchSelections({ type: "SET_TRANSLATION", payload: translationId });
+	};
+
+	const handleBodyFontClick = (bodyFont: BodyFont) => {
+		localStorage.setItem("bodyFont", bodyFont);
+		dispatchSelections({ type: "SET_BODY_FONT", payload: bodyFont });
+	};
+
+	const handleFontSizeClick = (fontSize: FontSize) => {
+		localStorage.setItem("fontSize", fontSize);
+		dispatchSelections({ type: "SET_FONT_SIZE", payload: fontSize });
 	};
 
 	const filteredTranslations = translations
@@ -180,6 +219,52 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								}`}
 							>
 								{translation.name}
+							</button>
+						))}
+					</div>
+				</div>
+
+				<div className="px-6 pt-4">
+					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+						READING FONT
+					</p>
+					<div className="flex gap-[10px]">
+						{BODY_FONT_OPTIONS.map((option) => (
+							<button
+								key={option.key}
+								aria-pressed={selections.bodyFont === option.key}
+								onClick={() => handleBodyFontClick(option.key)}
+								className={`flex-1 text-center px-2 py-3 rounded-sm border italic text-[16px] ${option.stack} ${
+									selections.bodyFont === option.key
+										? "border-primary text-primary"
+										: "border-border"
+								}`}
+							>
+								{option.label}
+							</button>
+						))}
+					</div>
+				</div>
+
+				<div className="px-6 pt-4">
+					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+						TEXT SIZE
+					</p>
+					<div className="flex gap-[10px]">
+						{FONT_SIZE_OPTIONS.map((option) => (
+							<button
+								key={option.key}
+								aria-label={`${option.label} text size`}
+								aria-pressed={selections.fontSize === option.key}
+								onClick={() => handleFontSizeClick(option.key)}
+								style={{ fontSize: `${option.previewPx}px` }}
+								className={`flex-1 text-center px-2 py-[10px] rounded-sm border font-eb-garamond ${
+									selections.fontSize === option.key
+										? "border-primary text-primary"
+										: "border-border"
+								}`}
+							>
+								A
 							</button>
 						))}
 					</div>

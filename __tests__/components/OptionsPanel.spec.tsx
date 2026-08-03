@@ -265,6 +265,122 @@ describe("OptionsPanel", () => {
 		});
 	});
 
+	describe("reading font section", () => {
+		it("renders READING FONT label and both swatches", () => {
+			renderPanel();
+			expect(screen.getByText("READING FONT")).toBeInTheDocument();
+			expect(screen.getByRole("button", { name: "EB Garamond" })).toBeInTheDocument();
+			expect(screen.getByRole("button", { name: "Source Serif 4" })).toBeInTheDocument();
+		});
+
+		it("defaults to EB Garamond when no bodyFont is stored", async () => {
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "EB Garamond" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			expect(localStorage.getItem("bodyFont")).toBe("garamond");
+		});
+
+		it("dispatches SET_BODY_FONT and updates localStorage on click", async () => {
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "EB Garamond" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			await userEvent.click(screen.getByRole("button", { name: "Source Serif 4" }));
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Source Serif 4" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			expect(screen.getByRole("button", { name: "EB Garamond" })).toHaveAttribute(
+				"aria-pressed",
+				"false"
+			);
+			expect(localStorage.getItem("bodyFont")).toBe("serif4");
+		});
+
+		it("restores a stored bodyFont on mount", async () => {
+			localStorage.setItem("bodyFont", "serif4");
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Source Serif 4" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+		});
+	});
+
+	describe("text size section", () => {
+		it("renders TEXT SIZE label and all three options", () => {
+			renderPanel();
+			expect(screen.getByText("TEXT SIZE")).toBeInTheDocument();
+			expect(screen.getByRole("button", { name: "Small text size" })).toBeInTheDocument();
+			expect(screen.getByRole("button", { name: "Medium text size" })).toBeInTheDocument();
+			expect(screen.getByRole("button", { name: "Large text size" })).toBeInTheDocument();
+		});
+
+		it("previews each option at its own size", () => {
+			renderPanel();
+			expect(screen.getByRole("button", { name: "Small text size" })).toHaveStyle({
+				fontSize: "17px",
+			});
+			expect(screen.getByRole("button", { name: "Medium text size" })).toHaveStyle({
+				fontSize: "19px",
+			});
+			expect(screen.getByRole("button", { name: "Large text size" })).toHaveStyle({
+				fontSize: "22px",
+			});
+		});
+
+		it("defaults to Medium when no fontSize is stored", async () => {
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Medium text size" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			expect(localStorage.getItem("fontSize")).toBe("medium");
+		});
+
+		it("dispatches SET_FONT_SIZE and updates localStorage on click", async () => {
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Medium text size" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			await userEvent.click(screen.getByRole("button", { name: "Large text size" }));
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Large text size" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+			expect(localStorage.getItem("fontSize")).toBe("large");
+		});
+
+		it("restores a stored fontSize on mount", async () => {
+			localStorage.setItem("fontSize", "small");
+			renderPanel();
+			await waitFor(() =>
+				expect(screen.getByRole("button", { name: "Small text size" })).toHaveAttribute(
+					"aria-pressed",
+					"true"
+				)
+			);
+		});
+	});
+
 	describe("active row styling", () => {
 		it("active language row has text-primary class", async () => {
 			localStorage.setItem("language", "English");
