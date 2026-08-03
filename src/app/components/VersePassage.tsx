@@ -1,4 +1,5 @@
 import {
+	ChapterHebrewSubtitle,
 	ChapterVerse,
 	Reading,
 	TranslationBookChapter,
@@ -40,11 +41,22 @@ export const VersePassage: React.FC<VersePassageProps> = ({
 				const baseKey = `${passageChapter.book.id}:${passageChapter.chapter.number}:${index}`;
 				if (line.type === "heading") {
 					node = (
-						<h4 key={`${baseKey}:heading`} className="font-cormorant font-semibold text-primary text-center text-[24px]">
+						<h4 key={`${baseKey}:heading`} className="font-cormorant font-semibold text-primary text-center text-[24px] max-w-[480px] mx-auto">
 							{line.content
 								.filter((text) => typeof text === "string")
 								.join(" ")}
 						</h4>
+					);
+				} else if (line.type === "hebrew_subtitle") {
+					node = (
+						<p
+							key={`${baseKey}:subtitle`}
+							className="font-eb-garamond italic text-gold text-center text-[15px] max-w-[480px] mx-auto mb-[30px]"
+						>
+							{(line as ChapterHebrewSubtitle).content
+								.filter((text) => typeof text === "string")
+								.join(" ")}
+						</p>
 					);
 				} else if (line.type === "verse") {
 					node = (

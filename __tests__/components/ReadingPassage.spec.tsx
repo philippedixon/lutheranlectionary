@@ -23,10 +23,10 @@ describe("ReadingPassage", () => {
 		expect(passageHeading).toBeInTheDocument();
 	});
 
-	it("should center and size the pericope heading at 24px", () => {
+	it("should center and size the pericope heading at 24px, capped to the poetry column width", () => {
 		const passageHeading = screen.getByText("The Creation");
 
-		expect(passageHeading).toHaveClass("text-center", "text-[24px]");
+		expect(passageHeading).toHaveClass("text-center", "text-[24px]", "max-w-[480px]", "mx-auto");
 	});
 
 	it("should display the chapter number for the passage", () => {
@@ -93,5 +93,30 @@ describe("ReadingPassage poetry column", () => {
 		);
 
 		expect(container.firstChild).not.toHaveClass("poetry-passage");
+	});
+});
+
+describe("ReadingPassage hebrew_subtitle", () => {
+	it("renders the subtitle text, centered, italic, and width-capped", () => {
+		render(
+			<ReadingPassage
+				passageChapters={chapterWith([
+					{
+						type: "hebrew_subtitle",
+						content: ["A Psalm. A song for the Sabbath day."],
+					},
+					{ type: "verse", number: 1, content: ["A verse line"] },
+				])}
+			/>
+		);
+
+		const subtitle = screen.getByText("A Psalm. A song for the Sabbath day.");
+		expect(subtitle).toHaveClass(
+			"italic",
+			"text-center",
+			"text-[15px]",
+			"max-w-[480px]",
+			"mx-auto"
+		);
 	});
 });
