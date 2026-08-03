@@ -22,15 +22,32 @@ describe("ReadingTabs", () => {
 		expect(tabs[1]).toHaveTextContent(getReadingTitle(readings[1]));
 	});
 
-	it("marks the active tab and leaves the others inactive", () => {
+	it("marks the active tab bold and primary-colored, leaving others regular-weight gold", () => {
 		render(
 			<ReadingTabs readings={readings} activeIndex={1} onSelect={jest.fn()} />
 		);
 
 		const tabs = screen.getAllByRole("button");
-		expect(tabs[1]).toHaveClass("text-primary");
-		expect(tabs[0]).toHaveClass("text-gold");
-		expect(tabs[0]).not.toHaveClass("text-primary");
+		expect(tabs[1]).toHaveTextContent(getReadingTitle(readings[1]));
+		const activeLabel = screen.getByTestId("reading-tab-label-1");
+		const inactiveLabel = screen.getByTestId("reading-tab-label-0");
+
+		expect(activeLabel).toHaveClass("font-semibold", "text-primary");
+		expect(inactiveLabel).not.toHaveClass("font-semibold");
+		expect(inactiveLabel).toHaveClass("text-gold");
+		expect(inactiveLabel).not.toHaveClass("text-primary");
+	});
+
+	it("gives only the active tab a visible primary underline", () => {
+		render(
+			<ReadingTabs readings={readings} activeIndex={1} onSelect={jest.fn()} />
+		);
+
+		const activeUnderline = screen.getByTestId("reading-tab-underline-1");
+		const inactiveUnderline = screen.getByTestId("reading-tab-underline-0");
+
+		expect(activeUnderline).toHaveClass("bg-primary");
+		expect(inactiveUnderline).not.toHaveClass("bg-primary");
 	});
 
 	it("calls onSelect with the tab index when a tab is clicked", async () => {

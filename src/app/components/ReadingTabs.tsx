@@ -22,13 +22,22 @@ export const ReadingTabs: React.FC<ReadingTabsProps> = ({
 						key={getReadingTitle(reading)}
 						type="button"
 						onClick={() => onSelect(index)}
-						className={`font-eb-garamond italic text-[16.5px] ${
-							isActive
-								? "text-primary border-b-[1.5px] border-gold"
-								: "text-gold"
-						}`}
+						className="flex flex-col items-center gap-[7px]"
 					>
-						{getReadingTitle(reading)}
+						<span
+							data-testid={`reading-tab-label-${index}`}
+							className={`font-eb-garamond italic text-[16.5px] ${
+								isActive ? "font-semibold text-primary" : "text-gold"
+							}`}
+						>
+							{getReadingTitle(reading)}
+						</span>
+						<span
+							data-testid={`reading-tab-underline-${index}`}
+							className={`h-[2px] w-full ${
+								isActive ? "bg-primary" : "bg-transparent"
+							}`}
+						/>
 					</button>
 				);
 			})}
