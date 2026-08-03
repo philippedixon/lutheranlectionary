@@ -18,7 +18,7 @@ export const EsvPassage: React.FC<EsvPassageProps> = ({ html }) => {
 	return (
 		<div>
 			<div
-				className={`esv-passage ${fontClass} ${sizeClass}`.trim()}
+				className={["esv-passage", fontClass, sizeClass].filter(Boolean).join(" ")}
 				dangerouslySetInnerHTML={{ __html: html }}
 			/>
 		</div>

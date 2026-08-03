@@ -232,6 +232,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 						{BODY_FONT_OPTIONS.map((option) => (
 							<button
 								key={option.key}
+								data-testid={`body-font-row-${option.key}`}
 								aria-pressed={selections.bodyFont === option.key}
 								onClick={() => handleBodyFontClick(option.key)}
 								className={`flex-1 text-center px-2 py-3 rounded-sm border italic text-[16px] ${option.stack} ${
@@ -254,6 +255,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 						{FONT_SIZE_OPTIONS.map((option) => (
 							<button
 								key={option.key}
+								data-testid={`font-size-row-${option.key}`}
 								aria-label={`${option.label} text size`}
 								aria-pressed={selections.fontSize === option.key}
 								onClick={() => handleFontSizeClick(option.key)}
