@@ -44,6 +44,24 @@ body {
   margin-bottom: 0.25rem;
 }
 
+/* Reading Font / Text Size options panel selections; class applied on the
+   .esv-passage wrapper by EsvPassage.tsx since the HTML body is opaque
+   dangerouslySetInnerHTML content. */
+.esv-passage.font-serif4 p,
+.esv-passage.font-serif4 .block-indent {
+  font-family: var(--font-source-serif), Georgia, serif;
+}
+
+.esv-passage.size-small p,
+.esv-passage.size-small .block-indent {
+  font-size: 17px;
+}
+
+.esv-passage.size-large p,
+.esv-passage.size-large .block-indent {
+  font-size: 22px;
+}
+
 /* Red-letter words of Christ; verse numbers keep their gold via .verse-num. */
 .esv-passage span.woc {
   color: var(--color-words-of-christ);

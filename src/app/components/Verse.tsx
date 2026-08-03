@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
 	FormattedText,
 	InlineHeading,
 	InlineLineBreak,
 	ChapterVerse,
 } from "@/app/interfaces";
+import { SelectionsContext } from "@/app/contexts";
+import { bodyFontClass, fontSizeClass } from "@/app/utils";
 
 interface VerseProps {
 	bookChapterNumber: number;
@@ -12,6 +14,9 @@ interface VerseProps {
 }
 
 export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
+	const selections = useContext(SelectionsContext);
+	const bodyClass = `${bodyFontClass(selections.bodyFont)} ${fontSizeClass(selections.fontSize)}`;
+
 	return (
 		<div>
 			{line.content.map((verseLine, verseLineIndex) => {
@@ -22,7 +27,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 				let verse: JSX.Element | null = null;
 				if (typeof verseLine === "string") {
 					verse = (
-						<p data-testid={testId} key={verseKey} className="font-eb-garamond text-[19px] leading-[1.75] text-body-text">
+						<p data-testid={testId} key={verseKey} className={`${bodyClass} leading-[1.75] text-body-text`}>
 							{line.number === 1 && verseLineIndex == 0 ? (
 								<span className="font-cormorant font-semibold not-italic text-[24px] text-primary">
 									{`${bookChapterNumber}`}&nbsp;
@@ -39,7 +44,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					const formattedText = verseLine as FormattedText;
 					verse = (
 						<p
-							className="poem-line font-eb-garamond italic text-[19px] leading-[1.75] text-body-text"
+							className={`poem-line ${bodyClass} italic leading-[1.75] text-body-text`}
 							data-testid={testId}
 							key={`poem:${formattedText.text}:${verseLineIndex}`}
 						>
@@ -55,7 +60,7 @@ export const Verse: React.FC<VerseProps> = ({ line, bookChapterNumber }) => {
 					);
 				} else if ((verseLine as FormattedText)?.wordsOfJesus) {
 					verse = (
-						<p className="font-eb-garamond text-[19px] leading-[1.75] text-words-of-christ" data-testid={testId} key={verseKey}>
+						<p className={`${bodyClass} leading-[1.75] text-words-of-christ`} data-testid={testId} key={verseKey}>
 							{line.number === 1 ? (
 								<span className="font-cormorant font-semibold not-italic text-[24px] text-primary">
 									{`${bookChapterNumber}`}&nbsp;

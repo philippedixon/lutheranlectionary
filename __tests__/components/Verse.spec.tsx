@@ -1,12 +1,24 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { Verse } from "@/app/components";
+import { SelectionsContext } from "@/app/contexts";
 import {
 	ChapterVerse,
 	FormattedText,
 	InlineHeading,
 	InlineLineBreak,
+	Selections,
 } from "@/app/interfaces";
+
+const renderWithSelections = (
+	ui: React.ReactElement,
+	selections: Selections
+) =>
+	render(
+		<SelectionsContext.Provider value={selections}>
+			{ui}
+		</SelectionsContext.Provider>
+	);
 
 describe("Verse Component", () => {
 	it("renders a string verse line", () => {
@@ -85,5 +97,63 @@ describe("Verse Component", () => {
 		};
 		const { getByText } = render(<Verse line={line} bookChapterNumber={1} />);
 		expect(getByText("The Beginning")).toBeInTheDocument();
+	});
+
+	describe("reading font", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 2,
+			content: ["Now the earth was formless and empty."],
+		};
+
+		it("defaults to EB Garamond when no bodyFont selection is set", () => {
+			const { getByText } = renderWithSelections(
+				<Verse line={line} bookChapterNumber={1} />,
+				{}
+			);
+			expect(getByText(line.content[0] as string)).toHaveClass("font-eb-garamond");
+		});
+
+		it("uses Source Serif 4 when selected", () => {
+			const { getByText } = renderWithSelections(
+				<Verse line={line} bookChapterNumber={1} />,
+				{ bodyFont: "serif4" }
+			);
+			const p = getByText(line.content[0] as string);
+			expect(p).toHaveClass("font-source-serif");
+			expect(p).not.toHaveClass("font-eb-garamond");
+		});
+	});
+
+	describe("text size", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 2,
+			content: ["Now the earth was formless and empty."],
+		};
+
+		it("defaults to 19px when no fontSize selection is set", () => {
+			const { getByText } = renderWithSelections(
+				<Verse line={line} bookChapterNumber={1} />,
+				{}
+			);
+			expect(getByText(line.content[0] as string)).toHaveClass("text-[19px]");
+		});
+
+		it("uses 17px when small is selected", () => {
+			const { getByText } = renderWithSelections(
+				<Verse line={line} bookChapterNumber={1} />,
+				{ fontSize: "small" }
+			);
+			expect(getByText(line.content[0] as string)).toHaveClass("text-[17px]");
+		});
+
+		it("uses 22px when large is selected", () => {
+			const { getByText } = renderWithSelections(
+				<Verse line={line} bookChapterNumber={1} />,
+				{ fontSize: "large" }
+			);
+			expect(getByText(line.content[0] as string)).toHaveClass("text-[22px]");
+		});
 	});
 });
