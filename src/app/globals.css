@@ -35,6 +35,21 @@ body {
   transition: background 0.35s ease, color 0.35s ease;
 }
 
+/* App-wide chrome text scale, driven by the Text Size selection via the
+   data-font-scale attribute SelectionsProvider sets on <html>. Passage body
+   text has its own independent scaling (readingStyle.ts fontSizeClass). */
+:root {
+  --app-font-scale: 1;
+}
+
+html[data-font-scale="small"] {
+  --app-font-scale: 0.9;
+}
+
+html[data-font-scale="large"] {
+  --app-font-scale: 1.15;
+}
+
 /* ESV passage HTML */
 .esv-passage p {
   font-family: var(--font-eb-garamond), Georgia, serif;
