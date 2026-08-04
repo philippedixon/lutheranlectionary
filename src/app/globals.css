@@ -50,6 +50,15 @@ html[data-font-scale="large"] {
   --app-font-scale: 1.15;
 }
 
+.app-text-heading-lg { font-size: calc(44px * var(--app-font-scale)); }
+.app-text-heading    { font-size: calc(38px * var(--app-font-scale)); }
+.app-text-tab        { font-size: calc(16.5px * var(--app-font-scale)); }
+.app-text-label      { font-size: calc(15px * var(--app-font-scale)); }
+.app-text-row        { font-size: calc(17px * var(--app-font-scale)); }
+.app-text-swatch     { font-size: calc(16px * var(--app-font-scale)); }
+.app-text-nav        { font-size: calc(16px * var(--app-font-scale)); }
+.app-text-caption    { font-size: calc(14.5px * var(--app-font-scale)); }
+
 /* ESV passage HTML */
 .esv-passage p {
   font-family: var(--font-eb-garamond), Georgia, serif;

@@ -180,7 +180,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 				</div>
 
 				<div className="px-6 pb-4">
-					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+					<p className="font-cormorant font-semibold app-text-label uppercase tracking-[0.5px] text-gold mb-2">
 						LANGUAGE
 					</p>
 					<div className="flex flex-col gap-1">
@@ -189,7 +189,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								key={language}
 								aria-pressed={selections.languageName === language}
 								onClick={() => handleLanguageClick(language)}
-								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond text-[17px] ${
+								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond app-text-row ${
 									selections.languageName === language
 										? "border-primary text-primary font-semibold"
 										: "border-border"
@@ -202,7 +202,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 				</div>
 
 				<div className="px-6">
-					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+					<p className="font-cormorant font-semibold app-text-label uppercase tracking-[0.5px] text-gold mb-2">
 						TRANSLATION
 					</p>
 					<div className="flex flex-col gap-1">
@@ -212,7 +212,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								data-testid={`translation-row-${translation.id}`}
 								aria-pressed={selections.translationId === translation.id}
 								onClick={() => handleTranslationClick(translation.id)}
-								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond text-[17px] ${
+								className={`text-left px-[14px] py-[10px] rounded-sm border font-eb-garamond app-text-row ${
 									selections.translationId === translation.id
 										? "border-primary text-primary font-semibold"
 										: "border-border"
@@ -225,7 +225,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 				</div>
 
 				<div className="px-6 pt-4">
-					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+					<p className="font-cormorant font-semibold app-text-label uppercase tracking-[0.5px] text-gold mb-2">
 						READING FONT
 					</p>
 					<div className="flex gap-[10px]">
@@ -235,7 +235,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 								data-testid={`body-font-row-${option.key}`}
 								aria-pressed={selections.bodyFont === option.key}
 								onClick={() => handleBodyFontClick(option.key)}
-								className={`flex-1 text-center px-2 py-3 rounded-sm border italic text-[16px] ${option.stack} ${
+								className={`flex-1 text-center px-2 py-3 rounded-sm border italic app-text-swatch ${option.stack} ${
 									selections.bodyFont === option.key
 										? "border-primary text-primary"
 										: "border-border"
@@ -248,7 +248,7 @@ export const OptionsPanel: React.FC<OptionsPanelProps> = ({
 				</div>
 
 				<div className="px-6 pt-4">
-					<p className="font-cormorant font-semibold text-[15px] uppercase tracking-[0.5px] text-gold mb-2">
+					<p className="font-cormorant font-semibold app-text-label uppercase tracking-[0.5px] text-gold mb-2">
 						TEXT SIZE
 					</p>
 					<div className="flex gap-[10px]">

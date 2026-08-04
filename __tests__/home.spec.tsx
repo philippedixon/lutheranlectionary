@@ -41,4 +41,13 @@ describe("Home", () => {
 		const dayLink = screen.getByTestId("date:December-2").closest("a");
 		expect(dayLink).toHaveClass("text-primary");
 	});
+
+	it("gives the heading and reading reference lines the app-wide scale classes", async () => {
+		render(<Home />);
+		expect(screen.getByText("Lutheran Lectionary")).toHaveClass("app-text-heading-lg");
+
+		await userEvent.click(screen.getByRole("button", { name: "December" }));
+		expect(screen.getByTestId("reading1:December-2")).toHaveClass("app-text-caption");
+		expect(screen.getByTestId("reading2:December-2")).toHaveClass("app-text-caption");
+	});
 });
