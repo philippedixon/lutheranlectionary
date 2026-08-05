@@ -118,7 +118,7 @@ const DayPage = () => {
 
 	return (
 		<div className="pb-8">
-			<h1 className="font-cormorant font-semibold text-[38px] text-primary text-center mt-6 mb-2">
+			<h1 className="font-cormorant font-semibold app-text-heading text-primary text-center mt-6 mb-2">
 				{month.name} {dayParameter}
 			</h1>
 			<hr className="w-[60px] border-t border-gold mx-auto mb-7" />
@@ -134,14 +134,14 @@ const DayPage = () => {
 			<div className="flex items-center justify-center gap-9 mt-14 pt-[22px] border-t border-divider">
 				<Link
 					href={`/${prevDay.monthIndex + 1}/${prevDay.day}`}
-					className="font-eb-garamond italic text-[16px] text-gold"
+					className="font-eb-garamond italic app-text-nav text-gold"
 				>
 					&lsaquo; Prev Day
 				</Link>
 				<ScrollToTopButton />
 				<Link
 					href={`/${nextDay.monthIndex + 1}/${nextDay.day}`}
-					className="font-eb-garamond italic text-[16px] text-gold"
+					className="font-eb-garamond italic app-text-nav text-gold"
 				>
 					Next Day &rsaquo;
 				</Link>

@@ -92,6 +92,14 @@ describe("OptionsPanel", () => {
 			expect(screen.getByText("LANGUAGE")).toBeInTheDocument();
 		});
 
+		it("gives the LANGUAGE label and its rows the app-wide scale classes", () => {
+			renderPanel();
+			expect(screen.getByText("LANGUAGE")).toHaveClass("app-text-label");
+			expect(screen.getByRole("button", { name: "English" })).toHaveClass(
+				"app-text-row"
+			);
+		});
+
 		it("renders all 7 language options as buttons", () => {
 			renderPanel();
 			["Dutch", "English", "French", "German", "Polish", "Spanish", "Swedish"].forEach(
@@ -273,6 +281,14 @@ describe("OptionsPanel", () => {
 			expect(screen.getByRole("button", { name: "Source Serif 4" })).toBeInTheDocument();
 		});
 
+		it("gives the READING FONT label and swatches the app-wide scale classes", () => {
+			renderPanel();
+			expect(screen.getByText("READING FONT")).toHaveClass("app-text-label");
+			expect(screen.getByRole("button", { name: "EB Garamond" })).toHaveClass(
+				"app-text-swatch"
+			);
+		});
+
 		it("defaults to EB Garamond when no bodyFont is stored", async () => {
 			renderPanel();
 			await waitFor(() =>
@@ -325,6 +341,11 @@ describe("OptionsPanel", () => {
 			expect(screen.getByRole("button", { name: "Small text size" })).toBeInTheDocument();
 			expect(screen.getByRole("button", { name: "Medium text size" })).toBeInTheDocument();
 			expect(screen.getByRole("button", { name: "Large text size" })).toBeInTheDocument();
+		});
+
+		it("gives the TEXT SIZE label the app-wide scale class (preview buttons keep their fixed demo sizes)", () => {
+			renderPanel();
+			expect(screen.getByText("TEXT SIZE")).toHaveClass("app-text-label");
 		});
 
 		it("previews each option at its own size", () => {

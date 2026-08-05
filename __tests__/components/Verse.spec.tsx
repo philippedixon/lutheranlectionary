@@ -33,6 +33,28 @@ describe("Verse Component", () => {
 		).toBeInTheDocument();
 	});
 
+	it("renders the leading chapter number in gold, matching the verse-number color", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 1,
+			content: ["In the beginning God created the heavens and the earth."],
+		};
+		const { getByText } = render(<Verse line={line} bookChapterNumber={1} />);
+		expect(getByText("1")).toHaveClass("text-gold");
+		expect(getByText("1")).not.toHaveClass("text-primary");
+	});
+
+	it("renders the leading chapter number in gold for words of Jesus too", () => {
+		const line: ChapterVerse = {
+			type: "verse",
+			number: 1,
+			content: [{ wordsOfJesus: true, text: "I am the way" } as FormattedText],
+		};
+		const { getByText } = render(<Verse line={line} bookChapterNumber={5} />);
+		expect(getByText("5")).toHaveClass("text-gold");
+		expect(getByText("5")).not.toHaveClass("text-primary");
+	});
+
 	it("does not italicise regular prose verse text", () => {
 		const line: ChapterVerse = {
 			type: "verse",

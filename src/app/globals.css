@@ -7,7 +7,7 @@
   --color-card: #FBF7EC;
   --color-primary: #5C1F1F;
   --color-primary-hover: #7A2E2E;
-  --color-gold: #A6873A;
+  --color-gold: #7A5C1A;
   --color-body-text: #2E2A20;
   --color-border: #C9BC9C;
   --color-divider: #D9CEB0;
@@ -34,6 +34,30 @@ body {
   font-family: var(--font-eb-garamond), Georgia, serif;
   transition: background 0.35s ease, color 0.35s ease;
 }
+
+/* App-wide chrome text scale, driven by the Text Size selection via the
+   data-font-scale attribute SelectionsProvider sets on <html>. Passage body
+   text has its own independent scaling (readingStyle.ts fontSizeClass). */
+:root {
+  --app-font-scale: 1;
+}
+
+html[data-font-scale="small"] {
+  --app-font-scale: 0.9;
+}
+
+html[data-font-scale="large"] {
+  --app-font-scale: 1.15;
+}
+
+.app-text-heading-lg { font-size: calc(44px * var(--app-font-scale)); }
+.app-text-heading    { font-size: calc(38px * var(--app-font-scale)); }
+.app-text-tab        { font-size: calc(16.5px * var(--app-font-scale)); }
+.app-text-label      { font-size: calc(15px * var(--app-font-scale)); }
+.app-text-row        { font-size: calc(17px * var(--app-font-scale)); }
+.app-text-swatch     { font-size: calc(16px * var(--app-font-scale)); }
+.app-text-nav        { font-size: calc(16px * var(--app-font-scale)); }
+.app-text-caption    { font-size: calc(14.5px * var(--app-font-scale)); }
 
 /* ESV passage HTML */
 .esv-passage p {
@@ -67,6 +91,14 @@ body {
   color: var(--color-words-of-christ);
 }
 
+
+.esv-passage .chapter-num {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  color: var(--color-gold);
+}
 
 .esv-passage .verse-num {
   font-family: var(--font-eb-garamond), Georgia, serif;

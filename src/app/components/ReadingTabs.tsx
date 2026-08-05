@@ -26,7 +26,7 @@ export const ReadingTabs: React.FC<ReadingTabsProps> = ({
 					>
 						<span
 							data-testid={`reading-tab-label-${index}`}
-							className={`font-eb-garamond italic text-[16.5px] ${
+							className={`font-eb-garamond italic app-text-tab ${
 								isActive ? "font-semibold text-primary" : "text-gold"
 							}`}
 						>

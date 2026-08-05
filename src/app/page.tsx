@@ -20,7 +20,7 @@ const Home = () => {
 
 	return (
 		<div className="px-8 max-w-[960px] mx-auto pb-8">
-			<h1 className="font-cormorant font-semibold text-[44px] text-primary text-center mt-6 mb-1">
+			<h1 className="font-cormorant font-semibold app-text-heading-lg text-primary text-center mt-6 mb-1">
 				Lutheran Lectionary
 			</h1>
 			<p className="font-eb-garamond italic text-[16px] text-gold text-center mb-6">
@@ -82,13 +82,13 @@ const Home = () => {
 								{date}
 							</h3>
 							<p
-								className="font-eb-garamond italic text-[14.5px] text-gold leading-[1.3]"
+								className="font-eb-garamond italic app-text-caption text-gold leading-[1.3]"
 								data-testid={`reading1:${monthData.name}-${date}`}
 							>
 								{reading1Display}
 							</p>
 							<p
-								className="font-eb-garamond italic text-[14.5px] text-gold leading-[1.3]"
+								className="font-eb-garamond italic app-text-caption text-gold leading-[1.3]"
 								data-testid={`reading2:${monthData.name}-${date}`}
 							>
 								{reading2Display}

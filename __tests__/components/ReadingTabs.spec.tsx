@@ -50,6 +50,15 @@ describe("ReadingTabs", () => {
 		expect(inactiveUnderline).not.toHaveClass("bg-primary");
 	});
 
+	it("gives each tab label the app-wide scale class so Text Size affects tabs too", () => {
+		render(
+			<ReadingTabs readings={readings} activeIndex={0} onSelect={jest.fn()} />
+		);
+
+		expect(screen.getByTestId("reading-tab-label-0")).toHaveClass("app-text-tab");
+		expect(screen.getByTestId("reading-tab-label-1")).toHaveClass("app-text-tab");
+	});
+
 	it("calls onSelect with the tab index when a tab is clicked", async () => {
 		const onSelect = jest.fn();
 		render(

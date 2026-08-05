@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { Selections } from "@/app/interfaces";
 import { selectionsReducer, SelectionsAction } from "@/app/reducers";
 
@@ -23,6 +23,10 @@ export const SelectionsProvider = ({
 		languageName: "",
 		translationId: "",
 	});
+
+	useEffect(() => {
+		document.documentElement.dataset.fontScale = selections.fontSize ?? "medium";
+	}, [selections.fontSize]);
 
 	return (
 		<SelectionsContext.Provider value={selections}>

@@ -130,6 +130,23 @@ describe("DayPage day navigation", () => {
 		);
 	});
 
+	it("gives the day heading and Prev/Next Day links the app-wide scale class", async () => {
+		render(<DayPage />);
+
+		await waitFor(() =>
+			expect(screen.getByTestId("passage-PSA-32")).toBeInTheDocument()
+		);
+		expect(screen.getByRole("heading", { level: 1 })).toHaveClass(
+			"app-text-heading"
+		);
+		expect(screen.getByRole("link", { name: /Prev Day/ })).toHaveClass(
+			"app-text-nav"
+		);
+		expect(screen.getByRole("link", { name: /Next Day/ })).toHaveClass(
+			"app-text-nav"
+		);
+	});
+
 	it("wraps Prev Day to the previous month's last day at the start of a month", async () => {
 		mockPathname.mockReturnValue("/1/1");
 		render(<DayPage />);
