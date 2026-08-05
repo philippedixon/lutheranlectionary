@@ -65,13 +65,16 @@ covered), icon sizes, layout spacing/padding.
 `<b class="verse-num inline">2&nbsp;</b>` for later verses.
 `globals.css` has a `.esv-passage .verse-num` rule (13px, gold) but no rule
 for `.chapter-num`, so it inherits the paragraph's default body-text color —
-it doesn't read as a marker at all. The non-ESV path (`Verse.tsx`) already
-distinguishes the leading chapter number: `font-cormorant font-semibold
-not-italic text-[24px] text-primary`.
+it doesn't read as a marker at all.
 
-**Change:** add `.esv-passage .chapter-num` to `globals.css`, mirroring
-`Verse.tsx`'s treatment: Cormorant, 600 weight, not italic, 24px,
-`var(--color-primary)`. No JS/logic change — CSS parity only.
+**Change:** add `.esv-passage .chapter-num` to `globals.css` — Cormorant,
+600 weight, not italic, 24px, `var(--color-gold)` — and update the
+equivalent non-ESV chapter-number spans in `Verse.tsx` (prose and
+words-of-Christ branches) from `text-primary` to `text-gold` to match.
+Gold rather than primary/burgundy so the large chapter marker reads as
+part of the same verse-numbering system as the small gold verse numbers
+next to it, instead of a differently-colored heading. No other JS/logic
+change.
 
 ## Acceptance criteria
 
@@ -82,9 +85,9 @@ not-italic text-[24px] text-primary`.
   and persists across reload (existing `fontSize` localStorage key, no new
   key needed).
 - On an ESV reading, the leading `<chapter>:<verse>` marker (e.g. "56:1")
-  renders large/bold/burgundy, matching the non-ESV first-verse chapter
-  number, and is visually distinct from the small gold verse-number
-  markers that follow it.
+  renders large/bold/gold, matching the non-ESV first-verse chapter number,
+  using the same gold as the small verse-number markers that follow it
+  (just larger, so it still reads as the chapter marker).
 
 ## Out of scope
 
