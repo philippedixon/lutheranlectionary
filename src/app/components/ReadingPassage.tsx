@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { PassageUnavailable, Verse } from "@/app/components";
 import {
 	ChapterHebrewSubtitle,
 	ChapterVerse,
 	TranslationBookChapter,
 } from "@/app/interfaces";
-import { isPoetryPassage } from "@/app/utils";
+import { SelectionsContext } from "@/app/contexts";
+import { fontSizeClass, headingSizeClass, isPoetryPassage } from "@/app/utils";
 
 interface ReadingPassageProps {
 	passageChapters: TranslationBookChapter[];
@@ -21,6 +22,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 	const hasPoetry = chaptersWithData.some((bookChapter) =>
 		isPoetryPassage(bookChapter.chapter.content)
 	);
+	const selections = useContext(SelectionsContext);
 
 	return (
 		<div className={hasPoetry ? "poetry-passage" : undefined}>
@@ -32,7 +34,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 						const baseKey = `${bookChapter.book.id}:${bookChapter.chapter.number}:${index}`;
 						if (line.type === "heading") {
 							node = (
-								<h4 key={`${baseKey}-heading`} className="font-cormorant font-semibold text-primary text-center text-[24px] max-w-[480px] mx-auto pt-3">
+								<h4 key={`${baseKey}-heading`} className={`font-cormorant font-semibold text-primary text-center ${headingSizeClass(selections.fontSize)} max-w-[480px] mx-auto pt-3`}>
 									{line.content
 										.filter((text) => typeof text === "string")
 										.join(" ")}
@@ -42,7 +44,7 @@ export const ReadingPassage: React.FC<ReadingPassageProps> = ({
 							node = (
 								<p
 									key={`${baseKey}-subtitle`}
-									className="font-eb-garamond italic text-gold text-center text-[15px] max-w-[480px] mx-auto mb-[30px]"
+									className={`font-eb-garamond italic text-gold text-center ${fontSizeClass(selections.fontSize)} max-w-[480px] mx-auto mb-[30px]`}
 								>
 									{(line as ChapterHebrewSubtitle).content
 										.filter((text) => typeof text === "string")

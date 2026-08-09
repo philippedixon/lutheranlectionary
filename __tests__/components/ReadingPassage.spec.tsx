@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { ReadingPassage } from "@/app/components";
 import { genesisPassage } from "../../__mocks__/helloao-api";
-import { TranslationBookChapter } from "@/app/interfaces";
+import { SelectionsContext } from "@/app/contexts";
+import { Selections, TranslationBookChapter } from "@/app/interfaces";
 
 const chapterWith = (
 	content: TranslationBookChapter["chapter"]["content"]
@@ -23,10 +24,28 @@ describe("ReadingPassage", () => {
 		expect(passageHeading).toBeInTheDocument();
 	});
 
-	it("should center and size the pericope heading at 24px, capped to the poetry column width", () => {
+	it("should center and size the pericope heading at 22px (default), capped to the poetry column width", () => {
 		const passageHeading = screen.getByText("The Creation");
 
-		expect(passageHeading).toHaveClass("text-center", "text-[24px]", "max-w-[480px]", "mx-auto");
+		expect(passageHeading).toHaveClass("text-center", "text-[22px]", "max-w-[480px]", "mx-auto");
+	});
+
+	it.each([
+		["small", "text-[20px]"],
+		["large", "text-[26px]"],
+	])("should size the pericope heading at %s size", (fontSize, expectedClass) => {
+		render(
+			<SelectionsContext.Provider
+				value={{ fontSize } as unknown as Selections}
+			>
+				<ReadingPassage passageChapters={genesisPassage} />
+			</SelectionsContext.Provider>
+		);
+
+		const passageHeadings = screen.getAllByText("The Creation");
+		expect(passageHeadings[passageHeadings.length - 1]).toHaveClass(
+			expectedClass
+		);
 	});
 
 	it("should display the chapter number for the passage", () => {
@@ -97,26 +116,40 @@ describe("ReadingPassage poetry column", () => {
 });
 
 describe("ReadingPassage hebrew_subtitle", () => {
-	it("renders the subtitle text, centered, italic, and width-capped", () => {
-		render(
-			<ReadingPassage
-				passageChapters={chapterWith([
-					{
-						type: "hebrew_subtitle",
-						content: ["A Psalm. A song for the Sabbath day."],
-					},
-					{ type: "verse", number: 1, content: ["A verse line"] },
-				])}
-			/>
-		);
+	const contentWithSubtitle = chapterWith([
+		{
+			type: "hebrew_subtitle",
+			content: ["A Psalm. A song for the Sabbath day."],
+		},
+		{ type: "verse", number: 1, content: ["A verse line"] },
+	]);
+
+	it("renders the subtitle at the default (medium) size, centered, italic, and width-capped", () => {
+		render(<ReadingPassage passageChapters={contentWithSubtitle} />);
 
 		const subtitle = screen.getByText("A Psalm. A song for the Sabbath day.");
 		expect(subtitle).toHaveClass(
 			"italic",
 			"text-center",
-			"text-[15px]",
+			"text-[19px]",
 			"max-w-[480px]",
 			"mx-auto"
 		);
+	});
+
+	it.each([
+		["small", "text-[17px]"],
+		["large", "text-[22px]"],
+	])("renders the subtitle at %s size", (fontSize, expectedClass) => {
+		render(
+			<SelectionsContext.Provider
+				value={{ fontSize } as unknown as Selections}
+			>
+				<ReadingPassage passageChapters={contentWithSubtitle} />
+			</SelectionsContext.Provider>
+		);
+
+		const subtitle = screen.getByText("A Psalm. A song for the Sabbath day.");
+		expect(subtitle).toHaveClass(expectedClass);
 	});
 });
