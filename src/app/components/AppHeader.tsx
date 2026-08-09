@@ -50,7 +50,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ translations }) => {
 							strokeWidth={1.4}
 							strokeLinecap="round"
 							strokeLinejoin="round"
-							className="text-gold"
+							className="text-primary"
 						>
 							<line x1="4" y1="6" x2="20" y2="6" />
 							<circle cx="8" cy="6" r="2" fill="currentColor" stroke="none" />

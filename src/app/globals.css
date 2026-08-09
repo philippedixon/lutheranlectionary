@@ -133,20 +133,59 @@ html[data-font-scale="large"] {
   margin-right: auto;
 }
 
-/* Psalm superscription (e.g. "To the choirmaster..."); read as a small
-   caption under the title, matching the non-ESV hebrew_subtitle styling. */
+/* Psalm superscription (e.g. "To the choirmaster..."); matches the non-ESV
+   hebrew_subtitle styling. Base (medium) font-size scales with reading
+   Text Size below, alongside the pericope title / psalm-book divider. */
 .esv-passage > h4.psalm-title {
   font-family: var(--font-eb-garamond), Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 19px;
   color: var(--color-gold);
   margin-bottom: 30px;
 }
 
+/* Pericope title / psalm-book divider sizing, scaled with the reading Text
+   Size setting (17/19/22 body -> 20/22/26 heading) to match the non-ESV
+   heading treatment. The "Footnotes" h3 (nested in .footnotes) matches the
+   same table, since it's still just an h3 in the same document. */
+.esv-passage > h3,
+.esv-passage .footnotes h3 {
+  font-size: 22px;
+}
+
+.esv-passage.size-small > h3,
+.esv-passage.size-small .footnotes h3 {
+  font-size: 20px;
+}
+
+.esv-passage.size-small > h4.psalm-title {
+  font-size: 17px;
+}
+
+.esv-passage.size-large > h3,
+.esv-passage.size-large .footnotes h3 {
+  font-size: 26px;
+}
+
+.esv-passage.size-large > h4.psalm-title {
+  font-size: 22px;
+}
+
+/* Attribution link (ESV license requires a link to esv.org on every page
+   showing quoted text, but sets no size/prominence rule) -- scaled 1:1
+   with reading text, matching the superscript's ratio. */
 .esv-passage .copyright {
-  font-size: 0.75rem;
+  font-size: 19px;
   color: var(--color-gold);
+}
+
+.esv-passage.size-small .copyright {
+  font-size: 17px;
+}
+
+.esv-passage.size-large .copyright {
+  font-size: 22px;
 }
 
 /* Poetry column: shrink-wrap to the longest line, cap the width, then centre
