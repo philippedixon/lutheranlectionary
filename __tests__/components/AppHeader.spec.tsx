@@ -56,6 +56,11 @@ describe("AppHeader", () => {
 		expect(svg).toHaveAttribute("viewBox");
 	});
 
+	it("renders the options icon in the same color as the other header icons", () => {
+		renderHeader();
+		expect(screen.getByTestId("options-icon")).toHaveClass("text-primary");
+	});
+
 	it("renders the dark mode toggle", () => {
 		renderHeader();
 		expect(screen.getByRole("button", { name: "Switch to dark mode" })).toBeInTheDocument();
