@@ -134,25 +134,22 @@ html[data-font-scale="large"] {
 }
 
 /* Psalm superscription (e.g. "To the choirmaster..."); matches the non-ESV
-   hebrew_subtitle styling. */
+   hebrew_subtitle styling. Base (medium) font-size scales with reading
+   Text Size below, alongside the pericope title / psalm-book divider. */
 .esv-passage > h4.psalm-title {
   font-family: var(--font-eb-garamond), Georgia, serif;
   font-style: italic;
   font-weight: 400;
+  font-size: 19px;
   color: var(--color-gold);
   margin-bottom: 30px;
 }
 
-/* Pericope title / psalm-book divider and superscription sizing, scaled
-   with the reading Text Size setting (17/19/22 body -> 20/22/26 heading,
-   1:1 for the superscript) to match the non-ESV heading/hebrew_subtitle
-   sizes. */
+/* Pericope title / psalm-book divider sizing, scaled with the reading Text
+   Size setting (17/19/22 body -> 20/22/26 heading) to match the non-ESV
+   heading treatment. */
 .esv-passage > h3 {
   font-size: 22px;
-}
-
-.esv-passage > h4.psalm-title {
-  font-size: 19px;
 }
 
 .esv-passage.size-small > h3 {
