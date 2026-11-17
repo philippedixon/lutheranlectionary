@@ -2,8 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { lukeTranslationBookChapter } from "../../__mocks__/content";
 import lectionary from "@/app/constants/lectionary";
 import { VersePassage } from "@/app/components";
+import { SelectionsContext } from "@/app/contexts";
 import { BookId } from "@/app/enums";
-import { TranslationBookChapter } from "@/app/interfaces";
+import { Selections, TranslationBookChapter } from "@/app/interfaces";
 
 const singleVerseChapter = (
 	content: TranslationBookChapter["chapter"]["content"]
@@ -111,17 +112,19 @@ describe("VersePassage hebrew_subtitle", () => {
 		verses: { first: 1, last: 2 },
 	};
 
-	it("renders the subtitle text, centered, italic, and width-capped", () => {
+	const contentWithSubtitle = singleVerseChapter([
+		{ type: "verse", number: 1, content: ["A verse line"] },
+		{
+			type: "hebrew_subtitle",
+			content: ["A Psalm. A song for the Sabbath day."],
+		},
+		{ type: "verse", number: 2, content: ["Another verse line"] },
+	]);
+
+	it("renders the subtitle at the default (medium) size, centered, italic, and width-capped", () => {
 		render(
 			<VersePassage
-				passageChapter={singleVerseChapter([
-					{ type: "verse", number: 1, content: ["A verse line"] },
-					{
-						type: "hebrew_subtitle",
-						content: ["A Psalm. A song for the Sabbath day."],
-					},
-					{ type: "verse", number: 2, content: ["Another verse line"] },
-				])}
+				passageChapter={contentWithSubtitle}
 				readingInformation={readingInformation}
 			/>
 		);
@@ -130,9 +133,77 @@ describe("VersePassage hebrew_subtitle", () => {
 		expect(subtitle).toHaveClass(
 			"italic",
 			"text-center",
-			"text-[15px]",
+			"text-[19px]",
 			"max-w-[480px]",
 			"mx-auto"
 		);
+	});
+
+	it.each([
+		["small", "text-[17px]"],
+		["large", "text-[22px]"],
+	])("renders the subtitle at %s size", (fontSize, expectedClass) => {
+		render(
+			<SelectionsContext.Provider
+				value={{ fontSize } as unknown as Selections}
+			>
+				<VersePassage
+					passageChapter={contentWithSubtitle}
+					readingInformation={readingInformation}
+				/>
+			</SelectionsContext.Provider>
+		);
+
+		const subtitle = screen.getByText("A Psalm. A song for the Sabbath day.");
+		expect(subtitle).toHaveClass(expectedClass);
+	});
+});
+
+describe("VersePassage heading", () => {
+	const readingInformation = {
+		bookId: BookId.Psalms,
+		verses: { first: 1, last: 2 },
+	};
+
+	const contentWithHeading = singleVerseChapter([
+		{ type: "verse", number: 1, content: ["A verse line"] },
+		{ type: "heading", content: ["Save Me, O My God"] },
+		{ type: "verse", number: 2, content: ["Another verse line"] },
+	]);
+
+	it("renders the heading at the default (medium) size, centered, and width-capped", () => {
+		render(
+			<VersePassage
+				passageChapter={contentWithHeading}
+				readingInformation={readingInformation}
+			/>
+		);
+
+		const heading = screen.getByText("Save Me, O My God");
+		expect(heading).toHaveClass(
+			"text-center",
+			"text-[22px]",
+			"max-w-[480px]",
+			"mx-auto"
+		);
+	});
+
+	it.each([
+		["small", "text-[20px]"],
+		["large", "text-[26px]"],
+	])("renders the heading at %s size", (fontSize, expectedClass) => {
+		render(
+			<SelectionsContext.Provider
+				value={{ fontSize } as unknown as Selections}
+			>
+				<VersePassage
+					passageChapter={contentWithHeading}
+					readingInformation={readingInformation}
+				/>
+			</SelectionsContext.Provider>
+		);
+
+		const heading = screen.getByText("Save Me, O My God");
+		expect(heading).toHaveClass(expectedClass);
 	});
 });

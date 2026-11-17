@@ -13,3 +13,14 @@ export const fontSizeClass = (fontSize?: FontSize): string => {
 			return "text-[19px]";
 	}
 };
+
+export const headingSizeClass = (fontSize?: FontSize): string => {
+	switch (fontSize) {
+		case "small":
+			return "text-[20px]";
+		case "large":
+			return "text-[26px]";
+		default:
+			return "text-[22px]";
+	}
+};
