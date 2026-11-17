@@ -8,9 +8,19 @@ describe("getEsvQueries", () => {
 		expect(getEsvQueries(reading)).toEqual(["Joel 1", "Joel 2", "Joel 3"]);
 	});
 
-	it("returns a single chapter query for a single-chapter book", () => {
+	// "Philemon 1" means verse 1 to the ESV API, so a one-chapter book is
+	// requested by bare name, which returns the whole book.
+	it("uses the bare book name for a single-chapter book", () => {
 		const reading: Reading = { bookId: BookId.Obadiah };
-		expect(getEsvQueries(reading)).toEqual(["Obadiah 1"]);
+		expect(getEsvQueries(reading)).toEqual(["Obadiah"]);
+	});
+
+	it("uses the bare book name for a single-chapter book given as chapter 1", () => {
+		const reading: Reading = {
+			bookId: BookId.Philemon,
+			chapters: { first: 1, last: 1 },
+		};
+		expect(getEsvQueries(reading)).toEqual(["Philemon"]);
 	});
 
 	it("expands a chapter range into one query per chapter", () => {
