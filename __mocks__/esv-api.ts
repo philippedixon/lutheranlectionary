@@ -26,3 +26,36 @@ export const esvMultiPassageResponse: EsvPassageResponse = {
 	canonical: "Psalm 1; Psalm 2",
 	passages: ["<p>First block.</p>", "<p>Second block.</p>"],
 };
+
+/**
+ * One HTML block per chapter, each ending in the ESV copyright line, as the
+ * strategy receives them when a reading is fetched one chapter at a time.
+ */
+export const esvChapterPassages = [
+	'<p>Chapter one.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
+	'<p>Chapter two.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
+	'<p>Chapter three.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
+];
+
+/**
+ * Builds a `fetch` mock for `/api/esv` that answers each `q` from `responses`.
+ * A value may be a passages array, a function returning one (to vary across
+ * retries), or `Error` to reject the request.
+ */
+type EsvRouteResponse = string[] | Error | (() => string[] | Error);
+
+export const mockEsvFetchByQuery = (
+	responses: Record<string, EsvRouteResponse>
+): jest.Mock =>
+	jest.fn((url: string) => {
+		const q = new URL(url, "http://localhost").searchParams.get("q") ?? "";
+		const entry = responses[q];
+		const value = typeof entry === "function" ? entry() : entry;
+		if (value instanceof Error) {
+			return Promise.reject(value);
+		}
+		return Promise.resolve({
+			ok: true,
+			json: () => Promise.resolve({ passages: value ?? [] }),
+		});
+	});
