@@ -9,6 +9,7 @@ import { Month, Reading } from "@/app/interfaces";
 import { TranslationBookChapter } from "@/app/interfaces";
 import {
 	EsvPassage,
+	PassageUnavailable,
 	ReadingPassage,
 	ReadingTabs,
 	ScrollToTopButton,
@@ -60,6 +61,8 @@ const DayPage = () => {
 	// use this rather than the current selection, which can change a render
 	// ahead of the refetch and mismatch the content shape.
 	const [contentTranslationId, setContentTranslationId] = useState("");
+	const [hasFetchError, setHasFetchError] = useState(false);
+	const [retryCount, setRetryCount] = useState(0);
 	const [monthParameter, dayParameter] = path.split("/").slice(1);
 	const monthIndex = parseInt(monthParameter) - 1;
 	const dayIndex = parseInt(dayParameter) - 1;
@@ -73,6 +76,7 @@ const DayPage = () => {
 		const fetchReadings = async () => {
 			setFirstReadingContent([]);
 			setSecondReadingContent([]);
+			setHasFetchError(false);
 			setActiveTab(0);
 			const translationId = selections.translationId ?? "";
 			const strategy = new ApiStrategyFactory().create({ translationId });
@@ -94,7 +98,9 @@ const DayPage = () => {
 				setSecondReadingContent(allResponses.slice(secondReadingIndex));
 				setContentTranslationId(translationId);
 			} catch (error) {
+				if (isCancelled) return;
 				console.error("Error fetching readings:", error);
+				setHasFetchError(true);
 			}
 		};
 
@@ -107,6 +113,7 @@ const DayPage = () => {
 		firstReadingProperties,
 		secondReadingProperties,
 		selections.translationId,
+		retryCount,
 	]);
 
 	const isEsv = contentTranslationId === "eng_esv";
@@ -135,6 +142,11 @@ const DayPage = () => {
 				onSelect={setActiveTab}
 			/>
 			<div className="max-w-[720px] mx-auto space-y-8 px-6 flex flex-col items-center">
+				{hasFetchError && (
+					<PassageUnavailable
+						onRetry={() => setRetryCount((count) => count + 1)}
+					/>
+				)}
 				{activePassage &&
 					renderPassage(activePassage, activeReading, isEsv)}
 			</div>
