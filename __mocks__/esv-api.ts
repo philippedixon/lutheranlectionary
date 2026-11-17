@@ -28,13 +28,43 @@ export const esvMultiPassageResponse: EsvPassageResponse = {
 };
 
 /**
- * One HTML block per chapter, each ending in the ESV copyright line, as the
- * strategy receives them when a reading is fetched one chapter at a time.
+ * One HTML block per chapter, as the strategy receives them when a reading
+ * is fetched one chapter at a time. Mirrors the live markup: in-body
+ * `<sup class="footnote">` markers, a trailing `div.footnotes` block whose
+ * ids restart at 1 in every chapter, and the ESV copyright line. Chapter
+ * three has no footnotes.
  */
+const esvCopyrightLine =
+	'<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>';
+
+const esvFootnoteMarker = (n: number) =>
+	`<sup class="footnote"><a class="fn" href="#f${n}-1" id="fb${n}-1">[${n}]</a></sup>`;
+
+const esvFootnote = (n: number, ref: string, text: string) =>
+	`<span class="footnote"><a href="#fb${n}-1" id="f${n}-1">[${n}]</a></span> <span class="footnote-ref">${ref}</span> <note class="translation">${text}</note>`;
+
 export const esvChapterPassages = [
-	'<p>Chapter one.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
-	'<p>Chapter two.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
-	'<p>Chapter three.</p>\n<p>(<a href="http://www.esv.org" class="copyright">ESV</a>)</p>',
+	[
+		`<p>Chapter one.${esvFootnoteMarker(1)} More text.${esvFootnoteMarker(2)}</p>`,
+		'<div class="footnotes extra_text">',
+		"<h3>Footnotes</h3>",
+		`<p>${esvFootnote(1, "1:4", "Hebrew <i>cutter</i>")}`,
+		"<br />",
+		`${esvFootnote(2, "1:8", "Or <i>virgin</i>")}`,
+		"</p>",
+		"</div>",
+		esvCopyrightLine,
+	].join("\n"),
+	[
+		`<p>Chapter two.${esvFootnoteMarker(1)}</p>`,
+		'<div class="footnotes extra_text">',
+		"<h3>Footnotes</h3>",
+		`<p>${esvFootnote(1, "2:17", "Hebrew <i>face</i>")}`,
+		"</p>",
+		"</div>",
+		esvCopyrightLine,
+	].join("\n"),
+	["<p>Chapter three.</p>", esvCopyrightLine].join("\n"),
 ];
 
 /**

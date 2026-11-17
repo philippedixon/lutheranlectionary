@@ -15,7 +15,7 @@ import {
 	VersePassage,
 } from "@/app/components";
 import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
-import { getAdjacentDay } from "@/app/utils";
+import { getAdjacentDay, stitchEsvPassages } from "@/app/utils";
 
 type PassageResult = TranslationBookChapter[] | string[];
 
@@ -25,7 +25,14 @@ const renderPassage = (
 	isEsv: boolean
 ) => {
 	if (isEsv) {
-		return <EsvPassage html={(passage as string[])[0] ?? ""} />;
+		return (
+			<EsvPassage
+				html={stitchEsvPassages(
+					passage as string[],
+					readingInformation.chapters?.first
+				)}
+			/>
+		);
 	}
 
 	const passageChapters = passage as TranslationBookChapter[];

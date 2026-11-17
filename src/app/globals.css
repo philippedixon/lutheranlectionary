@@ -144,6 +144,14 @@ html[data-font-scale="large"] {
   margin-bottom: 30px;
 }
 
+/* Per-chapter label inside the gathered footnotes block of a multi-chapter
+   ESV reading; a small sub-heading under the "Footnotes" h3. */
+.esv-passage .footnotes h4.footnotes-chapter {
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
 .esv-passage .copyright {
   font-size: 0.75rem;
   color: var(--color-gold);
