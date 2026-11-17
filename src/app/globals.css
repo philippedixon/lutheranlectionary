@@ -172,6 +172,14 @@ html[data-font-scale="large"] {
   font-size: 22px;
 }
 
+/* Per-chapter label inside the gathered footnotes block of a multi-chapter
+   ESV reading; a small sub-heading under the "Footnotes" h3. */
+.esv-passage .footnotes h4.footnotes-chapter {
+  font-size: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
 /* Attribution link (ESV license requires a link to esv.org on every page
    showing quoted text, but sets no size/prominence rule) -- scaled 1:1
    with reading text, matching the superscript's ratio. */
