@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { SelectionsContext } from "@/app/contexts";
-import { usePathname } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
 import lectionary from "@/app/constants/lectionary";
 import { Month, Reading } from "@/app/interfaces";
 import { TranslationBookChapter } from "@/app/interfaces";
@@ -16,7 +16,11 @@ import {
 	VersePassage,
 } from "@/app/components";
 import { ApiStrategyFactory } from "@/lib/api/ApiStrategyFactory";
-import { getAdjacentDay, stitchEsvPassages } from "@/app/utils";
+import {
+	findLectionaryDay,
+	getAdjacentDay,
+	stitchEsvPassages,
+} from "@/app/utils";
 
 type PassageResult = TranslationBookChapter[] | string[];
 
@@ -64,11 +68,14 @@ const DayPage = () => {
 	const [hasFetchError, setHasFetchError] = useState(false);
 	const [retryCount, setRetryCount] = useState(0);
 	const [monthParameter, dayParameter] = path.split("/").slice(1);
+	const lectionaryDay = findLectionaryDay(monthParameter, dayParameter);
+	if (!lectionaryDay) {
+		notFound();
+	}
 	const monthIndex = parseInt(monthParameter) - 1;
-	const dayIndex = parseInt(dayParameter) - 1;
 	const month: Month = lectionary[monthIndex];
-	const firstReadingProperties = month.days[dayIndex].firstReading;
-	const secondReadingProperties = month.days[dayIndex].secondReading;
+	const firstReadingProperties = lectionaryDay.firstReading;
+	const secondReadingProperties = lectionaryDay.secondReading;
 
 	useEffect(() => {
 		let isCancelled = false;
