@@ -3,3 +3,4 @@ export * from "./adjacentDay";
 export * from "./readingStyle";
 export * from "./contrast";
 export * from "./esvHtml";
+export * from "./lectionaryDay";
